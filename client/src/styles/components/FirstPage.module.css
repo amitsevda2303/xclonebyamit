@@ -1,0 +1,318 @@
+@font-face {
+    font-family: myFirstFont;
+    /* src: url("./assets/Times New Roman/times new roman.ttf"); */
+    src: url("../../assets/Times New Roman/chirp-extended-heavy-web (2).ttf")
+  }
+
+.container{
+height: 100vh;
+width: 100vw;
+display: flex;
+flex-direction: column;
+}
+
+.FirstpageDiv{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+.LeftContainer{
+    width: 70vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: 100px;
+}
+.twitterLogo{
+    width: 900px;
+    height: 400px;
+    padding-right: 100px;
+}
+
+
+
+
+.RightContainer{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+.headings{
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    margin-bottom: 20px;
+}
+.buttons{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.btn1,.btn2{
+    width: 300px;
+    padding-inline: 40px;
+  padding-block: 10px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: .2s ease;
+}
+.googleImage{
+    width: 20px;
+  }
+
+  .btn1:hover{
+    transition: .2s ease;
+    background-color: rgb(232, 232, 232);
+  }
+  
+  .btn2{
+    font-weight: 700;
+  }
+  
+  .btn2:hover{
+    transition: .2s ease;
+    cursor: pointer;
+    background-color: #cecece;
+  }
+  
+
+.slogan{
+    font-size: 70px;
+    font-family: "myFirstFont";
+    display: block;
+}
+
+.secondSpan{
+    font-size: 40px;
+    font-family:"myFirstFont";
+}
+
+
+
+.partition{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 300px;
+    margin-bottom: 10px;
+  }
+  .hrTag{
+    width: 145px;
+    background-color: rgba(128, 128, 128, 0.426);
+    border: 1px solid rgba(73, 73, 73, 0.499);
+    height: 2px;
+  }
+  
+  .or{
+    font-size: 16px;
+  }
+ 
+.accountCreationDiv{
+    width: 300px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+   
+  .accountBtn{
+    width: 100%;
+    background-color: #1D9BF0;
+    padding-inline: 40px;
+    padding-block: 10px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    color: white;
+    font-weight: 700;
+    transition: .2s ease;
+  }
+
+  .accountBtn:hover{
+    transition: .2s ease;
+    background-color: #1a8cd8;
+    cursor: pointer;
+  }
+  
+  .accountCreationDiv>span{
+    margin-top: -5px;
+    width: 100%;
+    font-size: 11px;
+    color: #979899;
+  }
+  
+
+  .links{
+    color: #1D9BF0;
+    text-decoration: none;
+  }
+  
+
+
+.lastDiv{
+    margin-top: 30px;
+    width: 300px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+}
+.lastDiv>p{
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+
+  .LoginBtn{
+    width:100%;
+    background-color: transparent;
+    padding-inline: 40px;
+    padding-block: 10px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 2px solid rgba(70, 70, 70, 0.773);
+    color:#1D9BF0;
+    font-weight: 700;
+    transition: .2s ease;
+  }
+
+  .LoginBtn:hover{
+    transition: .2s ease;
+    background: #1d9cf015;
+  }
+  
+
+.anchorBar{
+    width: 100vw;
+    height: 10%;
+    padding-bottom: 16px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-inline: 150px;
+    text-align: center;
+}
+
+.anchorTags{
+    font-size: 14px;
+    color: #71767b;
+    text-decoration: none;
+}
+
+.anchorTags:hover{
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1600px) {
+    .anchorBar{
+        padding-inline: 20px;
+    }
+}
+@media screen and (max-width: 1470px) {
+    .LeftContainer{
+        transition: .2s ease;
+        width: 50vw;
+    }
+}
+/* @media screen and (max-width: 1350px) {
+    .LeftContainer{
+        transition: .2s ease;
+        width: 45vw;
+    }
+} */
+@media screen and (max-width: 1200px) {
+    .LeftContainer{
+        transition: .2s ease;   
+        width: 40vw;
+    }
+    .twitterLogo{
+        width: 400px;
+        height: 300px;
+        padding-right: 50px;
+        transition: .2s ease;
+    }
+    
+}
+@media screen and (max-width: 1050px) {
+    .container{
+        height: auto;
+        gap: 100px;
+    }
+    .LeftContainer{
+        width: fit-content;
+    }
+    .RightContainer{
+        width: auto;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .container{
+        width: auto;
+        overflow-y :auto;
+    }
+    .FirstpageDiv{
+        padding-inline: 100px;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+    .LeftContainer{
+        height: 150px;
+        display: flex;
+        align-items: flex-start;
+        padding: 0;
+    } .twitterLogo{
+        padding: 0;
+        width: 150px;
+        height: 150px;
+        padding-right: 50px;
+        transition: .2s ease;
+    }
+
+    .RightContainer{
+        align-items: flex-start;
+        justify-content: flex-start;
+        height: auto;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .slogan{
+        font-size: 40px;
+        font-family: 'Ubuntu', sans-serif;
+        display: block;
+    }
+    
+    .secondSpan{
+        font-size: 40px;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    
+}

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Ubuntu:wght@700&display=swap');
+@font-face {
+  font-family: myFirstFont;
+  src: url("./assets/Times New Roman/times new roman.ttf");
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -5,7 +11,7 @@
 }
 .App{
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   background-color: black;
   color: white;
 }
