@@ -1,0 +1,46 @@
+
+
+  .modalBackdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(67, 84, 97, 0.638); /* Semi-transparent background */
+  }
+  .modalContent {
+    position: relative;
+    background: #000000; /* White background for modal content */
+    padding-top: 5px;
+    padding-left: 12px;
+    padding-bottom: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for a subtle lift */
+    width: 600px;
+    height: 620px;
+    min-height: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+
+
+  @media screen and (max-width: 688px){
+    .modalContent{
+      width: 100%;
+      height: 100%;
+    }    
+  }
+
+  @media screen and (max-height: 500px) {
+    .modalContent{
+      height: 100% ;
+    }
+    
+  }

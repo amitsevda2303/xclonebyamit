@@ -1,16 +1,17 @@
 import './App.css';
 import FirstPage from './components/Auth/FirstPage';
 import {BrowserRouter, Route,Routes} from "react-router-dom"
+import Modal from './components/Auth/Modal';
 
 function App() {
   return (
     
     <BrowserRouter>
     <div className="App">
+    <FirstPage/>
       <Routes>
-        <Route expact path='/' element={<FirstPage/>}/>
+        <Route path="/i/flow" element={<Modal/>}/>
       </Routes>
-     {/* <FirstPage/> */}
     </div>
     </BrowserRouter>
     
