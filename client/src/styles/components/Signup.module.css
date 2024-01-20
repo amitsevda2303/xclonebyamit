@@ -1,0 +1,118 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+.firstSection {
+  width: 600px;
+  height: 10%;
+  display: flex;
+}
+
+.backbtn {
+  width: 75px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 25px;
+}
+
+.backbtn > i {
+  font-size: 20px;
+}
+
+.para {
+  width: 525px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.secondSection {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.thirdSection {
+  width: 100%;
+  height: 10%;
+  background-color: #1d9bf0;
+}
+
+.createHeading {
+  font-size: 33px;
+  font-weight: 700;
+}
+
+.inputDiv {
+  border: 1px solid rgba(255, 251, 251, 0.199);
+  width: 75%;
+  height: 60px !important;
+  border-radius: 6px;
+  margin-top: 25px;
+}
+.changer {
+  margin-top: 10px;
+  width: 75%;
+  display: flex;
+  justify-content: right;
+}
+
+.changer > a {
+  color: #1d9bf0;
+  text-decoration: none;
+}
+
+.changer > a:hover {
+  text-decoration: underline;
+  cursor: text;
+}
+.dobContainer {
+  width: 75%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.dob {
+  font-size: 16px;
+  font-weight: 600;
+}
+.dobDetail{
+    font-size: 14.5px;
+    color: #71767b;
+    margin-top: 10px;
+}
+.dobselectorDiv{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+.selectDiv1,.selectDiv2,.selectDiv3{
+    border-radius: 6px;
+    border: 1px solid rgba(255, 251, 251, 0.199);
+    height: 60px;
+}
+
+.selectDiv1{
+    width: 50%;
+}
+.selectDiv2{
+    width: 20%;
+}
+
+.selectDiv3{
+    width: 30%;
+}
+
+@media screen and (max-height: 650px) {
+  .secondSection {
+    overflow-y: scroll;
+  }
+}

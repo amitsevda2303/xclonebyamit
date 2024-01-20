@@ -1,20 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import Styles from "../../styles/components/FirstPage.module.css";
 import image from "../../assets/svg.svg";
 import google from "../../assets/google.svg";
 import apple from "../../assets/apple.svg";
 import { useNavigate } from "react-router-dom";
-import { Mycontext } from "../../context/MyContext";
 
 const FirstPage = () => {
   const navigate = useNavigate();
-  const { setSignup } = useContext(Mycontext);
 
   const gotomodal = async() => {
-    await setSignup(true);
-    navigate("/i/flow");
-    window.history.pushState({}, '', '/i/flow/singup');
+    navigate("/i/flow/signup");
+    // window.history.pushState({}, '', '/i/flow/singup');
   };
+
+  const gotoLogin = async() =>{
+    navigate('/i/flow/login');
+  }
   return (
     <div className={Styles.container}>
       <div className={Styles.FirstpageDiv}>
@@ -73,7 +74,7 @@ const FirstPage = () => {
 
           <div className={Styles.lastDiv}>
             <p>Already have an account?</p>
-            <button className={Styles.LoginBtn}>Sign in</button>
+            <button onClick={gotoLogin} className={Styles.LoginBtn}>Sign in</button>
           </div>
         </div>
       </div>
