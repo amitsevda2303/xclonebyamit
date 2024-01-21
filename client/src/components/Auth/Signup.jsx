@@ -43,7 +43,9 @@ const Signup = () => {
         </div>
 
       </div>
-      <div className={Styles.thirdSection}></div>
+      <div className={Styles.thirdSection}>
+        <button disabled>Next</button>
+      </div>
     </div>
   );
 };

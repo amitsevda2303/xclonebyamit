@@ -9,26 +9,31 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(67, 84, 97, 0.638); /* Semi-transparent background */
+    background: #5b70836c; /* Semi-transparent background */
   }
   .modalContent {
     position: relative;
     background: #000000; /* White background for modal content */
     border-radius: 16px;
-    padding-inline: 10px;
-    padding-bottom: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for a subtle lift */
     width: 600px;
-    height: 620px;
+    height: 650px;
     min-height: 70%;
     text-align: center;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
   }
   
-
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+@media screen and (max-height: 800px) {
+  .modalContent{
+    height: 90%;
+  }  
+}
 
   @media screen and (max-width: 688px){
     .modalContent{
@@ -38,7 +43,9 @@
   }
 
   @media screen and (max-height: 500px) {
+  
     .modalContent{
+      /* margin-block:30px; */
       height: 100% ;
     }
     

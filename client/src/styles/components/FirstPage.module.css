@@ -272,6 +272,7 @@ flex-direction: column;
     }
     .RightContainer{
         width: auto;
+        
     }
 }
 @media screen and (max-width: 1000px) {
@@ -303,6 +304,7 @@ flex-direction: column;
         justify-content: flex-start;
         height: auto;
     }
+   
 }
 
 
