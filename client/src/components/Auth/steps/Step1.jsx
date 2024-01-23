@@ -94,6 +94,8 @@ const Step1 = () => {
           <span className={Styles.createHeading}>Create your account</span>
         </div>
         <div className={Styles.inputDiv}>
+
+          <span className={Styles.counter}>{name.length}&nbsp;/&nbsp;50</span>
           <input
             className={Styles.input1}
             id="name"
@@ -103,6 +105,7 @@ const Step1 = () => {
               setName(e.target.value);
             }}
             placeholder=""
+            maxLength={50}
           />
           <label className={Styles.label} htmlFor="name">
             Name
@@ -136,27 +139,33 @@ const Step1 = () => {
           </span>
 
           <div className={Styles.dobselectorDiv}>
-            <div className={Styles.selectDiv1}> <select
-                className={Styles.select}
+            <div className={Styles.selectDiv1}>
+              <label htmlFor="">Month</label>
+              <i class="fa-solid fa-chevron-down"></i>
+               <select
+                className={Styles.select1}
                 value={selectedDate.month}
                 onChange={handleMonthChange}
               >
-                <option value="" disabled>
-                  Month
+                <option   disabled>
+                  {}
                 </option>
                 {monthNames.map((month, index) => (
-                  <option key={index} value={index + 1}>
+                  <option  key={index} value={index + 1}>
                     {month}
                   </option>
                 ))}
               </select></div>
-            <div className={Styles.selectDiv2}> <select
-                className={Styles.select}
+            <div className={Styles.selectDiv2}>
+            <label htmlFor="">day</label>
+            <i class="fa-solid fa-chevron-down"></i>
+               <select
+                className={Styles.select2}
                 value={selectedDate.day}
                 onChange={handleDayChange}
               >
                 <option value="" disabled>
-                  Day
+                  {}
                 </option>
                 {selectedDate.month &&
                   generateDays(selectedDate.month, selectedDate.year).map((day) => (
@@ -165,13 +174,16 @@ const Step1 = () => {
                     </option>
                   ))}
               </select></div>
-            <div className={Styles.selectDiv3}><select
-                className={Styles.select}
+            <div className={Styles.selectDiv3}>
+            <label htmlFor="">Year</label>
+            <i class="fa-solid fa-chevron-down"></i>
+              <select
+                className={Styles.select3}
                 value={selectedDate.year}
                 onChange={handleYearChange}
               >
                 <option value="" disabled>
-                  Year
+                  {}
                 </option>
                 {Array.from({ length: 100 }, (_, i) => (
                   <option key={i + 1920} value={i + 1920}>

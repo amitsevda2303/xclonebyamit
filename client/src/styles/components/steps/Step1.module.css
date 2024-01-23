@@ -66,12 +66,18 @@
     position: relative;
     border: 1px solid rgba(255, 251, 251, 0.199);
     width: 75%;
-    min-height: 56px !important;
+    min-height: 60px !important;
     border-radius: 6px;
     margin-top: 25px;
     display: flex;
   }
 
+.counter{
+  position: absolute;
+  right: 10px;
+  font-size: 13px;
+  color: #777;
+}
   .input1{
     position: absolute;
     bottom: 0;
@@ -160,8 +166,9 @@
       border: 1px solid rgba(255, 251, 251, 0.199);
       height: 56px;
       margin-bottom: 10px;
+      position: relative;
   }
-  
+ 
   .selectDiv1{
       width: 50%;
   }
@@ -172,7 +179,120 @@
   .selectDiv3{
       width: 30%;
   }
+
   
+   .select1{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 16px;
+      padding-top: 15px;
+      height: 50px;
+      padding-left: 10px;
+      text-align: left;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .selectDiv1>label{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      font-size: 14px;
+      color: #777;
+    }
+    .select1>option{
+      background-color: black;
+      color: white;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+  
+   .select2{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 16px;
+      padding-top: 15px;
+      height: 50px;
+      padding-left: 10px;
+      text-align: left;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .selectDiv2>label{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      font-size: 14px;
+      color: #777;
+    }
+    .select2>option{
+      background-color: black;
+      color: white;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+  
+   .select3{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 16px;
+      padding-top: 15px;
+      height: 50px;
+      padding-left: 10px;
+      text-align: left;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .selectDiv1>i{
+      position: absolute;
+      right: 10px;
+      top: 35%;
+      color: #777;
+    }
+    .selectDiv2>i{
+      position: absolute;
+      right: 10px;
+      top: 35%;
+      color: #777;
+    }
+    .selectDiv3>i{
+      position: absolute;
+      right: 10px;
+      top: 35%;
+      color: #777;
+    }
+    .selectDiv3>label{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      font-size: 14px;
+      color: #777;
+    }
+    .select3>option{
+      background-color: black;
+      color: white;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+  
+
   .thirdSection>button{
     width: 73%;
     height: 51px;
