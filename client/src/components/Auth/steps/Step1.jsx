@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Styles from "../../../styles/components/steps/Step1.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -8,6 +8,7 @@ const Step1 = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [changer, setChanger] = useState("Phone");
+  const [focusedInput, setFocusedInput] = useState(null);
   const [selectedDate, setSelectedDate] = useState({
     month: "",
     day: "",
@@ -30,6 +31,12 @@ const Step1 = () => {
     "December",
   ];
 
+  const setFocus = (id) => {
+    setFocusedInput(id);
+  };
+  const setBlur = () => {
+    setFocusedInput(null);
+  };
 
   const gotoFirstPage = () => {
     navigate("/");
@@ -73,7 +80,6 @@ const Step1 = () => {
     });
   };
 
-
   return (
     <div className={Styles.container}>
       <div className={Styles.firstSection}>
@@ -90,11 +96,23 @@ const Step1 = () => {
         <div></div>
       </div>
       <div className={Styles.secondSection}>
+
+
+
         <div className={Styles.createHeading}>
           <span className={Styles.createHeading}>Create your account</span>
         </div>
-        <div className={Styles.inputDiv}>
 
+
+
+        <div  className={Styles.inputDiv}
+          style={{
+            border:
+              focusedInput === "input1"
+                ? "2px solid #0099ff"
+                : "1px solid  rgba(128, 128, 128, 0.314) ",
+          }}
+        >
           <span className={Styles.counter}>{name.length}&nbsp;/&nbsp;50</span>
           <input
             className={Styles.input1}
@@ -106,12 +124,29 @@ const Step1 = () => {
             }}
             placeholder=""
             maxLength={50}
+            onFocus={() => {
+              setFocus("input1");
+            }}
+            onBlur={setBlur}
           />
-          <label className={Styles.label} htmlFor="name">
+          <label className={Styles.label} htmlFor="name" style={{color: focusedInput === "input1" ? "#1d9bf0" : "#777"}}>
             Name
           </label>
         </div>
-        <div className={Styles.inputDiv}>
+
+
+
+
+
+        <div className={Styles.inputDiv}  
+        style={{
+          border:
+            focusedInput === "input2"
+              ? "2px solid #0099ff"
+              : "1px solid  rgba(128, 128, 128, 0.314) ",
+              paddingBlock: focusedInput === "input1" ? "19px" : "20px",
+              paddingInline:focusedInput === "input1" ? "1px" : "2px",
+        }}>
           <input
             className={Styles.input1}
             id="email"
@@ -123,11 +158,18 @@ const Step1 = () => {
                 ? setEmail(e.target.value)
                 : setPhone(e.target.value);
             }}
+
+            onFocus={()=>{setFocus("input2")}}
+            onBlur={setBlur}
           />
-          <label id="email" className={Styles.label} htmlFor="name">
+          <label id="email" className={Styles.label} htmlFor="name" style={{color: focusedInput === "input2" ? "#1d9bf0" : "#777"}}>
             {changer === "Phone" ? "Email" : "Phone"}
           </label>
         </div>
+
+
+
+
         <div className={Styles.changer}>
           <span onClick={changeType}>Use {changer} instead</span>
         </div>
@@ -142,24 +184,23 @@ const Step1 = () => {
             <div className={Styles.selectDiv1}>
               <label htmlFor="">Month</label>
               <i class="fa-solid fa-chevron-down"></i>
-               <select
+              <select
                 className={Styles.select1}
                 value={selectedDate.month}
                 onChange={handleMonthChange}
               >
-                <option   disabled>
-                  {}
-                </option>
+                <option disabled>{}</option>
                 {monthNames.map((month, index) => (
-                  <option  key={index} value={index + 1}>
+                  <option key={index} value={index + 1}>
                     {month}
                   </option>
                 ))}
-              </select></div>
+              </select>
+            </div>
             <div className={Styles.selectDiv2}>
-            <label htmlFor="">day</label>
-            <i class="fa-solid fa-chevron-down"></i>
-               <select
+              <label htmlFor="">day</label>
+              <i class="fa-solid fa-chevron-down"></i>
+              <select
                 className={Styles.select2}
                 value={selectedDate.day}
                 onChange={handleDayChange}
@@ -168,15 +209,18 @@ const Step1 = () => {
                   {}
                 </option>
                 {selectedDate.month &&
-                  generateDays(selectedDate.month, selectedDate.year).map((day) => (
-                    <option key={day} value={day}>
-                      {day}
-                    </option>
-                  ))}
-              </select></div>
+                  generateDays(selectedDate.month, selectedDate.year).map(
+                    (day) => (
+                      <option key={day} value={day}>
+                        {day}
+                      </option>
+                    )
+                  )}
+              </select>
+            </div>
             <div className={Styles.selectDiv3}>
-            <label htmlFor="">Year</label>
-            <i class="fa-solid fa-chevron-down"></i>
+              <label htmlFor="">Year</label>
+              <i class="fa-solid fa-chevron-down"></i>
               <select
                 className={Styles.select3}
                 value={selectedDate.year}
@@ -186,11 +230,12 @@ const Step1 = () => {
                   {}
                 </option>
                 {Array.from({ length: 100 }, (_, i) => (
-                  <option key={i + 1920} value={i + 1920}>
-                    {i + 1920}
+                  <option key={i + 1920} value={i + 1925}>
+                    {i + 1925}
                   </option>
                 ))}
-              </select></div>
+              </select>
+            </div>
           </div>
         </div>
       </div>

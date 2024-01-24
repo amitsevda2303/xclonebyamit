@@ -74,6 +74,7 @@
 
 .counter{
   position: absolute;
+  top: 5px;
   right: 10px;
   font-size: 13px;
   color: #777;
@@ -89,6 +90,7 @@
     background-color: transparent;
     border: none;
     color: white;
+    padding-bottom: 10px;
   }
   
   .input1:focus{
@@ -102,15 +104,14 @@
     left: 11px;
     font-size: 17px;
     color: grey;
-    transition: .3s ease-out;
+    transition: .2s ease;
   }
 .input1:focus ~ .label {
   position: absolute;
   top: 5px;
   left: 10px;
   font-size: 14px;
-  color: rgb(120, 122, 122);
-  color: #1d9bf0;
+
 }
 
 .input1:not(:placeholder-shown) ~ .label,
@@ -119,8 +120,6 @@
   top: 5px;
   left: 10px;
   font-size: 14px;
-  color: rgb(120, 122, 122);
-  color: #1d9bf0;
 }
   .changer {
     margin-top: 10px;
