@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Styles from "../../styles/components/FirstPage.module.css";
 import image from "../../assets/svg.svg";
 import google from "../../assets/google.svg";
 import apple from "../../assets/apple.svg";
 import { useNavigate } from "react-router-dom";
+import { Mycontext } from "../../context/MyContext";
 
 const FirstPage = () => {
+  const { loader, setLoader} = useContext(Mycontext)
   const navigate = useNavigate();
 
   const gotomodal = async() => {
+    setLoader(true)
     navigate("/i/flow/signup");
     // window.history.pushState({}, '', '/i/flow/singup');
   };

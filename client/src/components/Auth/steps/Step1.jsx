@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { isValidElement, useContext, useEffect, useState } from "react";
 import Styles from "../../../styles/components/steps/Step1.module.css";
 import { useNavigate } from "react-router-dom";
+import { Mycontext } from "../../../context/MyContext";
 
 const Step1 = () => {
   const navigate = useNavigate();
@@ -9,12 +10,35 @@ const Step1 = () => {
   const [phone, setPhone] = useState("");
   const [changer, setChanger] = useState("Phone");
   const [focusedInput, setFocusedInput] = useState(null);
+  const [red, setRed] = useState(false)
   const [selectedDate, setSelectedDate] = useState({
     month: "",
     day: "",
     year: "",
   });
   const currentYear = new Date().getFullYear();
+  const {loader , setLoader,
+    setStep,
+    userDetails,
+    setUserDetails,} = useContext(Mycontext)
+
+    const setDetails = (e) =>{
+      e.preventDefault();
+      if(changer === "Phone")
+      {
+        setUserDetails({
+          name: name,
+          email: email,
+          dob: selectedDate
+        })
+      }else{
+        setUserDetails({
+          name: name,
+          mobile: phone,
+          dob: selectedDate
+        })
+      }
+    }
 
   const monthNames = [
     "January",
@@ -52,6 +76,16 @@ const Step1 = () => {
       setPhone("");
     }
   };
+  useEffect(() => {
+   setTimeout(() => {
+    setLoader(false)
+   }, 700);
+  }, [loader])
+
+
+  useEffect(() => {
+    console.log("Updated userDetails:", userDetails);
+  }, [userDetails]);
 
   const generateDays = (month, year) => {
     const daysInMonth = new Date(year, month, 0).getDate();
@@ -80,13 +114,41 @@ const Step1 = () => {
     });
   };
 
+
+  const isEmailValid = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email)
+  };
+
+  const isValidPhone = (phone) => {
+    // Simple example: Allows digits, spaces, and hyphens
+    const phoneRegex = /^[0-9\s-]+$/;
+  
+    return phoneRegex.test(phone);
+  };
+
+  const isDOBSelected = () => {
+    return (
+      selectedDate.month !== "" &&
+      selectedDate.day !== "" &&
+      selectedDate.year !== ""
+    );
+  };
+
+  const isButtonDisabled =   !isEmailValid(email) || !isDOBSelected();
+
+
   return (
-    <div className={Styles.container}>
+    <form onSubmit={setDetails} className={Styles.container}>
+      {loader ? <div className={Styles.loaderDiv}>
+        <span className={Styles.loader}></span>
+      </div>:
+      <>
       <div className={Styles.firstSection}>
         <div className={Styles.backbtn}>
           <i
             onClick={gotoFirstPage}
-            class="fa-solid fa-xmark"
+            className="fa-solid fa-xmark"
             style={{ color: "white" }}
           ></i>
         </div>
@@ -96,18 +158,14 @@ const Step1 = () => {
         <div></div>
       </div>
       <div className={Styles.secondSection}>
-
-
-
         <div className={Styles.createHeading}>
           <span className={Styles.createHeading}>Create your account</span>
         </div>
 
-
-
-        <div  className={Styles.inputDiv}
+        <div
+          className={Styles.inputDiv}
           style={{
-            border:
+            outline:
               focusedInput === "input1"
                 ? "2px solid #0099ff"
                 : "1px solid  rgba(128, 128, 128, 0.314) ",
@@ -116,6 +174,8 @@ const Step1 = () => {
           <span className={Styles.counter}>{name.length}&nbsp;/&nbsp;50</span>
           <input
             className={Styles.input1}
+            autoComplete="off"
+            autoFocus
             id="name"
             type="text"
             value={name}
@@ -129,46 +189,56 @@ const Step1 = () => {
             }}
             onBlur={setBlur}
           />
-          <label className={Styles.label} htmlFor="name" style={{color: focusedInput === "input1" ? "#1d9bf0" : "#777"}}>
+          <label
+            className={Styles.label}
+            htmlFor="name"
+            style={{ color: focusedInput === "input1" ? "#1d9bf0" : "#777" }}
+          >
             Name
           </label>
         </div>
 
-
-
-
-
-        <div className={Styles.inputDiv}  
-        style={{
-          border:
-            focusedInput === "input2"
-              ? "2px solid #0099ff"
-              : "1px solid  rgba(128, 128, 128, 0.314) ",
-              paddingBlock: focusedInput === "input1" ? "19px" : "20px",
-              paddingInline:focusedInput === "input1" ? "1px" : "2px",
-        }}>
+        <div
+          className={Styles.inputDiv}
+          style={{
+            outline:
+              focusedInput === "input2"
+                ? "2px solid #0099ff"
+                : "1px solid  rgba(128, 128, 128, 0.314) ",
+            paddingBlock: focusedInput === "input1" ? "19px" : "20px",
+            paddingInline: focusedInput === "input1" ? "1px" : "2px",
+          }}
+        >
           <input
             className={Styles.input1}
+            autoComplete="off"
             id="email"
             type={changer === "Phone" ? "email" : "number"}
             placeholder=""
             value={changer === "Phone" ? email : phone}
             onChange={(e) => {
+              if (changer === "email") {
+                    isEmailValid()            
+              }
               changer === "Phone"
                 ? setEmail(e.target.value)
                 : setPhone(e.target.value);
+              
             }}
-
-            onFocus={()=>{setFocus("input2")}}
+            onFocus={() => {
+              setFocus("input2");
+            }}
             onBlur={setBlur}
           />
-          <label id="email" className={Styles.label} htmlFor="name" style={{color: focusedInput === "input2" ? "#1d9bf0" : "#777"}}>
+          <label
+            id="email"
+            className={Styles.label}
+            htmlFor="name"
+            style={{ color: focusedInput === "input2" ? "#1d9bf0" : "#777" }}
+          >
             {changer === "Phone" ? "Email" : "Phone"}
           </label>
         </div>
-
-
-
 
         <div className={Styles.changer}>
           <span onClick={changeType}>Use {changer} instead</span>
@@ -181,13 +251,37 @@ const Step1 = () => {
           </span>
 
           <div className={Styles.dobselectorDiv}>
-            <div className={Styles.selectDiv1}>
-              <label htmlFor="">Month</label>
-              <i class="fa-solid fa-chevron-down"></i>
+            <div
+              className={Styles.selectDiv1}
+              style={{
+                outline:
+                  focusedInput === "select1"
+                    ? "2px solid #0099ff"
+                    : "1px solid rgba(255, 251, 251, 0.199)",
+              }}
+            >
+              <label
+                style={{
+                  color: focusedInput === "select1" ? "#0099ff" : "#777",
+                }}
+                htmlFor=""
+              >
+                Month
+              </label>
+              <i
+                style={{
+                  color: focusedInput === "select1" ? "#0099ff" : "#777",
+                }}
+                className="fa-solid fa-chevron-down"
+              ></i>
               <select
                 className={Styles.select1}
                 value={selectedDate.month}
                 onChange={handleMonthChange}
+                onFocus={() => {
+                  setFocus("select1");
+                }}
+                onBlur={setBlur}
               >
                 <option disabled>{}</option>
                 {monthNames.map((month, index) => (
@@ -197,13 +291,26 @@ const Step1 = () => {
                 ))}
               </select>
             </div>
-            <div className={Styles.selectDiv2}>
-              <label htmlFor="">day</label>
-              <i class="fa-solid fa-chevron-down"></i>
+            <div className={Styles.selectDiv2} style={{
+                outline:
+                  focusedInput === "select2"
+                    ? "2px solid #0099ff"
+                    : "1px solid rgba(255, 251, 251, 0.199)",
+              }}>
+              <label style={{
+                  color: focusedInput === "select2" ? "#0099ff" : "#777",
+                }} htmlFor="">day</label>
+              <i style={{
+                  color: focusedInput === "select2" ? "#0099ff" : "#777",
+                }} className="fa-solid fa-chevron-down"></i>
               <select
                 className={Styles.select2}
                 value={selectedDate.day}
                 onChange={handleDayChange}
+                onFocus={() => {
+                  setFocus("select2");
+                }}
+                onBlur={setBlur}
               >
                 <option value="" disabled>
                   {}
@@ -218,13 +325,26 @@ const Step1 = () => {
                   )}
               </select>
             </div>
-            <div className={Styles.selectDiv3}>
-              <label htmlFor="">Year</label>
-              <i class="fa-solid fa-chevron-down"></i>
+            <div className={Styles.selectDiv3} style={{
+                outline:
+                  focusedInput === "select3"
+                    ? "2px solid #0099ff"
+                    : "1px solid rgba(255, 251, 251, 0.199)",
+              }}>
+              <label style={{
+                  color: focusedInput === "select3" ? "#0099ff" : "#777",
+                }}  htmlFor="">Year</label>
+              <i style={{
+                  color: focusedInput === "select3" ? "#0099ff" : "#777",
+                }} className="fa-solid fa-chevron-down"></i>
               <select
                 className={Styles.select3}
                 value={selectedDate.year}
                 onChange={handleYearChange}
+                onFocus={() => {
+                  setFocus("select3");
+                }}
+                onBlur={setBlur}
               >
                 <option value="" disabled>
                   {}
@@ -240,9 +360,9 @@ const Step1 = () => {
         </div>
       </div>
       <div className={Styles.thirdSection}>
-        <button disabled>Next</button>
-      </div>
-    </div>
+        <button  disabled={(changer === "Phone" && !isEmailValid(email)) || (changer === "Email" && !isValidPhone(phone))} type="submit">Next</button>
+      </div></>}
+    </form>
   );
 };
 

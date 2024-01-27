@@ -3,28 +3,56 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    
   }
   .firstSection {
     width: 600px;
     height: 10%;
     display: flex;
-    
   }
   
   .backbtn {
-    width: 75px;
-    height: 53px;
+    position: relative;
+    width: 13%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 25px;
+    padding-left: 10px;
   }
   
   .backbtn > i {
     font-size: 20px;
+    padding-block: 9px;
+    padding-inline: 12px;
+    border-radius: 50%;
+    transition: .4s ease;
   }
-  
+
+ 
+
+  .backbtn::after{
+    position: absolute;
+    bottom:  -18%;
+    content: 'Close';
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: rgba(128, 128, 128, 0.656);
+    padding: 3px;
+    padding-inline: 4px;
+    text-align: center;
+    opacity: 0; 
+    letter-spacing: 1px;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transform: translateY(0);
+  }
+  .backbtn:hover::after{
+    letter-spacing: 1px;
+    opacity: 1; 
+  }
+  .backbtn:hover > i{
+    transition: .4s ease;
+    background-color: rgba(128, 128, 128, 0.45);
+  }
   .para {
     width: 525px;
     display: flex;
@@ -83,9 +111,9 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 35px;
+    height: 60px;
     padding-left: 11px;
-    padding-top: 10px;
+    padding-top: 30px;
     font-size: 17px;
     background-color: transparent;
     border: none;
@@ -163,7 +191,7 @@
   .selectDiv1,.selectDiv2,.selectDiv3{
       border-radius: 6px;
       border: 1px solid rgba(255, 251, 251, 0.199);
-      height: 56px;
+      height: 60px;
       margin-bottom: 10px;
       position: relative;
   }
@@ -327,3 +355,24 @@
     }
   }
   
+/* HTML: <div class="loader"></div> */
+.loaderDiv{
+display: flex;
+width: 100%;
+height: 100%;
+align-items: center;
+justify-content: center;
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #2b80b882;
+  border-right-color: #1d9bf0;
+  animation: l2 .7s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
+
+
