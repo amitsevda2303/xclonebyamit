@@ -1,4 +1,4 @@
-import React, { isValidElement, useContext, useEffect, useState } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import Styles from "../../../styles/components/steps/Step1.module.css";
 import { useNavigate } from "react-router-dom";
 import { Mycontext } from "../../../context/MyContext";
@@ -6,7 +6,6 @@ import { Mycontext } from "../../../context/MyContext";
 const Step1 = () => {
   const navigate = useNavigate();
 
-  const [changer, setChanger] = useState("Phone");
   const [focusedInput, setFocusedInput] = useState(null);
 
   const {
@@ -22,8 +21,10 @@ const Step1 = () => {
     setStep,
     userDetails,
     setUserDetails,
-    selectedDate, 
+    selectedDate,
     setSelectedDate,
+    changer,
+    setChanger,
   } = useContext(Mycontext);
 
   const monthNames = [
@@ -49,12 +50,10 @@ const Step1 = () => {
   };
 
   const gotoFirstPage = () => {
-    setName("")
-    setEmail("")
-    setPhone("")
-    setSelectedDate({month: "",
-    day: "",
-    year: "",})
+    setName("");
+    setEmail("");
+    setPhone("");
+    setSelectedDate({ month: "", day: "", year: "" });
     setStep(1);
     navigate("/");
   };

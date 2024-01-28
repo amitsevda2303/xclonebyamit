@@ -22,7 +22,6 @@ const Step2 = () => {
         <div className={Styles.para}>
           <h3>Step {step} of 5</h3>
         </div>
-        <div></div>
       </div>
       <div className={Styles.secondSection}>
           <span className={Styles.createHeading}>

@@ -7,6 +7,7 @@
   }
 
 
+  
   .firstSection {
     width: 600px;
     height: 10%;
@@ -69,66 +70,95 @@
     font-weight: 100;
   }
 
-  
+
   .secondSection {
     width: 100%;
-    height: 100px;
-    min-height: 70%;
+    height: 200px;
+    min-height: 50%;
     display: flex;
-    color: #e7e9ea;
     flex-direction: column;
     align-items: center;
     padding-inline: 10px;
     padding-bottom: 10px;
     justify-content: flex-start;
   }
-  
+
   .createHeading {
-    margin-top: 0px;
     font-size: 33px;
     width: 75%;
     text-align: left;
     font-weight: 700;
-    color: #e7e9ea;
+  }
+  
+  .inputDiv {
+    position: relative;
+    border: 1px solid rgba(255, 251, 251, 0.199);
+    width: 75%;
+    min-height: 60px !important;
+    border-radius: 6px;
+    margin-top: 25px;
+    display: flex;
   }
 
-  .anotherDiv{
-    margin-top: 30px;
-    width: 75%;
-    text-align: left;
-    color: #e7e9ea;
-    line-height: 25px;
-    font-size: 21px;
-    font-weight: 600;
-}
-   .cheacker{
-    display: flex;
-    width: 75%;
-    text-align: left;
-    margin-top: 10px;
-    color: #e7e9ea;
-   }
-
- .checkBox{
-    width: 20px;
-    height: 20px;
-}
-
-.info{
-    color: #71767b;
-    width: 75%;
-    text-align: left;
-    margin-top: 40px;
+  .check{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
     font-size: 15px;
+    color:#00ba7c;
+  }
+  .input1{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    padding-left: 11px;
+    padding-top: 30px;
+    font-size: 17px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding-bottom: 10px;
+  }
+  
+  .input1:focus{
+    outline: none;
+    background-color: transparent;
+  }
+
+  .label{
+    position: absolute;
+    top: 30%;
+    left: 11px;
+    font-size: 17px;
+    color: grey;
+    transition: .2s ease;
+  }
+.input1:focus ~ .label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 14px;
+
 }
 
-.anchor{
-    color: #1d9bf0;
-    text-decoration: none;
+.input1:not(:placeholder-shown) ~ .label,
+.input1:not(:empty) ~ .label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 14px;
 }
+  .changer {
+    margin-top: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: right;
+  }
 
 
 
+  
   .thirdSection {
     position: absolute;
 
@@ -136,26 +166,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     width: 100%;
-    height: 105px;
+    height: 212px;
     /* background-color: #1d9bf0; */
   }
 
-
+  .paragraph{
+    width: 73%;
+    text-align: start;
+    letter-spacing: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #71767b;
+    padding-bottom: 12px;
+  }
+  .paragraph>a{
+    color: #1d9bf0;
+    text-decoration: none;
+  }
+  
   .thirdSection>button{
     width: 73%;
     height: 51px;
     border-radius:30px;
-    color: black;
+    color: rgb(255, 255, 255);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 17px;
     font-weight: 600;
-    background-color: rgb(239, 243, 244);
+    background-color: #1d9bf0;
     outline: none;
     border: none;
   }
   .thirdSection>button:disabled{
    background-color: grey;
   }
+
+
+
   @media screen and (max-height: 650px) {
     .secondSection {
       overflow-y: scroll;
@@ -163,17 +211,15 @@
       scrollbar-width: thin;
      
     }
-    /* .secondSection ::-webkit-scrollbar {
-      width: 10px;
-    } */
     .secondSection::-webkit-scrollbar-thumb {
-      background: #888;
-      border-radius: 4px;
-    }
-    .secondSection::-webkit-scrollbar-track {
-      background-color: #88888872;
-    }
+        background: #888;
+        border-radius: 4px;
+      }
+      .secondSection::-webkit-scrollbar-track {
+        background-color: #88888872;
+      }
     .thirdSection{
-      background-color: black;
+        background-color: black;
+        border-top: 1px solid rgba(255, 251, 251, 0.199);
+      }
     }
-  }
