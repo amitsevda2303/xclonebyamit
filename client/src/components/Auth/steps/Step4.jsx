@@ -3,7 +3,7 @@ import Styles from "../../../styles/components/steps/Step4.module.css";
 import { Mycontext } from "../../../context/MyContext";
 
 const Step4 = () => {
-  const { step, setdisplay, setStep } = useContext(Mycontext);
+  const { step, setdisplay, setStep,changer,email,phone } = useContext(Mycontext);
   const [focusedInput, setFocusedInput] = useState(null);
   const [otp,setOtp] = useState("")
   const verificationCode = "696969"
@@ -42,7 +42,7 @@ const Step4 = () => {
       <span className={Styles.createHeading}>
             We sent you a code 696969
           <div className={Styles.anotherDiv}>
-        Enter it below to verify 1231231231
+        Enter it below to verify {changer === "Phone" ? email : phone}
         </div>
           </span>
 
