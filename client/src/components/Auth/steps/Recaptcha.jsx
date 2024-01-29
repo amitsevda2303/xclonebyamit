@@ -27,6 +27,7 @@ const Recaptcha = () => {
                 setPhone("");
                 setSelectedDate({ month: "", day: "", year: "" });
                 setStep(1)
+                setdisplay(false)
                 navigate("/")
             }}
             className="fa-solid fa-xmark"
