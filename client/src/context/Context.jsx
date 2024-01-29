@@ -9,6 +9,7 @@ export default function Context({ children }) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [changer, setChanger] = useState("Phone");
+  const [display, setdisplay] = useState(false);
   const [selectedDate, setSelectedDate] = useState({
     month: "",
     day: "",
@@ -16,7 +17,8 @@ export default function Context({ children }) {
   });
 
   const contextValue = {
-    changer, setChanger,
+    changer,
+    setChanger,
     loader,
     setLoader,
     step,
@@ -31,6 +33,8 @@ export default function Context({ children }) {
     setPhone,
     selectedDate,
     setSelectedDate,
+    display,
+    setdisplay,
   };
 
   return (

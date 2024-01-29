@@ -18,8 +18,12 @@ const Step3 = () => {
     "November",
     "December",
   ];
+
+  const gotoVerification = () =>{
+    setStep(99)
+  }
   return (
-    <form className={Styles.container}>
+    <form onSubmit={gotoVerification}  className={Styles.container}>
       <div className={Styles.firstSection}>
         <div className={Styles.backbtn}>
           <i

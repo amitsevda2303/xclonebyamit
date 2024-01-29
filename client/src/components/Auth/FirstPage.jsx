@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Mycontext } from "../../context/MyContext";
 
 const FirstPage = () => {
-  const { loader, setLoader} = useContext(Mycontext)
+  const { setLoader} = useContext(Mycontext)
   const navigate = useNavigate();
 
   const gotomodal = async() => {
