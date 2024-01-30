@@ -34,7 +34,7 @@ const Step2 = () => {
 
         <div className={Styles.cheacker}>
             <div className={Styles.paragraph}>X uses this data to personalize your experience. This web browsing history will never be stored with your name, email, or phone number.</div>
-           <div> <input className={Styles.checkBox} checked type="checkbox" /></div>
+           <div> <input className={Styles.checkBox} defaultChecked type="checkbox" /></div>
         </div>
 
         <div className={Styles.info}>

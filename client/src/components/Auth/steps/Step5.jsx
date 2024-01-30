@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Mycontext } from "../../../context/MyContext";
 import Styles from "../../../styles/components/steps/Step5.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Step5 = () => {
-  const { step } = useContext(Mycontext);
+  const { step,userDetails,setUserDetails } = useContext(Mycontext);
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [focusedInput, setFocusedInput] = useState(null);
 
@@ -13,8 +15,29 @@ const Step5 = () => {
   const setBlur = () => {
     setFocusedInput(null);
   };
+  const finalSubmit = async(e) =>{
+    e.preventDefault();
+
+    const result = await fetch("http://localhost:7000/auth/createUser",{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userDetails)
+    })
+    const response = await result.json();
+
+    if (response.success) {
+      const token = response.authToken;
+      localStorage.setItem("authToken", token)      
+      navigate("/home")
+      setUserDetails({})
+    }
+
+
+  }
   return (
-    <form className={Styles.container}>
+    <form onSubmit={finalSubmit} className={Styles.container}>
       <>
         <div className={Styles.firstSection}>
           <div className={Styles.para}>
@@ -46,6 +69,7 @@ const Step5 = () => {
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
+                setUserDetails((userDetails) => ({ ...userDetails, password: password }));
               }}
               placeholder=""
               maxLength={50}

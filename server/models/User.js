@@ -19,7 +19,7 @@ const UserSChema = new Schema({
         required:true
     },
     dob:{
-        type:String,
+        type:Object,
         required:true
     },
    

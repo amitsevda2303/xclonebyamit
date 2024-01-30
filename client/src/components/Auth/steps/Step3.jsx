@@ -55,7 +55,7 @@ const Step3 = () => {
                 autoComplete="off"
                 id="name"
                 type="text"
-                value={name}
+                defaultValue={name}
                 // onChange={(e) => {
                 //   setName(e.target.value);
                 // }}
@@ -81,7 +81,7 @@ const Step3 = () => {
                 id="email"
                 type={changer === "Phone" ? "email" : "number"}
                 placeholder=""
-                value={changer === "Phone" ? email : phone}
+                defaultValue={changer === "Phone" ? email : phone}
                 // onChange={(e) => {
                 //   changer === "Phone"
                 //     ? setEmail(e.target.value)
@@ -108,7 +108,7 @@ const Step3 = () => {
                 id="email"
                 type="text"
                 placeholder=""
-                value={` ${selectedDate.month !== "" ? monthNames[selectedDate.month - 1].substring(0,3) : ""} ${selectedDate.day}, ${selectedDate.year}`}
+                defaultValue={` ${selectedDate.month !== "" ? monthNames[selectedDate.month - 1].substring(0,3) : ""} ${selectedDate.day}, ${selectedDate.year}`}
                 // onChange={(e) => {
                 //   changer === "Phone"
                 //     ? setEmail(e.target.value)

@@ -78,13 +78,15 @@ const Step1 = () => {
     e.preventDefault();
     if (changer === "Phone") {
       setUserDetails({
-        name: name,
+        user: name,
         email: email,
+        mobile:null,
         dob: selectedDate,
       });
     } else {
       setUserDetails({
-        name: name,
+        user: name,
+        email:null,
         mobile: phone,
         dob: selectedDate,
       });
