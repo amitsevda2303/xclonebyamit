@@ -1,8 +1,75 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .homePage{
     width: 100vw;
     height: 100vh;
     background-color: black;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-inline: 300px;
+}
+
+
+.container{
+    height: 100%;
+    display: flex;
+}
+
+.leftContainer{
+    width: 600px;
+    height: 100vh;
+    min-height: 100%;
+    overflow-y: scroll;
+    border: 1px solid rgba(80, 79, 79, 0.637);
+}
+
+.rightContainer{
+    width: 400px;
+    max-height: 100vh;
+    overflow-y: scroll;
+    color: pink;
+}
+
+
+@media screen and (max-width: 1900px) {
+   .homePage{
+    padding-inline: 250px;
+   }
+}
+@media screen and (max-width: 1800px) {
+   .homePage{
+    padding-inline: 200px;
+   }
+}
+@media screen and (max-width: 1700px) {
+   .homePage{
+    padding-inline: 150px;
+   }
+}
+@media screen and (max-width: 1600px) {
+   .homePage{
+    padding-inline: 100px;
+   }
+}
+@media screen and (max-width: 1500px) {
+   .homePage{
+    padding-inline: 50px;
+   }
+}
+@media screen and (max-width: 1400px) {
+   .homePage{
+    padding-inline: 0px;
+   }
+}
+@media screen and (max-width: 1090px) {
+   .rightContainer{
+    width: 200px;
+   }
+}
+@media screen and (max-width: 1005px) {
+   .rightContainer{
+    display: none;
+   }
 }

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Styles from "../../styles/components/FirstPage.module.css";
 import image from "../../assets/svg.svg";
 import google from "../../assets/google.svg";
@@ -9,6 +9,7 @@ import { Mycontext } from "../../context/MyContext";
 const FirstPage = () => {
   const { setLoader} = useContext(Mycontext)
   const navigate = useNavigate();
+  const token = localStorage.getItem("authToken")
 
   const gotomodal = async() => {
     setLoader(true)
@@ -19,6 +20,12 @@ const FirstPage = () => {
   const gotoLogin = async() =>{
     navigate('/i/flow/login');
   }
+
+  useEffect(() => {
+    if (token) {
+      navigate("/home")      
+    }
+  }, [])
   return (
     <div className={Styles.container}>
       <div className={Styles.FirstpageDiv}>

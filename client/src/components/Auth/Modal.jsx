@@ -8,7 +8,7 @@ const Modal = () => {
   const token = localStorage.getItem("authToken")
   useEffect(() => {
     if (token) {
-      navigate("/")
+      navigate("/home")
     }
   }, [])
   

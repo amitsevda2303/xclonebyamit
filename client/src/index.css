@@ -24,3 +24,18 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.appContainer {
+  display: flex;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  background-color: transparent;  
+  color: white;
+  flex-direction: row;
+  position: relative;
+}
+
+.contentContainer {
+  width: 100%; /* 70% of the container width */
+  overflow: auto; /* Add scroll if content overflows */
+}

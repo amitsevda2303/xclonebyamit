@@ -1,8 +1,216 @@
-.container{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 400px;
-    height: 100vh;
-    background-color: pink;
+.container {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
 }
+
+.image {
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+}
+.image > img {
+  margin-left: 15px;
+  width: 30px;
+  height: 30px;
+}
+.feature {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%; /* Use 100% width for flexibility */
+  gap: 20px;
+  padding: 15px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  border-radius: 50px;
+}
+
+.feature > a {
+  color: white;
+  text-decoration: none;
+  flex-grow: 1; /* Use flex-grow for flexibility */
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.feature:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.153);
+  border-radius: 50px;
+}
+
+.icon {
+  width: 30px; /* Adjust based on your design */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon > i {
+  text-align: left;
+  font-size: 22px;
+}
+
+.PostContainer {
+  width: 100%;
+  padding-top: 30px;
+  padding-right: 30px;
+}
+.PostContainer > button {
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  width: 100%;
+  padding-block: 13px;
+  background-color: #1d9bf0;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.IdDetailContainer {
+  position: absolute;
+  width: 250px;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 50px;
+}
+.IdDetailContainer:hover {
+  background-color: rgba(128, 128, 128, 0.153);
+  cursor: pointer;
+}
+
+.imageDiv {
+  width: 40px;
+  height: 40px;
+}
+
+.imageDiv > img {
+  width: 40px;
+  height: 40px;
+}
+
+
+
+@media screen and (max-height: 910px) {
+    .IdDetailContainer{
+        bottom: 0px;
+    }
+}
+
+
+@media screen and (max-width: 1325px) {
+    .container{
+        width: 60px;
+        min-width: 60px;
+    }  
+    .feature{
+        padding: 15px;
+    }
+    .icon{
+        width: 15px;
+    }
+    .feature>a{
+        display: none;
+    }  
+    .userDetails{
+        display: none;
+    }
+    .threeDot{
+        display: none;
+    }
+    .PostContainer > button{
+        width: 30px;
+        font-size: 10px;
+        margin-left: 14px;
+    }
+    .imageDiv > img {
+        padding-right: 10px;
+        width: 40px;
+        height: 40px;
+      }
+}
+
+@media screen and (max-width: 500px) {
+   .container{
+    position: absolute;
+    bottom: 0;
+    flex-direction: row;
+    border-top: 1px solid rgba(128, 128, 128, 0.533);
+    justify-content: space-around;
+    height: 70px;
+    width: 100vw;
+    align-items: center;
+   }
+   .feature{
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+   .image{
+    display: none;
+   }
+   .IdDetailContainer{
+    display: none;
+   }
+   .PostContainer{
+    display: none;
+   }
+   #list{
+    display: none;
+   }
+   #bookmarks{
+    display: none;
+   }
+   #community{
+    display: none;
+   }
+   #premium{
+    display: none;
+   }
+   #profile{
+    display: none;
+   }
+   #more{
+    display: none;
+   }
+}
+@media screen and (max-height: 770px) {
+   #bookmarks{
+    display: none;
+   }
+}
+@media screen and (max-height: 715px) {
+   #community{
+    display: none;
+   }
+}
+@media screen and (max-height: 670px) {
+   #premium{
+    display: none;
+   }
+}
+@media screen and (max-height: 615px) {
+   #list{
+    display: none;
+   }
+}
+@media screen and (max-height: 560px) {
+  .container{
+    overflow-y: scroll;
+  }
+  .IdDetailContainer{
+    position: relative;
+  }
+}
+
