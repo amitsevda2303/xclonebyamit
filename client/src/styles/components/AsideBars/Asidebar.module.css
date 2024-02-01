@@ -19,6 +19,8 @@
   height: 30px;
 }
 .feature {
+  color: white;
+  text-decoration: none;
   text-align: left;
   display: flex;
   flex-direction: row;

@@ -23,12 +23,12 @@ const AsideBar = () => {
                 <img src={image} alt="X Logo" />
             </div>
             <div className={s.featuresContainer}>
-                <div className={s.feature}>
+                <Link to={"/home"} className={s.feature}>
                 <div className={s.icon}><i className="fa-solid fa-house"></i></div>
                 <Link to="/home">
                     Home
                 </Link>
-                </div>
+                </Link>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature}>
@@ -95,12 +95,12 @@ const AsideBar = () => {
                 </div>
             </div>
             <div className={s.featuresContainer}>
-                <div className={s.feature} id={s.profile} >
+                <Link to={"/profile"} className={s.feature} id={s.profile} >
                 <div className={s.icon}><i className="fa-regular fa-user"></i></div>
                 <Link to="/profile">
                     Profile
                 </Link>
-                </div>
+                </Link>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature} id={s.more}>
