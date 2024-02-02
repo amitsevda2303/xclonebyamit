@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../styles/pages/HomePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
@@ -6,12 +6,30 @@ import AsideBar from "../components/AsideBar/AsideBar";
 const Homepage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     if (!token) {
       navigate("/");
     }
   }, []);
+
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+    adjustTextareaHeight();
+  };
+
+  const calculateRows = (text) => {
+    const lines = text.split('\n');
+    return lines.length;
+  };
+  const adjustTextareaHeight = () => {
+    const textarea = document.getElementById("customTextarea");
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+  };
+
 
   return (
     <div className={Styles.homePage}>
@@ -30,13 +48,20 @@ const Homepage = () => {
           </div>
           <div className={Styles.maincontainer}>
             <div className={Styles.textareaDiv}>
+              <div className={Styles.profileDiv}>
+              <Link to={"/profile"}>
               <i class="fa-solid fa-circle-user"></i>
+              </Link>
+              </div>
               <div className={Styles.textarea}>
-                <textarea
-                  placeholder="what is happening?"
-                  cols="70"
-                  rows="1"
-                  resize="none"
+              <textarea
+                 id="customTextarea"
+                 className={Styles.area}
+                 value={inputValue}
+                 onChange={handleInputChange}
+                 rows={calculateRows(inputValue)}
+                 style={{ whiteSpace: "pre-wrap" }}
+                 placeholder="What is happening?!"
                 ></textarea>
               </div>
             </div>

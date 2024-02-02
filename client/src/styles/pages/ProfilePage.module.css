@@ -18,12 +18,16 @@ body{
 }
 
 .leftContainer{
+   position: relative;
     width: 600px;
     height: 100vh;
     padding: 0;
     min-height: 100%;
     overflow-y: scroll;
     border: 1px solid rgba(80, 79, 79, 0.637);
+}
+.leftContainer::-webkit-scrollbar {
+   width: 0px;
 }
 
 .rightContainer{
@@ -33,6 +37,131 @@ body{
     color: pink;
 }
 
+.informationDiv{
+   height: 444px;
+   overflow: hidden;
+   width: 100%;
+}
+/* left container styling*/
+
+.topdiv{
+   position: sticky;
+   background-color: black;
+   top: 0;
+   display: flex;
+   width: 100%;
+   height: 56px;
+}
+
+.backbtnDiv{
+   display: flex;
+   width: 10%;
+   height: 100%;
+   align-items: center;
+   justify-content: center;
+}
+
+.backbtnDiv>a{
+   color: white;
+}
+.backbtnDiv>a{
+   padding: 10px;
+   transition: .3s ease;
+}
+
+.backbtnDiv>a:hover{
+   border-radius: 55px;
+   background-color: rgba(80, 79, 79, 0.421);
+   transition: .3s ease;
+}
+
+.nameDiv{
+   width: 90%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+}
+
+ .Name{
+   font-size: 20px;
+   font-weight: 700;
+}
+
+.post{
+   font-size: 13px;
+   color: rgba(148, 148, 148, 0.85) ;
+}
+
+
+/* userpfp and banner styling*/
+
+.bannerDiv{
+   position: relative;
+   width: 100%;
+   background-color: gray;
+   height: 200px;
+}
+.bannerDiv>img{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.userPfp{
+   position: absolute;
+   bottom: -60px;
+   left: 15px;
+   width: 137px;
+   height: 137px;
+   background-color: pink;
+   border-radius: 50%;
+   border: 5px solid black;
+}
+
+.userPfp>img{
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   border-radius: 50%;
+}
+.infoDiv{
+   width: 100%;
+   height: 229px;
+   padding: 15px;
+}
+.editDiv{
+   width: 100%;
+   height: 68px;
+   display: flex;
+   justify-content: flex-end;
+}
+
+.editProfileDiv{
+   width: 114px;
+   height: 33px;
+   text-align: center;
+   border: 1px solid #9e9eff67;
+   padding-top: 3px;
+   border-radius: 15px;
+}
+.editProfileDiv:hover{
+   transition: .3s ease;
+   background-color: rgba(128, 128, 128, 0.145);
+}
+.editProfileDiv>span{
+   color: white;
+   text-decoration: none;
+   border-radius: 10px;
+}
+
+.nameidContainer{
+   display: flex;
+   flex-direction: column;
+}
+.id{
+   font-size: 15px;
+   color: gray;
+}
 
 @media screen and (max-width: 1900px) {
    .homePage{

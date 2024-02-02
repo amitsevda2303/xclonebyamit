@@ -87,7 +87,6 @@ body{
    width: 70%;
    height: 100%;
    padding: 8px;
-   height: 100%;
 }
 .settings>a:hover{
    transition: .5s ease;
@@ -108,12 +107,35 @@ body{
 }
 
 .textareaDiv{
+   position: relative;
+   width: 100%;
    padding-inline: 15px;
-   height: 50%;
+   min-height: 60px;
    display: flex;
    align-items: center;
 }
+.profileDiv{
+   position: absolute;
+   top: 0;
+   left: 10px;
+   font-size: 40px;
+}
+.textarea{
+   width: 100%;
+}
+.area{
+   margin-left: 60px;
+   font-size: 20px;
+   width: 90%;
+   padding: 10px;
+   color: white;
+   background-color: black;
+   outline: none;
+   border: none;
+   resize: none;
+   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
+}
 .textareaDiv>i{
     font-size: 40px;
     color: rgb(188, 186, 186);
@@ -158,3 +180,5 @@ body{
     display: none;
    }
 }
+
+
