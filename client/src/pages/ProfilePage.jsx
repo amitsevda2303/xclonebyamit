@@ -2,16 +2,68 @@ import React, { useEffect } from "react";
 import Styles from "../styles/pages/ProfilePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
+import { useQuery ,gql} from '@apollo/client'
+import Loader from "../components/Home/Loader";
+
+const getData = gql`
+query GetUserDetails($token: String!) {
+  getdetails(token: $token) {
+    _id
+    user
+    createdAt {
+      month
+      year
+    }
+  }
+}
+`
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
+  
 
   useEffect(() => {
     if (!token) {
       navigate("/");
     }
   }, []);
+
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+
+    const { loading, error, data } = useQuery(getData, {
+    variables: {
+      token: token,
+    },
+  });
+
+
+    if (loading) return <Loader/>;
+
+  if (error) {
+    console.error(error);
+    return <p>Error fetching user details</p>;
+  }
+
+  const userDetails = data.getdetails;
+
+   
+
   return (
     <div className={Styles.homePage}>
       <AsideBar />
@@ -25,7 +77,7 @@ const ProfilePage = () => {
               </Link>
             </div>
             <div className={Styles.nameDiv}>
-              <span className={Styles.Name}>amit</span>
+              <span className={Styles.Name}>{userDetails.user}</span>
               <span className={Styles.post}>0 posts</span>
             </div>
           </div>
@@ -51,13 +103,13 @@ const ProfilePage = () => {
                 </Link>
               </div>
               <div className={Styles.nameidContainer}>
-                <span className={Styles.Name}>Amit</span>
-                <span className={Styles.id}>@AmitSharma7424</span>
+                <span className={Styles.Name}>{userDetails.user}</span>
+                <span className={Styles.id}>@YourUniqueNameWillBeHere</span>
               </div>
 
               <div className={Styles.dateOfBirth}>
                 <span>
-                  <i class="fa-solid fa-calendar-days"></i>&nbsp; Joined January 2024
+                  <i class="fa-solid fa-calendar-days"></i>&nbsp; Joined { monthNames[userDetails.createdAt.month -1] + " " + userDetails.createdAt.year}
                 </span>
               </div>
               <div className={Styles.fameDiv}>
