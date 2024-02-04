@@ -5,6 +5,7 @@
   import LoginModal from './components/Auth/LoginModal';
   import Homepage from './pages/Homepage';
 import ProfilePage from './pages/ProfilePage';
+import EditProfile from './components/Home/EditProfile';
 
   function App() {  
     return (
@@ -16,6 +17,7 @@ import ProfilePage from './pages/ProfilePage';
           <Route path='/profile' element={<ProfilePage/>}/>
           <Route path="/i/flow/signup" element={<Modal/>}/>
           <Route path='/i/flow/login' element={<LoginModal/>}/>
+          <Route path="/setting/profile" element={<EditProfile/>}/>
         </Routes>
           </div>
       </div>

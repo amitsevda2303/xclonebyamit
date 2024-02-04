@@ -10,6 +10,7 @@ export default function Context({ children }) {
   const [phone, setPhone] = useState("");
   const [changer, setChanger] = useState("Phone");
   const [display, setdisplay] = useState(false);
+  const [modal, setModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState({
     month: "",
     day: "",
@@ -35,6 +36,8 @@ export default function Context({ children }) {
     setSelectedDate,
     display,
     setdisplay,
+    modal,
+    setModal,
   };
 
   return (

@@ -1,0 +1,133 @@
+
+
+.modalBackdrop {
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #5b70836c; /* Semi-transparent background */
+  }
+  .modalContent {
+    position: relative;
+    z-index: 99;
+    background: #000000; /* White background for modal content */
+    border-radius: 16px;
+    width: 600px;
+    height: 650px;
+    min-height: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .topDiv{
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.989);
+    overflow: hidden;
+  }
+  
+.backbtnDiv{
+  display: flex;
+  width: 10%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.backbtnDiv>a{
+  color: white;
+}
+.backbtnDiv>a{
+  padding: 10px;
+  transition: .3s ease;
+}
+
+.backbtnDiv>a:hover{
+  border-radius: 55px;
+  background-color: rgba(80, 79, 79, 0.421);
+  transition: .3s ease;
+}
+
+
+  .nameDiv{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+ }
+
+  .Name{
+    font-size: 20px;
+    font-weight: 700;
+ }
+
+ .saveDiv{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ .saveDiv>button{
+  padding-block: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  padding-inline: 20px;
+  border-radius: 50px;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-height: 800px) {
+  .modalContent{
+    height: 90%;
+  }  
+}
+
+  @media screen and (max-width: 688px){
+    .modalContent{
+      width: 100%;
+      height: 100%;
+    }    
+  }
+
+  @media screen and (max-height: 500px) {
+  
+    .modalContent{
+      /* margin-block:30px; */
+      height: 100% ;
+    }
+    
+  }

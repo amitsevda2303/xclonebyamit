@@ -1,12 +1,9 @@
 import {ApolloServer} from "@apollo/server"
 import dotenv from "dotenv"
-import User from "../models/User.js"
-import jwt from "jsonwebtoken";
 import { getDetailsResolver } from "../controller/user.js";
 
 
 dotenv.config()
-const SECERET = process.env.JWTSECERET
 const server = new ApolloServer({
     typeDefs: `
     type User {

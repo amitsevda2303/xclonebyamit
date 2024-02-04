@@ -155,6 +155,7 @@ body{
 }
 .editProfileDiv>span{
    padding: 5px;
+   font-weight: 700;
    color: white;
    text-decoration: none;
    border-radius: 10px;
