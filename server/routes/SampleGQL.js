@@ -15,9 +15,9 @@ const server = new ApolloServer({
       createdAt: DateInfo!
     }
     type DateInfo {
-      date: Int!
-      month: Int!
-      year: Int!
+      date: String!
+      month: String!
+      year: String!
     }
     type Dob {
       month: String!

@@ -24,7 +24,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     overflow-y: scroll;
   }
   
@@ -38,9 +38,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 50px;
+    min-height: 56px;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.989);
+    background-color: rgba(0, 0, 0, 0.902);
+    background-blend-mode: color-dodge;
     overflow: hidden;
   }
   
@@ -56,8 +57,12 @@
   color: white;
 }
 .backbtnDiv>a{
+  font-size: 15px;
   padding: 10px;
   transition: .3s ease;
+}
+.backbtnDiv>a>i{
+  font-size: 15px;
 }
 
 .backbtnDiv>a:hover{
@@ -74,6 +79,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    padding-left: 15px;
  }
 
   .Name{
@@ -94,8 +100,51 @@
   font-weight: 600;
   padding-inline: 20px;
   border-radius: 50px;
+  outline: none;
+  border: none;
  }
 
+ .saveDiv>button:hover{
+  transition: .3s ease;
+  background-color: #d9d5d5f9;
+  cursor: pointer;
+ }
+
+.imageDiv{
+  min-height: 820px;
+  width: 100%;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.bannerDiv{
+  height: 196px;
+  width: 100%;
+
+  position: relative;
+}
+.bannerDiv>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+.pfpDiv
+{
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  bottom: -65px;
+  left: 15px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 4px solid black;
+}
+
+.pfpDiv>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 
 
@@ -103,12 +152,175 @@
 
 
 
+.inputContainer{
+  margin-top: 80px;
+  width: 100%;
+  padding-inline: 20px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+.inputDiv{
+  position: relative;
+  display: flex;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 251, 251, 0.032);
+  height: 60px !important;
+  margin-bottom: 30px;
+}
+
+
+
+
+.input1{
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  padding-left: 11px;
+  padding-top: 30px;
+  width: 90%;
+  font-size: 17px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding-bottom: 10px;
+}
+
+.input1:focus{
+  outline: none;
+  background-color: transparent;
+}
+
+.label{
+  position: absolute;
+  top: 30%;
+  left: 11px;
+  font-size: 17px;
+  color: grey;
+  transition: .2s ease;
+}
+.input1:focus ~ .label {
+position: absolute;
+top: 5px;
+left: 10px;
+font-size: 14px;
+
+}
+
+.input1:not(:placeholder-shown) ~ .label,
+.input1:not(:empty) ~ .label {
+position: absolute;
+top: 5px;
+left: 10px;
+font-size: 14px;
+}
 
 
 
 
 
 
+.textareaDiv{
+  position: relative;
+  display: flex;
+  width: 100%;
+  border-radius: 4px;
+  height: 96px !important;
+  margin-bottom: 30px;
+}
+
+.textarea{
+  padding-top: 10px;
+  
+  position: absolute;
+  bottom: 0;
+  text-align: start;
+  height: 96px;
+  padding-left: 11px;
+  padding-top: 30px;
+  width: 100%;
+  
+  background-color: transparent;
+  border: none;
+  
+  padding-bottom: 10px;
+  
+  overflow-y: scroll;
+}
+
+.area{
+  padding-right: 10px;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  font-size: 17px;
+  resize: none;
+  font-family: sans-serif;
+}
+
+.label2{
+  position: absolute;
+  top: 20%;
+  left: 11px;
+  font-size: 17px;
+  color: grey;
+  transition: .2s ease;
+}
+
+.area:focus{
+  outline: none;
+  background-color: transparent;
+}
+
+.area:focus ~ .label2 {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 14px;
+  
+  }
+  
+  .area:not(:placeholder-shown) ~ .label2,
+  .area:not(:empty) ~ .label2 {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 14px;
+  }
+  
+
+.DobDiv{
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.birthSpan{
+  font-size: 15px;
+  color: gray;
+}
+.birthSpan>a{
+  color: #1d9bf0;
+  text-decoration: none;
+}
+.birthSpan>a:hover{
+  cursor: text;
+  transition: .3s ease;
+  text-decoration: underline;
+}
+.Dob{
+  font-size: 20px;
+}
 
 @media screen and (max-height: 800px) {
   .modalContent{

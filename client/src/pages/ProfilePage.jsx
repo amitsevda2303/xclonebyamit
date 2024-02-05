@@ -11,11 +11,15 @@ import { Mycontext } from "../context/MyContext";
 const getData = gql`
   query GetUserDetails($token: String!) {
     getdetails(token: $token) {
-      _id
       user
       createdAt {
         month
         year
+      }
+      dob {
+        year
+        day
+        month
       }
     }
   }
