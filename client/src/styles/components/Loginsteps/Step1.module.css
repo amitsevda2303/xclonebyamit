@@ -1,0 +1,331 @@
+.container {
+    position: relative  ;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .firstSection {
+    width: 100%;
+    height: 10%;
+    display: flex;
+  }
+  
+  .backbtn {
+    position: relative;
+    width: 13%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+  }
+  
+  .backbtn > i {
+    font-size: 20px;
+    padding-block: 9px;
+    padding-inline: 12px;
+    border-radius: 50%;
+    transition: .4s ease;
+  }
+
+ 
+
+  .backbtn::after{
+    position: absolute;
+    bottom:  -18%;
+    content: 'Close';
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: rgba(128, 128, 128, 0.656);
+    padding: 3px;
+    padding-inline: 4px;
+    text-align: center;
+    opacity: 0; 
+    letter-spacing: 1px;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transform: translateY(0);
+  }
+  .backbtn:hover::after{
+    letter-spacing: 1px;
+    opacity: 1; 
+  }
+  .backbtn:hover > i{
+    transition: .4s ease;
+    background-color: rgba(128, 128, 128, 0.45);
+  }
+  .para {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .para>img{
+    width: 30px;
+    height: 30px;
+  }
+  
+  .secondSection {
+    margin-top: 13px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 10px;
+    padding-bottom: 10px;
+    justify-content: flex-start;
+  }
+
+  .heading{
+    width: 54%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .heading>h3{
+    font-size: 31px;
+    font-weight: 600;
+    font-family: sans-serif;
+  }
+
+
+
+  .buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.btn1,.btn2{
+    width: 100%;
+    padding-inline: 40px;
+  padding-block: 10px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: .2s ease;
+}
+.googleImage{
+    width: 20px;
+  }
+
+  .btn1:hover{
+    transition: .2s ease;
+    background-color: rgb(232, 232, 232);
+  }
+  
+  .btn2{
+    font-weight: 700;
+  }
+  
+  .btn2:hover{
+    transition: .2s ease;
+    cursor: pointer;
+    background-color: #cecece;
+  }
+  .partition{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .hrTag{
+    width: 45%;
+    background-color: rgba(128, 128, 128, 0.058);
+    border: 1px solid rgba(73, 73, 73, 0.499);
+    height: 2px;
+  }
+  
+  .or{
+    font-size: 16px;
+  }
+
+
+  
+  .thirdSection {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 105px;
+    /* background-color: #1d9bf0; */
+  }
+  
+  .createHeading {
+    font-size: 33px;
+    width: 75%;
+    text-align: left;
+    font-weight: 600;
+  }
+  
+  .inputDiv {
+    position: relative;
+    border: 1px solid rgba(255, 251, 251, 0.039);
+    width: 100%;
+    min-height: 60px !important;
+    border-radius: 6px;
+    display: flex;
+  }
+
+
+  .input1{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    padding-left: 11px;
+    padding-top: 30px;
+    font-size: 17px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding-bottom: 10px;
+  }
+  
+  .input1:focus{
+    outline: none;
+    background-color: transparent;
+  }
+
+  .label{
+    position: absolute;
+    top: 30%;
+    left: 11px;
+    font-size: 17px;
+    color: grey;
+    transition: .2s ease;
+  }
+.input1:focus ~ .label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 14px;
+
+}
+
+.input1:not(:placeholder-shown) ~ .label,
+.input1:not(:empty) ~ .label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-size: 14px;
+}
+
+
+  
+
+  .nextBtn{
+    margin-top: 10px;
+    width: 100%;
+    height: 41px;
+    border-radius:30px;
+    color: black;
+    font-size: 17px;
+    font-weight: 600;
+    background-color: rgb(239, 243, 244);
+    outline: none;
+    border: none;
+  }
+ 
+  
+  .forgetBtn{
+      margin-top: 10px;
+      width: 100%;
+      height: 41px;
+      border-radius:30px;
+      color: rgb(255, 255, 255);
+      font-size: 15px;
+      font-weight: 600;
+      background-color: rgb(0, 0, 0);
+      outline: none;
+      border: 1px solid rgba(255, 255, 255, 0.299);
+    }
+    .forgetBtn:hover{
+        transition: .3s ease;
+     background-color: rgba(128, 128, 128, 0.084);
+    }
+
+    .lastSpan{
+        margin-top: 20px;
+        color: gray;
+        
+    }
+    .lastSpan>a{
+        color: #1d9bf0;
+        text-decoration: none;
+    }
+
+    .lastSpan>a:hover{
+        cursor: text;
+        text-decoration: underline;
+    }
+
+    
+    
+
+  @media screen and (max-height: 650px) {
+    .secondSection {
+      overflow-y: scroll;
+      scrollbar-color: rgb(46, 46, 46) grey;
+      scrollbar-width: thin;
+    }
+   
+    /* .secondSection ::-webkit-scrollbar {
+      width: 10px;
+    } */
+    .secondSection::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    .secondSection::-webkit-scrollbar-track {
+      background-color: #88888872;
+    }
+    .thirdSection{
+      background-color: black;
+      border-top: 1px solid rgba(255, 251, 251, 0.199);
+    }
+  }
+  @media screen and (max-width: 490px) {
+    .heading{
+        width: 80%;
+    }    
+  }
+  @media screen and (max-width: 330px) {
+    .heading{
+        width: 95%;
+    }    
+  }
+  @media screen and (max-width: 300px) {
+    .heading{
+        width: 100%;
+    }    
+  }
+
+/* HTML: <div class="loader"></div> */
+.loaderDiv{
+display: flex;
+width: 100%;
+height: 100%;
+align-items: center;
+justify-content: center;
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #2b80b882;
+  border-right-color: #1d9bf0;
+  animation: l2 .7s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
+
+

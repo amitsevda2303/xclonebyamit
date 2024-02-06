@@ -18,6 +18,7 @@ const FirstPage = () => {
   };
 
   const gotoLogin = async() =>{
+    setLoader(true)
     navigate('/i/flow/login');
   }
 

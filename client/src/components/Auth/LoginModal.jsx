@@ -14,12 +14,12 @@ const LoginModal = () => {
   }, [])
   return (
     <div className={Styles.blackbg}>
-    <div className={Styles.modalBackdrop}>
-        <div className={Styles.modalContent}>
-           <Login/>
+        <div className={Styles.modalBackdrop}>
+            <div className={Styles.modalContent}>
+               <Login/>
+            </div>
         </div>
     </div>
-</div>
   )
 }
 

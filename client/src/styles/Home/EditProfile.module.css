@@ -114,7 +114,7 @@
   min-height: 820px;
   width: 100%;
   position: relative;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 
 .bannerDiv{
@@ -156,7 +156,7 @@
   margin-top: 80px;
   width: 100%;
   padding-inline: 20px;
-  height: 500px;
+ min-height: 500px;
   display: flex;
   flex-direction: column;
 }

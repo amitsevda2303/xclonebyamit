@@ -1,17 +1,12 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import Step1 from './Loginsteps/Step1';
 
 const Login = () => {
-    const navigate = useNavigate();
-
-    const gotoFirstPage = () =>{
-        navigate('/')
-      }
+    
   return (
-    <div>
-         <button onClick={gotoFirstPage}>back</button>
-      This is Login Page
-    </div>
+         <>
+         <Step1/>
+         </>
   )
 }
 
