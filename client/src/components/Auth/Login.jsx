@@ -1,13 +1,16 @@
-import React from 'react'
-import Step1 from './Loginsteps/Step1';
+import React, { useContext } from "react";
+import Step1 from "./Loginsteps/Step1";
+import { Mycontext } from "../../context/MyContext";
+import Step2 from "./Loginsteps/Step2";
 
 const Login = () => {
-    
-  return (
-         <>
-         <Step1/>
-         </>
-  )
-}
+  const { loginStep, setLoginStep } = useContext(Mycontext);
 
-export default Login
+  return (
+    <>{loginStep === 1 && <Step1/>}
+    {loginStep === 2 && <Step2/>} 
+    </>
+  );
+};
+
+export default Login;
