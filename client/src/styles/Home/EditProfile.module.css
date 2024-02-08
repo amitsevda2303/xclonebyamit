@@ -12,6 +12,64 @@
     height: 100%;
     background: #5b70836c; /* Semi-transparent background */
   }
+
+  .editModal{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: #5b70836c;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .content{
+    text-align: start;
+    width: 320px;
+    height: 280px;
+    background-color: black;
+    border-radius: 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px;
+    font-size: 15px;
+    flex-direction: column;color: grey;
+  }
+  .heading{
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: left;
+    color: white;
+  }
+  .content>button{
+    margin-top: 20px;
+    height: 50px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 34px;
+    width: 100%;
+  }
+.editButton{
+  border: none;
+    outline: none;
+  background-color: white;
+}
+.editButton:hover{
+  background-color: rgb(240, 245, 249);
+  cursor: pointer;
+}
+.cancelButton{
+  background-color: black;
+  outline: none;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+}
+.cancelButton:hover{
+  background-color: rgba(240, 248, 255, 0.083);
+  transition: .2s ease;
+}
   .modalContent {
     position: relative;
     z-index: 99;
@@ -306,10 +364,21 @@ font-size: 14px;
 }
 
 .birthSpan{
+  text-align: left;
   font-size: 15px;
   color: gray;
 }
+.birthSpan2{
+  text-align: left;
+  font-size: 15px;
+  color: gray;
+  margin-top: 7px;            
+}
 .birthSpan>a{
+  color: #1d9bf0;
+  text-decoration: none;
+}
+.link{
   color: #1d9bf0;
   text-decoration: none;
 }
@@ -318,8 +387,167 @@ font-size: 14px;
   transition: .3s ease;
   text-decoration: underline;
 }
+.link:hover{
+  cursor: text;
+  transition: .3s ease;
+  text-decoration: underline;
+}
 .Dob{
   font-size: 20px;
+}
+
+.dobContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.dob {
+  font-size: 16px;
+  font-weight: 600;
+}
+.dobDetail{
+    font-size: 14.5px;
+    color: #71767b;
+    margin-top: 10px;
+}
+
+.dobselectorDiv{
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+.selectDiv1,.selectDiv2,.selectDiv3{
+  border-radius: 6px;
+  border: 1px solid rgba(255, 251, 251, 0.199);
+  height: 60px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.selectDiv1{
+  width: 50%;
+}
+.selectDiv2{
+  width: 20%;
+}
+
+.selectDiv3{
+  width: 30%;
+}
+
+
+.select1{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  padding-top: 15px;
+  height: 50px;
+  padding-left: 10px;
+  text-align: left;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.selectDiv1>label{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 14px;
+  color: #777;
+}
+.select1>option{
+  background-color: black;
+  color: white;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.select2{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  padding-top: 15px;
+  height: 50px;
+  padding-left: 10px;
+  text-align: left;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.selectDiv2>label{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 14px;
+  color: #777;
+}
+.select2>option{
+  background-color: black;
+  color: white;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.select3{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  padding-top: 15px;
+  height: 50px;
+  padding-left: 10px;
+  text-align: left;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.selectDiv1>i{
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  color: #777;
+}
+.selectDiv2>i{
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  color: #777;
+}
+.selectDiv3>i{
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  color: #777;
+}
+.selectDiv3>label{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 14px;
+  color: #777;
+}
+.select3>option{
+  background-color: black;
+  color: white;
+  border: none;
+  outline: none;
+  width: 100%;
 }
 
 @media screen and (max-height: 800px) {
