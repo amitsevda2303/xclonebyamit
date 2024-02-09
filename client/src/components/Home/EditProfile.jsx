@@ -30,6 +30,7 @@ const EditProfile = () => {
     day: "",
     year: "",
   });
+  const options = ["Public","Your followes","People you follow","Only you follow each other" ,"Only "]
   const monthNames = [
     "January",
     "February",
@@ -493,10 +494,130 @@ const EditProfile = () => {
                           </div>
                         </div>
 
-                        <div className={Styles.attributesDiv}>
-                          <span className={Styles.birthSpan}>Who sees this?</span>
 
-                          
+
+
+
+
+
+                        <div className={Styles.attributesDiv}>
+                          <span
+                            className={Styles.birthSpan}
+                            style={{ color: "white" }}
+                          >
+                            Who sees this?
+                          </span>
+
+                          <span>
+                            You can control who sees your birthday on X. Learn
+                            more
+                          </span>
+
+
+
+
+
+                          <div className={Styles.anotherSelectDiv}>
+                            <div
+                              className={Styles.selectDiv4}
+                              style={{
+                                outline:
+                                  focusedInput === "select4"
+                                    ? "2px solid #0099ff"
+                                    : "1px solid rgba(255, 251, 251, 0.199)",
+                              }}
+                            >
+                               <label
+                              style={{
+                                color:
+                                  focusedInput === "select4"
+                                    ? "#0099ff"
+                                    : "#777",
+                              }}
+                              htmlFor=""
+                            >
+                              Month and day
+                            </label>
+                            <i
+                              style={{
+                                color:
+                                  focusedInput === "select4"
+                                    ? "#0099ff"
+                                    : "#777",
+                              }}
+                              className="fa-solid fa-chevron-down"
+                            ></i>
+                              <select
+                                className={Styles.select4}
+                                onFocus={() => {
+                                  setFocus("select4");
+                                }}
+                                onBlur={setBlur}
+                                
+                              >
+                                <option value="" disabled>
+                                {}
+                              </option>
+                              {options.map((item,index)=>{
+                                return<option key={index}>
+                                  {item}
+                                </option>
+                              })}
+                              </select>
+                              
+                            </div>
+
+
+
+                            <div
+                              className={Styles.selectDiv4}
+                              style={{
+                                outline:
+                                  focusedInput === "select5"
+                                    ? "2px solid #0099ff"
+                                    : "1px solid rgba(255, 251, 251, 0.199)",
+                              }}
+                            >
+                               <label
+                              style={{
+                                color:
+                                  focusedInput === "select5"
+                                    ? "#0099ff"
+                                    : "#777",
+                              }}
+                              htmlFor=""
+                            >
+                              Year
+                            </label>
+                            <i
+                              style={{
+                                color:
+                                  focusedInput === "select5"
+                                    ? "#0099ff"
+                                    : "#777",
+                              }}
+                              className="fa-solid fa-chevron-down"
+                            ></i>
+                              <select
+                                className={Styles.select4}
+                                onFocus={() => {
+                                  setFocus("select5");
+                                }}
+                                onBlur={setBlur}
+                                
+                              >
+                                <option value="" disabled>
+                                {}
+                              </option>
+                              {options.map((item,index)=>{
+                                return<option key={index}>
+                                  {item}
+                                </option>
+                              })}
+                              </select>
+                              
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </>
@@ -510,8 +631,12 @@ const EditProfile = () => {
                     </span>
                   )}
                 </div>
-                {/* <div className={Styles.lastDiv}>hii</div> */}
+               
               </div>
+              <div className={Styles.lastDiv}>
+                  <div className={Styles.startingSide}>Switch to proffetional</div>
+                  <i className="fa-solid fa-chevron-down"></i>
+                </div>
             </div>
           </div>
         </div>

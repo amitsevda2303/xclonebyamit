@@ -298,7 +298,7 @@ font-size: 14px;
   position: absolute;
   bottom: 0;
   text-align: start;
-  height: 96px;
+ min-height: 96px;
   padding-left: 11px;
   padding-top: 30px;
   width: 100%;
@@ -311,6 +311,8 @@ font-size: 14px;
   overflow-y: scroll;
 }
 
+
+
 .area{
   padding-right: 10px;
   height: 100%;
@@ -322,6 +324,10 @@ font-size: 14px;
   font-size: 17px;
   resize: none;
   font-family: sans-serif;
+}
+
+.area:is(:empty) ~ .textarea{
+  overflow-y: hidden;
 }
 
 .label2{
@@ -340,18 +346,18 @@ font-size: 14px;
 
 .area:focus ~ .label2 {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 10px;
-  font-size: 14px;
+  font-size: 16px;
   
   }
   
   .area:not(:placeholder-shown) ~ .label2,
   .area:not(:empty) ~ .label2 {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 10px;
-  font-size: 14px;
+  font-size: 16px;
   }
   
 
@@ -421,7 +427,7 @@ font-size: 14px;
 }
 .selectDiv1,.selectDiv2,.selectDiv3{
   border-radius: 6px;
-  border: 1px solid rgba(255, 251, 251, 0.199);
+  border: 1px solid rgba(255, 251, 251, 0.066);
   height: 60px;
   margin-bottom: 10px;
   position: relative;
@@ -548,6 +554,91 @@ font-size: 14px;
   border: none;
   outline: none;
   width: 100%;
+}
+.attributesDiv{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.attributesDiv>span{
+  color: gray;
+}
+
+.anotherSelectDiv{
+  width: 100%;
+  height: 150px;
+  margin-block: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.selectDiv4{
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 251, 251, 0.046);
+  height: 60px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.select4{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  padding-top: 15px;
+  height: 50px;
+  padding-left: 10px;
+  text-align: left;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.selectDiv4>i{
+  position: absolute;
+  right: 10px;
+  top: 35%;
+  color: #777;
+}
+.selectDiv4>label{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 14px;
+  color: #777;
+}
+.select4>option{
+  background-color: black;
+  color: white;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.lastDiv{
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.lastDiv>i{
+  color: gray;
+  font-size: 16px;
+  transform: rotate(270deg);
+}
+
+.lastDiv:hover{
+  transition: .3s ease;
+  background-color: #e7e9ea15;
+  cursor: pointer;
 }
 
 @media screen and (max-height: 800px) {
