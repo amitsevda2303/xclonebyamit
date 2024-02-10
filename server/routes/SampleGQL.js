@@ -13,6 +13,8 @@ const server = new ApolloServer({
       email: String
       dob: Dob!
       createdAt: DateInfo!
+      pfp: String!
+      banner: String!
     }
     type DateInfo {
       date: String!

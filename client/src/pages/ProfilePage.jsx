@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Styles from "../styles/pages/ProfilePage.module.css";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
 import { useQuery, gql } from "@apollo/client";
 import Loader from "../components/Home/Loader";
@@ -21,12 +21,13 @@ const getData = gql`
         day
         month
       }
+      pfp
+      banner
     }
   }
 `;
 
 const ProfilePage = () => {
-  const {modal, setModal} = useContext(Mycontext)
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
   const [banner, setbanner] = useState([1]);
@@ -36,7 +37,7 @@ const ProfilePage = () => {
     if (!token) {
       navigate("/");
     }
-  }, []);
+  }, [token]);
 
   const monthNames = [
     "January",
@@ -88,7 +89,7 @@ const ProfilePage = () => {
 
           <div className={Styles.informationDiv}>
             <div className={Styles.bannerDiv}>
-              {banner.length === 0 ? <img src={board}  alt="img" /> : <img src={"https://forums.cubecraftcdn.com/xenforo/data/avatars/o/595/595540.jpg?1695373310"}  alt="img" />}
+              {banner.length === 0 ? <img src={board}  alt="img" /> : <img src={userDetails.banner}  alt="img" />}
 
               <div className={Styles.userPfp}>
                 {pfp.length === 0 ? (
@@ -96,7 +97,7 @@ const ProfilePage = () => {
                 ) : (
                   <img
                     src={
-                      "https://forums.cubecraftcdn.com/xenforo/data/avatars/o/595/595540.jpg?1695373310"
+                     userDetails.pfp
                     }
                     alt="img"
                   />

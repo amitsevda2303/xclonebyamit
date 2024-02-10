@@ -15,6 +15,8 @@ const getData = gql`
         day
         month
       }
+      pfp
+      banner
     }
   }
 `;
@@ -24,13 +26,20 @@ const EditProfile = () => {
   const [editModal, seteditModal] = useState(false);
   const [dobChanger, setdobChanger] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
+  const [pfpImage, setpfpImage] = useState("");
   const token = localStorage.getItem("authToken");
   const [selectedDate, setSelectedDate] = useState({
     month: "",
     day: "",
     year: "",
   });
-  const options = ["Public","Your followes","People you follow","Only you follow each other" ,"Only "]
+  const options = [
+    "Public",
+    "Your followes",
+    "People you follow",
+    "Only you follow each other",
+    "Only ",
+  ];
   const monthNames = [
     "January",
     "February",
@@ -165,19 +174,39 @@ const EditProfile = () => {
 
             <div className={Styles.imageDiv}>
               <div className={Styles.bannerDiv}>
-                <img
+                <div className={Styles.bannerInputDiv}>
+                  <input
+                    id="banner"
+                    className={Styles.bannerInput}
+                    type="file"
+                  />
+                  <label htmlFor="banner" className={Styles.bannerLabel}>
+                    <i className="fa-solid fa-camera"></i>
+                  </label>
+                </div>
+                {/* <img
                   src={
-                    "https://forums.cubecraftcdn.com/xenforo/data/avatars/o/595/595540.jpg?1695373310"
+                   userDetails.banner
                   }
                   alt=""
-                />
+                /> */}
                 <div className={Styles.pfpDiv}>
-                  <img
-                    src={
-                      "https://forums.cubecraftcdn.com/xenforo/data/avatars/o/595/595540.jpg?1695373310"
-                    }
-                    alt=""
-                  />
+                  <div className={Styles.pfpInputDiv}>
+                    <input
+                      id="banner"
+                      value={pfpImage}
+                      onChange={(e) => {
+                        setpfpImage(e.target.value);
+                        console.log(pfpImage)
+                      }}
+                      className={Styles.pfpInput}
+                      type="file"
+                    />
+                    <label htmlFor="banner" className={Styles.pfpLabel}>
+                      <i className="fa-solid fa-camera"></i>
+                    </label>
+                  </div>
+                  <img src={pfpImage} alt="" />
                 </div>
               </div>
 
@@ -494,12 +523,6 @@ const EditProfile = () => {
                           </div>
                         </div>
 
-
-
-
-
-
-
                         <div className={Styles.attributesDiv}>
                           <span
                             className={Styles.birthSpan}
@@ -513,10 +536,6 @@ const EditProfile = () => {
                             more
                           </span>
 
-
-
-
-
                           <div className={Styles.anotherSelectDiv}>
                             <div
                               className={Styles.selectDiv4}
@@ -527,47 +546,41 @@ const EditProfile = () => {
                                     : "1px solid rgba(255, 251, 251, 0.199)",
                               }}
                             >
-                               <label
-                              style={{
-                                color:
-                                  focusedInput === "select4"
-                                    ? "#0099ff"
-                                    : "#777",
-                              }}
-                              htmlFor=""
-                            >
-                              Month and day
-                            </label>
-                            <i
-                              style={{
-                                color:
-                                  focusedInput === "select4"
-                                    ? "#0099ff"
-                                    : "#777",
-                              }}
-                              className="fa-solid fa-chevron-down"
-                            ></i>
+                              <label
+                                style={{
+                                  color:
+                                    focusedInput === "select4"
+                                      ? "#0099ff"
+                                      : "#777",
+                                }}
+                                htmlFor=""
+                              >
+                                Month and day
+                              </label>
+                              <i
+                                style={{
+                                  color:
+                                    focusedInput === "select4"
+                                      ? "#0099ff"
+                                      : "#777",
+                                }}
+                                className="fa-solid fa-chevron-down"
+                              ></i>
                               <select
                                 className={Styles.select4}
                                 onFocus={() => {
                                   setFocus("select4");
                                 }}
                                 onBlur={setBlur}
-                                
                               >
                                 <option value="" disabled>
-                                {}
-                              </option>
-                              {options.map((item,index)=>{
-                                return<option key={index}>
-                                  {item}
+                                  {}
                                 </option>
-                              })}
+                                {options.map((item, index) => {
+                                  return <option key={index}>{item}</option>;
+                                })}
                               </select>
-                              
                             </div>
-
-
 
                             <div
                               className={Styles.selectDiv4}
@@ -578,44 +591,40 @@ const EditProfile = () => {
                                     : "1px solid rgba(255, 251, 251, 0.199)",
                               }}
                             >
-                               <label
-                              style={{
-                                color:
-                                  focusedInput === "select5"
-                                    ? "#0099ff"
-                                    : "#777",
-                              }}
-                              htmlFor=""
-                            >
-                              Year
-                            </label>
-                            <i
-                              style={{
-                                color:
-                                  focusedInput === "select5"
-                                    ? "#0099ff"
-                                    : "#777",
-                              }}
-                              className="fa-solid fa-chevron-down"
-                            ></i>
+                              <label
+                                style={{
+                                  color:
+                                    focusedInput === "select5"
+                                      ? "#0099ff"
+                                      : "#777",
+                                }}
+                                htmlFor=""
+                              >
+                                Year
+                              </label>
+                              <i
+                                style={{
+                                  color:
+                                    focusedInput === "select5"
+                                      ? "#0099ff"
+                                      : "#777",
+                                }}
+                                className="fa-solid fa-chevron-down"
+                              ></i>
                               <select
                                 className={Styles.select4}
                                 onFocus={() => {
                                   setFocus("select5");
                                 }}
                                 onBlur={setBlur}
-                                
                               >
                                 <option value="" disabled>
-                                {}
-                              </option>
-                              {options.map((item,index)=>{
-                                return<option key={index}>
-                                  {item}
+                                  {}
                                 </option>
-                              })}
+                                {options.map((item, index) => {
+                                  return <option key={index}>{item}</option>;
+                                })}
                               </select>
-                              
                             </div>
                           </div>
                         </div>
@@ -631,12 +640,13 @@ const EditProfile = () => {
                     </span>
                   )}
                 </div>
-               
               </div>
               <div className={Styles.lastDiv}>
-                  <div className={Styles.startingSide}>Switch to proffetional</div>
-                  <i className="fa-solid fa-chevron-down"></i>
+                <div className={Styles.startingSide}>
+                  Switch to proffetional
                 </div>
+                <i className="fa-solid fa-chevron-down"></i>
+              </div>
             </div>
           </div>
         </div>

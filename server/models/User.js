@@ -22,6 +22,22 @@ const UserSChema = new Schema({
         type:Object,
         required:true
     },
+    banner:{
+        type:String,
+        default:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVSFvB0ZOLn2_H6XVy208d25568wbeLMCwBg&usqp=CAU",
+    },
+    pfp:{
+        type:String,
+        default:"https://twirpz.files.wordpress.com/2015/06/twitter-avi-gender-balanced-figure.png",
+    },
+    location:{
+        type:String,
+        required:true
+    },
+    website:{
+        type:String,
+        required:true
+    },
    
 }, { timestamps: true })
 
