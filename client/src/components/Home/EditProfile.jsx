@@ -26,7 +26,8 @@ const EditProfile = () => {
   const [editModal, seteditModal] = useState(false);
   const [dobChanger, setdobChanger] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
-  const [pfpImage, setpfpImage] = useState("");
+  const [pfpImage, setpfpImage] = useState('');
+  const [url, setUrl] = useState("")
   const token = localStorage.getItem("authToken");
   const [selectedDate, setSelectedDate] = useState({
     month: "",
@@ -54,6 +55,35 @@ const EditProfile = () => {
     "November",
     "December",
   ];
+
+
+
+  const saveImage = async(e) =>{
+    e.preventDefault()
+    const data = new FormData()
+    data.append("file", pfpImage);
+    data.append("upload_preset", "twitterClone");
+    data.append("cloud_name", "dv7s9mvys");
+
+    try {
+      if (pfpImage === null) {
+        return console.log("Please upload Image 🔴🏮🔴🏮")        
+      }
+
+      const res = await fetch("https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",{
+        method: "POST",
+        body: data
+      })
+
+      const cloudData = await res.json();
+      console.log(cloudData.url)
+      setUrl(cloudData.url)
+    } catch (error) {
+      console.log("error : ", error)
+    }
+
+  }
+  console.log(url)
 
   const generateDays = (month, year) => {
     const daysInMonth = new Date(year, month, 0).getDate();
@@ -168,7 +198,7 @@ const EditProfile = () => {
                 <span className={Styles.Name}>Edit profile</span>
               </div>
               <div className={Styles.saveDiv}>
-                <button>Save</button>
+                <button onClick={saveImage}>Save</button>
               </div>
             </div>
 
@@ -194,9 +224,8 @@ const EditProfile = () => {
                   <div className={Styles.pfpInputDiv}>
                     <input
                       id="banner"
-                      value={pfpImage}
                       onChange={(e) => {
-                        setpfpImage(e.target.value);
+                        setpfpImage(e.target.files[0]);
                         console.log(pfpImage)
                       }}
                       className={Styles.pfpInput}
@@ -206,7 +235,7 @@ const EditProfile = () => {
                       <i className="fa-solid fa-camera"></i>
                     </label>
                   </div>
-                  <img src={pfpImage} alt="" />
+                  <img src={pfpImage ? URL.createObjectURL(pfpImage): ""} alt="" />
                 </div>
               </div>
 
