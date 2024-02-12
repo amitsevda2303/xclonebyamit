@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import Loader from "./Loader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -26,8 +28,9 @@ const EditProfile = () => {
   const [editModal, seteditModal] = useState(false);
   const [dobChanger, setdobChanger] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
-  const [pfpImage, setpfpImage] = useState('');
-  const [url, setUrl] = useState("")
+  const [pfpImage, setpfpImage] = useState(null);
+  const [bannerImage, setBannerImage] = useState(null);
+  const [url, setUrl] = useState("");
   const token = localStorage.getItem("authToken");
   const [selectedDate, setSelectedDate] = useState({
     month: "",
@@ -56,34 +59,55 @@ const EditProfile = () => {
     "December",
   ];
 
+  const handlePfpInputChange = (event) => {
+    const file = event.target.files[0]; // Get the first selected file
+    setpfpImage(file); // Update state with the selected image file
+  };
 
+  const handlebannerInputChange = (event) => {
+    const file2 = event.target.files[0]; // Get the first selected file
+    setBannerImage(file2); // Update state with the selected image file
+  };
 
-  const saveImage = async(e) =>{
-    e.preventDefault()
-    const data = new FormData()
-    data.append("file", pfpImage);
-    data.append("upload_preset", "twitterClone");
-    data.append("cloud_name", "dv7s9mvys");
+  const saveImage = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    if (pfpImage) {
+      data.append("file", pfpImage);
+      data.append("upload_preset", "twitterClone");
+      data.append("cloud_name", "dv7s9mvys");
+    }
+
+    if (bannerImage) {
+      data.append("file", bannerImage);
+      data.append("upload_preset", "twitterClone");
+      data.append("cloud_name", "dv7s9mvys");
+    }
 
     try {
       if (pfpImage === null) {
-        return console.log("Please upload Image 🔴🏮🔴🏮")        
+        return console.log("Please upload Image 🔴🏮🔴🏮");
       }
 
-      const res = await fetch("https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",{
-        method: "POST",
-        body: data
-      })
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       const cloudData = await res.json();
-      console.log(cloudData.url)
-      setUrl(cloudData.url)
+      const pfpUrl = pfpImage ? cloudData.url : null;
+      const bannerUrl = bannerImage ? cloudData.url : null;
+      setUrl({ pfp: pfpUrl, banner: bannerUrl });
+      toast.success("image uploaded successfully");
     } catch (error) {
-      console.log("error : ", error)
+      console.log("error : ", error);
+      toast.error("error occured!");
     }
-
-  }
-  console.log(url)
+  };
+  console.log(url);
 
   const generateDays = (month, year) => {
     const daysInMonth = new Date(year, month, 0).getDate();
@@ -158,6 +182,7 @@ const EditProfile = () => {
       <ProfilePage />
 
       <div className={Styles.blackbg}>
+        <ToastContainer />
         <div className={Styles.modalBackdrop}>
           {editModal && (
             <div className={Styles.editModal}>
@@ -209,33 +234,38 @@ const EditProfile = () => {
                     id="banner"
                     className={Styles.bannerInput}
                     type="file"
+                    onChange={handlebannerInputChange}
                   />
                   <label htmlFor="banner" className={Styles.bannerLabel}>
                     <i className="fa-solid fa-camera"></i>
                   </label>
                 </div>
-                {/* <img
+                <img
                   src={
-                   userDetails.banner
+                    bannerImage
+                      ? URL.createObjectURL(bannerImage)
+                      : userDetails.banner
                   }
                   alt=""
-                /> */}
+                />
                 <div className={Styles.pfpDiv}>
                   <div className={Styles.pfpInputDiv}>
                     <input
-                      id="banner"
-                      onChange={(e) => {
-                        setpfpImage(e.target.files[0]);
-                        console.log(pfpImage)
-                      }}
+                      id="pfp"
                       className={Styles.pfpInput}
                       type="file"
+                      onChange={handlePfpInputChange}
                     />
-                    <label htmlFor="banner" className={Styles.pfpLabel}>
+                    <label htmlFor="pfp" className={Styles.pfpLabel}>
                       <i className="fa-solid fa-camera"></i>
                     </label>
                   </div>
-                  <img src={pfpImage ? URL.createObjectURL(pfpImage): ""} alt="" />
+                  <img
+                    src={
+                      pfpImage ? URL.createObjectURL(pfpImage) : userDetails.pfp
+                    }
+                    alt=""
+                  />
                 </div>
               </div>
 

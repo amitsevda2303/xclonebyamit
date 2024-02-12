@@ -3,6 +3,7 @@ import Styles from "../styles/pages/HomePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
 
+
 const Homepage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
@@ -42,7 +43,7 @@ const Homepage = () => {
             <span className={Styles.rightSpan}>Following</span>
             <span className={Styles.settings}>
               <Link>
-                <i class="fa-solid fa-gear"></i>
+                <i className="fa-solid fa-gear"></i>
               </Link>
             </span>
           </div>
@@ -50,7 +51,7 @@ const Homepage = () => {
             <div className={Styles.textareaDiv}>
               <div className={Styles.profileDiv}>
               <Link to={"/profile"}>
-              <i class="fa-solid fa-circle-user"></i>
+              <i className="fa-solid fa-circle-user"></i>
               </Link>
               </div>
               <div className={Styles.textarea}>

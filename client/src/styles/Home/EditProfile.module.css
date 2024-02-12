@@ -202,8 +202,7 @@
   background-color: #5b7083;
 }
 .bannerInput{
-  opacity: 0;
-  padding-block: 40px;
+opacity: 0;
 }
 .bannerInput:hover{
   cursor: pointer;
@@ -254,9 +253,8 @@
   background-color: #5b7083;
 }
 
-.pfpInput{
+.pfpInputDiv > input{
   opacity: 0;
-  padding-block: 40px;
 }
 
 .pfpInput:hover{

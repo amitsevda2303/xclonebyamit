@@ -89,17 +89,17 @@ const ProfilePage = () => {
 
           <div className={Styles.informationDiv}>
             <div className={Styles.bannerDiv}>
-              {banner.length === 0 ? <img src={board}  alt="img" /> : <img src={userDetails.banner}  alt="img" />}
+              {banner.length === 0 ? <img src={board}  alt="" /> : <img src={userDetails.banner}  alt="" />}
 
               <div className={Styles.userPfp}>
                 {pfp.length === 0 ? (
-                  <img src={userimage} alt="img" />
+                  <img src={userimage} alt="" />
                 ) : (
                   <img
                     src={
                      userDetails.pfp
                     }
-                    alt="img"
+                    alt=""
                   />
                 )}
               </div>
@@ -118,7 +118,7 @@ const ProfilePage = () => {
 
               <div className={Styles.dateOfBirth}>
                 <span>
-                  <i class="fa-solid fa-calendar-days"></i>&nbsp; Joined{" "}
+                  <i className="fa-solid fa-calendar-days"></i>&nbsp; Joined{" "}
                   {monthNames[userDetails.createdAt.month - 1] +
                     " " +
                     userDetails.createdAt.year}
