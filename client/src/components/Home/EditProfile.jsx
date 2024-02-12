@@ -71,17 +71,18 @@ const EditProfile = () => {
 
   const saveImage = async (e) => {
     e.preventDefault();
-    const data = new FormData();
+    const pfpdata = new FormData();
+    const bannerdata = new FormData();
     if (pfpImage) {
-      data.append("file", pfpImage);
-      data.append("upload_preset", "twitterClone");
-      data.append("cloud_name", "dv7s9mvys");
+      pfpdata.append("file", pfpImage);
+      pfpdata.append("upload_preset", "twitterClone");
+      pfpdata.append("cloud_name", "dv7s9mvys");
     }
 
     if (bannerImage) {
-      data.append("file", bannerImage);
-      data.append("upload_preset", "twitterClone");
-      data.append("cloud_name", "dv7s9mvys");
+      bannerdata.append("file", bannerImage);
+      bannerdata.append("upload_preset", "twitterClone");
+      bannerdata.append("cloud_name", "dv7s9mvys");
     }
 
     try {
@@ -89,17 +90,29 @@ const EditProfile = () => {
         return console.log("Please upload Image 🔴🏮🔴🏮");
       }
 
-      const res = await fetch(
+      const pfpRes = await fetch(
         "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
         {
           method: "POST",
-          body: data,
+          body: pfpdata,
+        }
+      );
+      if (bannerImage === null) {
+        return console.log("Please upload Image 🔴🏮🔴🏮");
+      }
+
+      const bannerRes = await fetch(
+        "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
+        {
+          method: "POST",
+          body: bannerdata,
         }
       );
 
-      const cloudData = await res.json();
-      const pfpUrl = pfpImage ? cloudData.url : null;
-      const bannerUrl = bannerImage ? cloudData.url : null;
+      const pcloudData = await pfpRes.json();
+      const bcloudData = await bannerRes.json();
+      const pfpUrl = pfpImage ? pcloudData.url : null;
+      const bannerUrl = bannerImage ? bcloudData.url : null;
       setUrl({ pfp: pfpUrl, banner: bannerUrl });
       toast.success("image uploaded successfully");
     } catch (error) {
