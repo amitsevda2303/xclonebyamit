@@ -19,7 +19,7 @@ const UserSChema = new Schema({
         required:true
     },
     dob:{
-        type:Object,
+        type:Object,    
         required:true
     },
     banner:{
@@ -32,11 +32,9 @@ const UserSChema = new Schema({
     },
     location:{
         type:String,
-        required:true
     },
     website:{
         type:String,
-        required:true
     },
    
 }, { timestamps: true })

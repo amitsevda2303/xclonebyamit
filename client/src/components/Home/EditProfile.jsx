@@ -86,7 +86,7 @@ const EditProfile = () => {
     }
 
     try {
-      if (pfpImage === null) {
+      if (!pfpImage && !bannerImage) {
         return console.log("Please upload Image 🔴🏮🔴🏮");
       }
 
@@ -97,9 +97,6 @@ const EditProfile = () => {
           body: pfpdata,
         }
       );
-      if (bannerImage === null) {
-        return console.log("Please upload Image 🔴🏮🔴🏮");
-      }
 
       const bannerRes = await fetch(
         "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
