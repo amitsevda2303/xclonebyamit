@@ -37,7 +37,15 @@ const UserSChema = new Schema({
         type:String,
     },
    
-}, { timestamps: true })
+}, { timestamps: true }
+)
+UserSChema.pre('save', function(next) {
+    if (!this.banner) {
+        this.banner = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVSFvB0ZOLn2_H6XVy208d25568wbeLMCwBg&usqp=CAU";
+    }
+    next();
+});
+
 
 const User = mongoose.model("User",UserSChema)
 export default User;

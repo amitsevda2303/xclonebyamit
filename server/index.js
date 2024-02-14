@@ -6,7 +6,7 @@ import connectToMongo from "./config/dbConfig.js"
 import userRouter from "./routes/auth.js"
 import server from "./routes/SampleGQL.js"
 import {expressMiddleware} from "@apollo/server/express4"
-import { authMiddleware } from "./middleware/authMiddleware.js";
+import { saveProfileInfo } from "./controller/userInfo.js";
 
 dotenv.config()
 
@@ -21,6 +21,7 @@ const startServer = async() =>{
 
     app.use("/graphql", expressMiddleware(server))
     app.use("/auth", userRouter);
+    app.use("/editprofileinfo", saveProfileInfo)
 
     app.get('/', (req, res) => res.send('Hello World!'))
     app.listen(process.env.PORT, () => console.log(`Example app listening on port ${process.env.PORT}`))    

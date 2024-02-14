@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "../styles/pages/ProfilePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
@@ -6,7 +6,6 @@ import { useQuery, gql } from "@apollo/client";
 import Loader from "../components/Home/Loader";
 import userimage from "../assets/pfp.png";
 import board from "../assets/banner2.jpg";
-import { Mycontext } from "../context/MyContext";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -54,14 +53,19 @@ const ProfilePage = () => {
     "December",
   ];
 
-  const { loading, error, data } = useQuery(getData, {
+  const { loading, error, data,refetch } = useQuery(getData, {
     variables: {
       token: token,
     },
+    fetchPolicy: 'network-only',
   });
-
-  if (loading) return <Loader />;
-
+  
+  useEffect(() => {
+    refetch(); // Refetch data every time the component mounts or the token changes
+  }, []);
+  if (loading) {
+    return <Loader />; // Or any other loading indicator
+  }
   if (error) {
     console.error(error);
     return <p>Error fetching user details</p>;

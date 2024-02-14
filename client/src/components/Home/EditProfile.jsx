@@ -73,51 +73,112 @@ const EditProfile = () => {
     e.preventDefault();
     const pfpdata = new FormData();
     const bannerdata = new FormData();
-    if (pfpImage) {
+  
+    // Check if user uploaded only a profile picture
+    if (pfpImage && !bannerImage) {
       pfpdata.append("file", pfpImage);
       pfpdata.append("upload_preset", "twitterClone");
       pfpdata.append("cloud_name", "dv7s9mvys");
     }
-
-    if (bannerImage) {
+  
+    // Check if user uploaded only a banner image
+    if (bannerImage && !pfpImage) {
       bannerdata.append("file", bannerImage);
       bannerdata.append("upload_preset", "twitterClone");
       bannerdata.append("cloud_name", "dv7s9mvys");
     }
-
+  
+    // Check if user uploaded both profile picture and banner image
+    if (pfpImage && bannerImage) {
+      pfpdata.append("file", pfpImage);
+      pfpdata.append("upload_preset", "twitterClone");
+      pfpdata.append("cloud_name", "dv7s9mvys");
+  
+      bannerdata.append("file", bannerImage);
+      bannerdata.append("upload_preset", "twitterClone");
+      bannerdata.append("cloud_name", "dv7s9mvys");
+    }
+  
     try {
       if (!pfpImage && !bannerImage) {
         return console.log("Please upload Image 🔴🏮🔴🏮");
       }
-
-      const pfpRes = await fetch(
-        "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
-        {
-          method: "POST",
-          body: pfpdata,
-        }
-      );
-
-      const bannerRes = await fetch(
-        "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
-        {
-          method: "POST",
-          body: bannerdata,
-        }
-      );
-
-      const pcloudData = await pfpRes.json();
-      const bcloudData = await bannerRes.json();
-      const pfpUrl = pfpImage ? pcloudData.url : null;
-      const bannerUrl = bannerImage ? bcloudData.url : null;
-      setUrl({ pfp: pfpUrl, banner: bannerUrl });
+  
+      // Call the Cloudinary API only if profile picture is uploaded
+      if (pfpImage && !bannerImage) {
+        const pfpRes = await fetch(
+          "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
+          {
+            method: "POST",
+            body: pfpdata,
+          }
+        );
+        const pcloudData = await pfpRes.json();
+        const pfpUrl = pfpImage ? pcloudData.url : null;
+        await saveIntoDataBase({ pfp: pfpUrl, banner: null })
+      }
+  
+      // Call the Cloudinary API only if banner image is uploaded
+      if (bannerImage && !pfpImage) {
+        const bannerRes = await fetch(
+          "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
+          {
+            method: "POST",
+            body: bannerdata,
+          }
+        );
+        const bcloudData = await bannerRes.json();
+        const bannerUrl = bannerImage ? bcloudData.url : null;
+        await saveIntoDataBase({banner: bannerUrl })
+      }
+  
+      // Call both Cloudinary APIs if both profile picture and banner image are uploaded
+      if (pfpImage && bannerImage) {
+        const pfpRes = await fetch(
+          "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
+          {
+            method: "POST",
+            body: pfpdata,
+          }
+        );
+        const bannerRes = await fetch(
+          "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload",
+          {
+            method: "POST",
+            body: bannerdata,
+          }
+        );
+  
+        const pcloudData = await pfpRes.json();
+        const bcloudData = await bannerRes.json();
+        const pfpUrl = pfpImage ? pcloudData.url : null;
+        const bannerUrl = bannerImage ? bcloudData.url : null;
+        await saveIntoDataBase({ pfp: pfpUrl, banner: bannerUrl })
+      }
       toast.success("image uploaded successfully");
     } catch (error) {
       console.log("error : ", error);
-      toast.error("error occured!");
+      toast.error("error occurred!");
     }
   };
   console.log(url);
+  const saveIntoDataBase = async(urlData) =>{
+   try {
+    const response = await fetch("http://localhost:7000/editprofileinfo" , {
+      method : "POST",
+      headers:{
+        'Authorization': `${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(urlData)
+    })
+
+    const result = response.json()
+    console.log(result)
+   } catch (error) {
+    console.error('Error:', error);
+   }
+  }
 
   const generateDays = (month, year) => {
     const daysInMonth = new Date(year, month, 0).getDate();
@@ -171,7 +232,7 @@ const EditProfile = () => {
     setFocusedInput(null);
   };
 
-  const { loading, error, data } = useQuery(getData, {
+  const { loading, error, data ,refetch} = useQuery(getData, {
     variables: {
       token: token,
     },
@@ -185,13 +246,11 @@ const EditProfile = () => {
   }
 
   const userDetails = data.getdetails;
-
-  console.log(userDetails);
+  console.log(userDetails)
   return (
     <>
-      <ProfilePage />
 
-      <div className={Styles.blackbg}>
+      <div >
         <ToastContainer />
         <div className={Styles.modalBackdrop}>
           {editModal && (
