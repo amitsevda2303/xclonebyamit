@@ -114,6 +114,11 @@ body{
    display: flex;
    align-items: center;
 }
+.showType{
+   margin-left: 13%;
+   color: aqua;
+   border-bottom: 1px solid gray;
+}
 .profileDiv{
    position: absolute;
    top: 0;

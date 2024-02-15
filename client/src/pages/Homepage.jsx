@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Styles from "../styles/pages/HomePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
+import { Mycontext } from "../context/MyContext";
 
 
 const Homepage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
   const [inputValue, setInputValue] = useState("");
+  const {showType , setshowType} = useContext(Mycontext)
+
 
   useEffect(() => {
     if (!token) {
@@ -59,11 +62,13 @@ const Homepage = () => {
                  id="customTextarea"
                  className={Styles.area}
                  value={inputValue}
+                 onClick={()=>{setshowType(true)}}
                  onChange={handleInputChange}
                  rows={calculateRows(inputValue)}
                  style={{ whiteSpace: "pre-wrap" }}
                  placeholder="What is happening?!"
                 ></textarea>
+                {showType && <span className={Styles.showType}>Everyone can read this</span>}
               </div>
             </div>
             <div className={Styles.emojiDiv}>bottom</div>
