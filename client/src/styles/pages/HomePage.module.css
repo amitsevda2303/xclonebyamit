@@ -1,189 +1,249 @@
-body{
-    margin: 0;
-    padding: 0;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.homePage{
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    padding-inline: 300px;
+.homePage {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  padding-inline: 300px;
 }
 
-
-.container{
-    height: 100%;
-    display: flex;
+.container {
+  height: 100%;
+  display: flex;
 }
 
-.leftContainer{
-   width: 600px;
-   height: 100vh;
-   padding: 0;
-   min-height: 100%;
-   overflow-y: scroll;
-   border-inline: 1px solid rgba(80, 79, 79, 0.637);
-   position: relative;
+.leftContainer {
+  width: 600px;
+  height: 100vh;
+  padding: 0;
+  min-height: 100%;
+  overflow-y: scroll;
+  border-inline: 1px solid rgba(80, 79, 79, 0.637);
+  position: relative;
 }
 
-.rightContainer{
-   width: 400px;
-   max-height: 100vh;
-   overflow-y: scroll;
-   color: pink;
+.rightContainer {
+  width: 400px;
+  max-height: 100vh;
+  overflow-y: scroll;
+  color: pink;
 }
-.topDiv{
-   position: fixed;
-   width: 598px;
-   height: 55px;
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   align-items: center;
-   background-color: #000000e9;
-   background-blend-mode: saturation;
-   border-bottom: 1px solid rgba(80, 79, 79, 0.637);
+.topDiv {
+  position: fixed;
+  width: 598px;
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000e9;
+  background-blend-mode: saturation;
+  border-bottom: 1px solid rgba(80, 79, 79, 0.637);
 }
 .leftContainer::-webkit-scrollbar {
-   width: 0px;
+  width: 0px;
 }
-.leftSpan{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   width: 270px;
-   height: 100%;
-   padding-right: 20px;
-   color: white ;
+.leftSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 270px;
+  height: 100%;
+  padding-right: 20px;
+  color: white;
 }
-.leftSpan:hover{
-   cursor: pointer;
-   transition: .3s ease;
-   background-color: rgba(128, 128, 128, 0.478);
+.leftSpan:hover {
+  cursor: pointer;
+  transition: 0.3s ease;
+  background-color: rgba(128, 128, 128, 0.478);
 }
-.rightSpan{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   width: 270px;
-   height: 100%;
-   padding-right: 40px;
-   color: white;
+.rightSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 270px;
+  height: 100%;
+  padding-right: 40px;
+  color: white;
 }
-.rightSpan:hover{
-   cursor: pointer;
-   transition: .3s ease;
-   background-color: rgba(128, 128, 128, 0.478);
+.rightSpan:hover {
+  cursor: pointer;
+  transition: 0.3s ease;
+  background-color: rgba(128, 128, 128, 0.478);
 }
-.settings{
-   width: 60px;
-   text-align: center;
+.settings {
+  width: 60px;
+  text-align: center;
 }
-.settings>a{
-   color: white;
-   width: 70%;
-   height: 100%;
-   padding: 8px;
+.settings > a {
+  color: white;
+  width: 70%;
+  height: 100%;
+  padding: 8px;
 }
-.settings>a:hover{
-   transition: .5s ease;
-   background-color:  rgba(128, 128, 128, 0.19);
-   border-radius: 15px;
+.settings > a:hover {
+  transition: 0.5s ease;
+  background-color: rgba(128, 128, 128, 0.19);
+  border-radius: 15px;
 }
-.settings>a:hover{
-   cursor: pointer;
-}
-
-.maincontainer{
-   margin-top: 57px;
-   min-height: 120px;
-   border-bottom: 1px solid rgba(80, 79, 79, 0.637);
-   display: flex;
-   flex-direction: column;
-   width: 100%;
+.settings > a:hover {
+  cursor: pointer;
 }
 
-.textareaDiv{
-   position: relative;
-   width: 100%;
-   padding-inline: 15px;
-   min-height: 60px;
-   display: flex;
-   align-items: center;
+.maincontainer {
+  margin-top: 57px;
+  min-height: 110px;
+  border-bottom: 1px solid rgba(80, 79, 79, 0.637);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.showType{
-   margin-left: 13%;
-   color: aqua;
-   border-bottom: 1px solid gray;
+
+.textareaDiv {
+  position: relative;
+  width: 100%;
+  padding-inline: 15px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
 }
-.profileDiv{
-   position: absolute;
-   top: 0;
-   left: 10px;
-   font-size: 40px;
+.showType {
+  margin-left: 13%;
+  color: #1d9bf0;
+  font-size: 15px;
 }
-.textarea{
-   width: 100%;
+.emojiPicker{
+  z-index: 100;
+  position: absolute;
 }
-.area{
-   margin-left: 60px;
-   font-size: 20px;
-   width: 90%;
-   padding: 10px;
-   color: white;
-   background-color: black;
-   outline: none;
-   border: none;
-   resize: none;
-   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+.textarea hr {
+  margin-left: 70px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  height: 1px;
+  outline: none;
+  background-color: rgba(171, 161, 161, 0.412);
+  border: none;
+}
+.profileDiv {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 40px;
+  height: 40px;
+  width: 40px;
+}
+.profileDiv a img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+.textarea {
+  width: 100%;
+}
+.area {
+  margin-left: 60px;
+  font-size: 20px;
+  width: 90%;
+  padding: 10px;
+  color: white;
+  background-color: black;
+  outline: none;
+  border: none;
+  resize: none;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.textareaDiv > i {
+  font-size: 40px;
+  color: rgb(188, 186, 186);
+}
+.maindiv{
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  justify-content: space-between;
+  padding-inline: 10px;
+}
+.emojiDiv {
+  margin-left: 13%;
+  display: flex;
+  gap: 10px;
+}
+.emojiDiv svg {
+  height: 20px;
+  width: 20px;
+}
+
+.emojiDiv svg:hover{
+  cursor: pointer;
+}
+.postBtn{
+  width: 80px;
+  padding-block: 6px;
+  color: white;
+  font-size: 16px;
+  background-color: #1d9bf0;
+  border-radius: 50px;
+  border: none;
+  outline: none;
 
 }
-.textareaDiv>i{
-    font-size: 40px;
-    color: rgb(188, 186, 186);
+.emojiModal{
+  position: absolute;
+  width: 300px;
+  height: 350px;
+  top: 140px;
+  overflow: hidden;
 }
+.emojiPicker{
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
 @media screen and (max-width: 1900px) {
-   .homePage{
+  .homePage {
     padding-inline: 250px;
-   }
+  }
 }
 @media screen and (max-width: 1800px) {
-   .homePage{
+  .homePage {
     padding-inline: 200px;
-   }
+  }
 }
 @media screen and (max-width: 1700px) {
-   .homePage{
+  .homePage {
     padding-inline: 150px;
-   }
+  }
 }
 @media screen and (max-width: 1600px) {
-   .homePage{
+  .homePage {
     padding-inline: 100px;
-   }
+  }
 }
 @media screen and (max-width: 1500px) {
-   .homePage{
+  .homePage {
     padding-inline: 50px;
-   }
+  }
 }
 @media screen and (max-width: 1400px) {
-   .homePage{
+  .homePage {
     padding-inline: 0px;
-   }
+  }
 }
 @media screen and (max-width: 1090px) {
-   .rightContainer{
+  .rightContainer {
     width: 200px;
-   }
+  }
 }
 @media screen and (max-width: 1005px) {
-   .rightContainer{
+  .rightContainer {
     display: none;
-   }
+  }
 }
-
-
