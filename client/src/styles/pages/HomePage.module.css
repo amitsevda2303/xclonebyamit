@@ -34,6 +34,7 @@ body {
 }
 .topDiv {
   position: fixed;
+  z-index: 99;
   width: 598px;
   height: 55px;
   display: flex;
@@ -113,6 +114,36 @@ body {
   display: flex;
   align-items: center;
 }
+.textarea{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea input{
+  margin-block: 10px;
+  margin-left: 13%;
+  border: none;
+  display: none;
+  outline: none;
+}
+
+.postImageContainer{
+  position: relative;
+  height: 680px;
+  width: 100%;
+  overflow: hidden;
+  margin-block: 20px;
+}
+.postImageContainer button{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.postImageContainer img{
+  width: 100%;
+  object-fit: cover;
+}
 .showType {
   margin-left: 13%;
   color: #1d9bf0;
@@ -169,6 +200,7 @@ body {
   padding-bottom: 10px;
   justify-content: space-between;
   padding-inline: 10px;
+  position: relative;
 }
 .emojiDiv {
   margin-left: 13%;
@@ -198,7 +230,7 @@ body {
   position: absolute;
   width: 300px;
   height: 350px;
-  top: 140px;
+  top: 40px;
   overflow: hidden;
 }
 .emojiPicker{

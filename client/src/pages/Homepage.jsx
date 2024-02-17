@@ -5,8 +5,8 @@ import AsideBar from "../components/AsideBar/AsideBar";
 import { Mycontext } from "../context/MyContext";
 import { useQuery, gql } from "@apollo/client";
 import Loader from "../components/Home/Loader";
-import EmojiPicker from 'emoji-picker-react';
-import ClickAwayListener from 'react-click-away-listener';
+import EmojiPicker from "emoji-picker-react";
+import ClickAwayListener from "react-click-away-listener";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -32,7 +32,14 @@ const Homepage = () => {
   const token = localStorage.getItem("authToken");
   const [inputValue, setInputValue] = useState("");
   const { showType, setshowType } = useContext(Mycontext);
-  const [emoji, setEmoji] = useState(false)
+  const [emoji, setEmoji] = useState(false);
+  const [postImage, setPostImage] = useState(null);
+
+  const handleEmojiClick = (emojiObject) => {
+    const { emoji } = emojiObject;
+    setInputValue((p) => p + emoji);
+    adjustTextareaHeight();
+  };
 
   useEffect(() => {
     if (!token) {
@@ -43,6 +50,11 @@ const Homepage = () => {
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
     adjustTextareaHeight();
+  };
+
+  const handlePostImage = (e) => {
+    const file = e.target.files[0];
+    setPostImage(file);
   };
 
   const calculateRows = (text) => {
@@ -110,11 +122,26 @@ const Homepage = () => {
                   placeholder="What is happening?!"
                   autoFocus={showType}
                 ></textarea>
+                <input
+                  type="file"
+                  id="image-input"
+                  onChange={handlePostImage}
+                />
+                {postImage && (
+                  <div className={Styles.postImageContainer}>
+                    <button onClick={()=>{setPostImage(null)}}>close</button>
+                    <img
+                      src={URL.createObjectURL(postImage)}
+                      alt="Selected Image"
+                      className={Styles.selectedImage}
+                    />
+                  </div>
+                )}
                 {showType && (
                   <>
                     <span className={Styles.showType}>
-                      <i className="fa-solid fa-earth-americas"></i> Everyone can
-                      reply
+                      <i className="fa-solid fa-earth-americas"></i> Everyone
+                      can reply
                     </span>
                     <hr />
                   </>
@@ -122,22 +149,41 @@ const Homepage = () => {
               </div>
             </div>
             <div className={Styles.maindiv}>
-              <div className={Styles.emojiDiv}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{
-                    color: "rgb(29, 155, 240)",
-                    width: "25px",
-                    height: "25px",
+              {emoji && (
+                <ClickAwayListener
+                  onClickAway={() => {
+                    setEmoji(false);
                   }}
                 >
-                  <g>
-                    <path
-                      d="M3 5.5C3 4.119 4.119 3 5.5 3h13C19.881 3 21 4.119 21 5.5v13c0 1.381-1.119 2.5-2.5 2.5h-13C4.119 21 3 19.881 3 18.5v-13zM5.5 5c-.276 0-.5.224-.5.5v9.086l3-3 3 3 5-5 3 3V5.5c0-.276-.224-.5-.5-.5h-13zM19 15.414l-3-3-5 5-3-3-3 3V18.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-3.086zM9.75 7C8.784 7 8 7.784 8 8.75s.784 1.75 1.75 1.75 1.75-.784 1.75-1.75S10.716 7 9.75 7z"
-                      fill="currentColor"
+                  <div className={Styles.emojiModal}>
+                    <EmojiPicker
+                      theme="dark"
+                      style={{ width: "100%", height: "100%" }}
+                      className={Styles.emojiPicker}
+                      onEmojiClick={handleEmojiClick}
                     />
-                  </g>
-                </svg>
+                  </div>
+                </ClickAwayListener>
+              )}
+
+              <div className={Styles.emojiDiv}>
+                <label htmlFor="image-input">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      color: "rgb(29, 155, 240)",
+                      width: "25px",
+                      height: "25px",
+                    }}
+                  >
+                    <g>
+                      <path
+                        d="M3 5.5C3 4.119 4.119 3 5.5 3h13C19.881 3 21 4.119 21 5.5v13c0 1.381-1.119 2.5-2.5 2.5h-13C4.119 21 3 19.881 3 18.5v-13zM5.5 5c-.276 0-.5.224-.5.5v9.086l3-3 3 3 5-5 3 3V5.5c0-.276-.224-.5-.5-.5h-13zM19 15.414l-3-3-5 5-3-3-3 3V18.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-3.086zM9.75 7C8.784 7 8 7.784 8 8.75s.784 1.75 1.75 1.75 1.75-.784 1.75-1.75S10.716 7 9.75 7z"
+                        fill="currentColor"
+                      />
+                    </g>
+                  </svg>
+                </label>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   style={{
@@ -175,7 +221,9 @@ const Homepage = () => {
                     width: "25px",
                     height: "25px",
                   }}
-                  onClick={()=>{setEmoji(true)}}
+                  onClick={() => {
+                    setEmoji(true);
+                  }}
                 >
                   <g>
                     <path
@@ -207,7 +255,6 @@ const Homepage = () => {
                     height: "25px",
                   }}
                 >
-                  
                   <g>
                     <path
                       d="M12 7c-1.93 0-3.5 1.57-3.5 3.5S10.07 14 12 14s3.5-1.57 3.5-3.5S13.93 7 12 7zm0 5c-.827 0-1.5-.673-1.5-1.5S11.173 9 12 9s1.5.673 1.5 1.5S12.827 12 12 12zm0-10c-4.687 0-8.5 3.813-8.5 8.5 0 5.967 7.621 11.116 7.945 11.332l.555.37.555-.37c.324-.216 7.945-5.365 7.945-11.332C20.5 5.813 16.687 2 12 2zm0 17.77c-1.665-1.241-6.5-5.196-6.5-9.27C5.5 6.916 8.416 4 12 4s6.5 2.916 6.5 6.5c0 4.073-4.835 8.028-6.5 9.27z"
@@ -216,10 +263,8 @@ const Homepage = () => {
                   </g>
                 </svg>
               </div>
-                <button className={Styles.postBtn}>Post</button>
+              <button className={Styles.postBtn}>Post</button>
             </div>
-            
-            {emoji&&<ClickAwayListener onClickAway={()=>{setEmoji(false)}}><div className={Styles.emojiModal}><EmojiPicker  theme="dark" style={{ width: "100%", height: "100%"}} className={Styles.emojiPicker}/></div></ClickAwayListener>}
           </div>
         </div>
         <div className={Styles.rightContainer}>right</div>
