@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Styles from "../styles/pages/HomePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
@@ -28,12 +28,14 @@ const getData = gql`
 `;
 
 const Homepage = () => {
+  const imageDivRef = useRef();
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
   const [inputValue, setInputValue] = useState("");
   const { showType, setshowType } = useContext(Mycontext);
   const [emoji, setEmoji] = useState(false);
-  const [postImage, setPostImage] = useState(null);
+  const [postImage, setPostImage] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleEmojiClick = (emojiObject) => {
     const { emoji } = emojiObject;
@@ -53,9 +55,24 @@ const Homepage = () => {
   };
 
   const handlePostImage = (e) => {
-    const file = e.target.files[0];
-    setPostImage(file);
+    const files = Array.from(e.target.files);
+    setPostImage([...postImage, ...files]);
   };
+  const removePostImage = (index) => {
+    const updatedImages = [...postImage];
+    updatedImages.splice(index, 1);
+    setPostImage(updatedImages);
+  };
+  const handlePostImageDivRatio = () => {
+    if (postImage.length >= 1) {
+      imageDivRef.current.style.display = "flex";
+      imageDivRef.current.style.flexDirection = "row";
+      imageDivRef.current.style.gap = "10px";
+    }
+  };
+  useEffect(() => {
+    handlePostImageDivRatio();
+  }, [postImage]);
 
   const calculateRows = (text) => {
     const lines = text.split("\n");
@@ -86,6 +103,16 @@ const Homepage = () => {
 
   const userDetails = data.getdetails;
 
+
+  const goToPrevSlide = () => {
+    const newIndex = (currentIndex === 0) ? postImage.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToNextSlide = () => {
+    const newIndex = (currentIndex === postImage.length - 1) ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
   return (
     <div className={Styles.homePage}>
       <AsideBar />
@@ -123,18 +150,46 @@ const Homepage = () => {
                   autoFocus={showType}
                 ></textarea>
                 <input
+                  key={postImage ? postImage.name : "default"}
                   type="file"
                   id="image-input"
                   onChange={handlePostImage}
+                  
+                  multiple accept="image/*"
                 />
                 {postImage && (
-                  <div className={Styles.postImageContainer}>
-                    <button onClick={()=>{setPostImage(null)}}>close</button>
-                    <img
-                      src={URL.createObjectURL(postImage)}
-                      alt="Selected Image"
-                      className={Styles.selectedImage}
-                    />
+                  <div className={Styles.postImageContainer} >
+                    {postImage.length >= 1 && (
+                      <div className={Styles.crouselbtnDivleft} onClick={goToPrevSlide}>
+                        <i className="fa-solid fa-arrow-left-long"></i>
+                      </div>
+                    )}
+
+                    <div ref={imageDivRef}> 
+                      
+                    {postImage.map((image, index) => (
+                      <div
+                      className={Styles.imagediv}
+                        style={{
+                          height: postImage.length > 1 ? "400px" : "700px",
+                        }}
+                        key={index}
+                      >
+                        <img
+                          src={URL.createObjectURL(image)}
+                          alt={`img ${index}`}
+                        />
+                        <button onClick={() => removePostImage(index)}>
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                    </div>
+                    {postImage.length >= 1 && (
+                      <div className={Styles.crouselbtnDivright} onClick={goToNextSlide}>
+                        <i className="fa-solid fa-arrow-right-long"></i>
+                      </div>
+                    )}
                   </div>
                 )}
                 {showType && (
@@ -167,7 +222,7 @@ const Homepage = () => {
               )}
 
               <div className={Styles.emojiDiv}>
-                <label htmlFor="image-input">
+                <label htmlFor={postImage.length === 4 ? "" : "image-input"}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     style={{
