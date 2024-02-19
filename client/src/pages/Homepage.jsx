@@ -29,13 +29,13 @@ const getData = gql`
 
 const Homepage = () => {
   const imageDivRef = useRef();
+  const imageRef = useRef();
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
   const [inputValue, setInputValue] = useState("");
   const { showType, setshowType } = useContext(Mycontext);
   const [emoji, setEmoji] = useState(false);
   const [postImage, setPostImage] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleEmojiClick = (emojiObject) => {
     const { emoji } = emojiObject;
@@ -57,23 +57,42 @@ const Homepage = () => {
   const handlePostImage = (e) => {
     const files = Array.from(e.target.files);
     setPostImage([...postImage, ...files]);
+    
   };
+  useEffect(() => {
+    console.log(postImage)
+  }, [postImage])
+  
   const removePostImage = (index) => {
     const updatedImages = [...postImage];
     updatedImages.splice(index, 1);
     setPostImage(updatedImages);
   };
   const handlePostImageDivRatio = () => {
-    if (postImage.length >= 1) {
+    if (postImage.length >= 1 && imageRef.current) {
       imageDivRef.current.style.display = "flex";
       imageDivRef.current.style.flexDirection = "row";
       imageDivRef.current.style.gap = "10px";
-    }
+      imageDivRef.current.style.transition = ".3s ease";
+      imageRef.current.style.minWidth  = '48.6%'    
+      imageRef.current.style.height = "289px"  
+    } 
+    
   };
   useEffect(() => {
     handlePostImageDivRatio();
   }, [postImage]);
+  const scrollLeft = () => {
+    if (imageDivRef.current) {
+      imageDivRef.current.scrollLeft -= 570; // Adjust the scroll amount as needed
+    }
+  };
 
+  const scrollRight = () => {
+    if (imageDivRef.current) {
+      imageDivRef.current.scrollLeft += 570; // Adjust the scroll amount as needed
+    }
+  };
   const calculateRows = (text) => {
     const lines = text.split("\n");
     return lines.length;
@@ -104,15 +123,6 @@ const Homepage = () => {
   const userDetails = data.getdetails;
 
 
-  const goToPrevSlide = () => {
-    const newIndex = (currentIndex === 0) ? postImage.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToNextSlide = () => {
-    const newIndex = (currentIndex === postImage.length - 1) ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
   return (
     <div className={Styles.homePage}>
       <AsideBar />
@@ -150,48 +160,26 @@ const Homepage = () => {
                   autoFocus={showType}
                 ></textarea>
                 <input
-                  key={postImage ? postImage.name : "default"}
                   type="file"
                   id="image-input"
                   onChange={handlePostImage}
-                  
-                  multiple accept="image/*"
                 />
+                {postImage.length >= 3 && <i className={`fa-solid fa-arrow-left-long ${Styles.leftScroll}`} onClick={scrollLeft} ></i>}
                 {postImage && (
-                  <div className={Styles.postImageContainer} >
-                    {postImage.length >= 1 && (
-                      <div className={Styles.crouselbtnDivleft} onClick={goToPrevSlide}>
-                        <i className="fa-solid fa-arrow-left-long"></i>
-                      </div>
-                    )}
-
-                    <div ref={imageDivRef}> 
-                      
-                    {postImage.map((image, index) => (
-                      <div
-                      className={Styles.imagediv}
-                        style={{
-                          height: postImage.length > 1 ? "400px" : "700px",
-                        }}
-                        key={index}
-                      >
-                        <img
-                          src={URL.createObjectURL(image)}
-                          alt={`img ${index}`}
-                        />
-                        <button onClick={() => removePostImage(index)}>
-                          Remove
-                        </button>
-                      </div>
-                    ))}
-                    </div>
-                    {postImage.length >= 1 && (
-                      <div className={Styles.crouselbtnDivright} onClick={goToNextSlide}>
-                        <i className="fa-solid fa-arrow-right-long"></i>
-                      </div>
-                    )}
+                  <div className={Styles.postImageContainer} ref={imageDivRef}>
+                      {postImage.map((image, index) => (
+                        <div className={Styles.minipostDiv} ref={imageRef}>
+                          <img
+                            src={URL.createObjectURL(image)}
+                            alt={`img ${index}`}
+                            multiple="image/*"
+                          />
+                          <i  className="fa-solid fa-xmark" onClick={() => removePostImage(index)}></i>
+                        </div>
+                      ))}
                   </div>
                 )}
+               {postImage.length >=3 && <i className={`fa-solid fa-arrow-right-long ${Styles.rightScroll}`} onClick={scrollRight}></i>}
                 {showType && (
                   <>
                     <span className={Styles.showType}>
