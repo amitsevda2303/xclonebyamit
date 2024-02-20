@@ -7,6 +7,7 @@ import { useQuery, gql } from "@apollo/client";
 import Loader from "../components/Home/Loader";
 import EmojiPicker from "emoji-picker-react";
 import ClickAwayListener from "react-click-away-listener";
+import Postmodal from "../components/Home/Postmodal";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -33,9 +34,10 @@ const Homepage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
   const [inputValue, setInputValue] = useState("");
-  const { showType, setshowType } = useContext(Mycontext);
+  const { showType, setshowType ,editPostModal , setEditPostModal ,postImage, setPostImage} = useContext(Mycontext);
   const [emoji, setEmoji] = useState(false);
-  const [postImage, setPostImage] = useState([]);
+  const [currentIndex, setcurrentIndex] = useState(null)
+
 
   const handleEmojiClick = (emojiObject) => {
     const { emoji } = emojiObject;
@@ -69,14 +71,18 @@ const Homepage = () => {
     setPostImage(updatedImages);
   };
   const handlePostImageDivRatio = () => {
-    if (postImage.length >= 1 && imageRef.current) {
+    if (postImage.length >= 1 && imageRef.current  && imageDivRef.current) {
+      imageDivRef.current.style.marginBlock = "15px"
       imageDivRef.current.style.display = "flex";
       imageDivRef.current.style.flexDirection = "row";
       imageDivRef.current.style.gap = "10px";
       imageDivRef.current.style.transition = ".3s ease";
       imageRef.current.style.minWidth  = '48.6%'    
       imageRef.current.style.height = "289px"  
-    } 
+    } if (postImage.length === 0 && imageDivRef.current) {
+      // When postImage.length is equal to 0
+      imageDivRef.current.style.marginBlock = "0px";
+    }
     
   };
   useEffect(() => {
@@ -169,10 +175,13 @@ const Homepage = () => {
                   <div className={Styles.postImageContainer} ref={imageDivRef}>
                       {postImage.map((image, index) => (
                         <div className={Styles.minipostDiv} ref={imageRef}>
+                          <span onClick={()=>{setEditPostModal(true)}}>Edit</span>
                           <img
                             src={URL.createObjectURL(image)}
                             alt={`img ${index}`}
                             multiple="image/*"
+                            onClick={()=>{setEditPostModal(true)
+                              setcurrentIndex(index)}}
                           />
                           <i  className="fa-solid fa-xmark" onClick={() => removePostImage(index)}></i>
                         </div>
@@ -312,6 +321,7 @@ const Homepage = () => {
         </div>
         <div className={Styles.rightContainer}>right</div>
       </div>
+      {editPostModal && <Postmodal currentIndex={currentIndex} setcurrentIndex={setcurrentIndex}/>}
     </div>
   );
 };

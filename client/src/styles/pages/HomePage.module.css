@@ -131,7 +131,6 @@ body {
 .postImageContainer{
   position: relative;
   width: 90%;
-  margin-block: 15px;
   margin-left: 50px;
   margin-right: 45px;
   overflow: scroll;
@@ -180,6 +179,21 @@ body {
   right: 10px;
   transition: .3s ease;
 }
+.minipostDiv span{
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px;
+  background-color: #626262c8 ;
+  border-radius: 30%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  transition: .3s ease;
+}
+.minipostDiv span:hover{
+  background-color: #424242cf;
+  cursor: pointer;
+}
 .minipostDiv i:hover{
   background-color: #424242cf;
   cursor: pointer;
@@ -189,7 +203,9 @@ body {
   height: 100%;
   border-radius: 18px;
   object-fit: cover;
+  cursor: pointer;
 }
+
 
 
 .showType {

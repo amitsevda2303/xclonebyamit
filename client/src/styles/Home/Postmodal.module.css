@@ -1,0 +1,205 @@
+.modalBackdrop {
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #5b70836c; /* Semi-transparent background */
+  }
+  .modalContent {
+    position: relative;
+    z-index: 99;
+    background: #000000; /* White background for modal content */
+    border-radius: 16px;
+    width: 600px;
+    height: 800px;
+    min-height: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: scroll;
+  }
+
+  .topDiv{
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 56px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.902);
+    background-blend-mode: color-dodge;
+    overflow: hidden;
+  }
+  
+.backbtnDiv{
+  display: flex;
+  width: 10%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.backbtnDiv>a{
+  color: white;
+}
+.backbtnDiv>a{
+  font-size: 15px;
+  padding: 10px;
+  transition: .3s ease;
+}
+.backbtnDiv>a>i{
+  font-size: 15px;
+}
+
+.backbtnDiv>a:hover{
+  border-radius: 55px;
+  background-color: rgba(80, 79, 79, 0.421);
+  transition: .3s ease;
+}
+
+
+  .nameDiv{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 15px;
+ }
+
+  .Name{
+    font-size: 20px;
+    font-weight: 700;
+ }
+
+ .saveDiv{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ .saveDiv>button{
+  padding-block: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  padding-inline: 20px;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+ }
+
+ .saveDiv>button:hover{
+  transition: .3s ease;
+  background-color: #d9d5d5f9;
+  cursor: pointer;
+ }
+
+
+ .selectorDiv{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    height: 50px;
+ }
+
+ .tasks{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.33%;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.423);
+    transition: .4s ease;
+ }
+ .tasks:hover{
+    cursor: pointer;
+    transition: .2s ease;
+    background: rgba(128, 128, 128, 0.253);
+ }
+.tasks span{
+    width: 30%;
+    height: 100%;
+    padding-top: 10px;
+}
+
+
+ .workdiv{
+    padding: 15px;
+    min-height: 300px;
+    height: 90%;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.121);
+    overflow: hidden;
+ }
+ .workdiv img{
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+ }
+ .desClass{
+    padding: 15px;
+    height: 590px;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.121);
+    overflow: hidden;
+ }
+ .desClass img{
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+ }
+.tagClass{
+    padding: 15px;
+    height: 400px;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.121);
+    overflow: hidden; 
+}
+.tagClass img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.lastDiv{
+    padding-block: 15px;
+    padding-inline: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    height: 55px;
+    background-color: aqua;
+}
+
+  
+@media screen and (max-height: 800px) {
+    .modalContent{
+      height: 90%;
+    }  
+  }
+  
+    @media screen and (max-width: 688px){
+      .modalContent{
+        width: 100%;
+        height: 100%;
+      }    
+    }
+  
+    @media screen and (max-height: 500px) {
+    
+      .modalContent{
+        /* margin-block:30px; */
+        height: 100% ;
+      }
+      
+    }
