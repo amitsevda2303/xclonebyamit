@@ -33,12 +33,12 @@
   border-radius: 50px;
 }
 
-.feature > a {
+.feature > span {
   color: white;
   text-decoration: none;
   flex-grow: 1; /* Use flex-grow for flexibility */
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 19px;
+  font-weight: 400;
 }
 
 .feature:hover {
@@ -121,7 +121,7 @@
     .icon{
         width: 15px;
     }
-    .feature>a{
+    .feature>span{
         display: none;
     }  
     .userDetails{

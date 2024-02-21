@@ -351,7 +351,6 @@ const EditProfile = () => {
                   <input
                     className={Styles.input1}
                     autoComplete="off"
-                    value={"asdfasdf"}
                     id="name"
                     type="text"
                     placeholder=""

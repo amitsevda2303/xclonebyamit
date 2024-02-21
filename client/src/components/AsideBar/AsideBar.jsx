@@ -25,89 +25,89 @@ const AsideBar = () => {
             <div className={s.featuresContainer}>
                 <Link to={"/home"} className={s.feature}>
                 <div className={s.icon}><i className="fa-solid fa-house"></i></div>
-                <Link to="/home">
+                <span >
                     Home
-                </Link>
+                </span>
                 </Link>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature}>
                     <div className={s.icon}> <i className="fa-solid fa-magnifying-glass"></i></div>
-                <Link>
+                <span>
                     Explore
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature}>
                 <div className={s.icon}><i className="fa-solid fa-bell"></i></div>
-                <Link>
+                <span>
                     Notifications
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature}>
                 <div className={s.icon}><i className="fa-regular fa-envelope"></i></div>
-                <Link>
+                <span>
                     Messages
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature}>
                 <div className={s.icon}><i className="fa-regular fa-square-check fa-rotate-180"></i></div>
-                <Link>
+                <span>
                     Grok
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature} id={s.list}>
                 <div className={s.icon}><i className="fa-regular fa-rectangle-list"></i></div>
-                <Link>
+                <span>
                     Lists
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature} id={s.bookmarks}>
                <div className={s.icon}> <i className="fa-regular fa-bookmark"></i></div>                
-                <Link>
+                <span>
                     Bookmarks
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature} id={s.community}>
                 <div className={s.icon}><i className="fa-solid fa-user-group"></i></div>
-                <Link>
+                <span>
                     Communities
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature} id={s.premium}>
                 <div className={s.icon}><i className="fa-solid fa-house"></i></div>
-                <Link>
+                <span>
                     Premium
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.featuresContainer}>
                 <Link to={"/profile"} className={s.feature} id={s.profile} >
                 <div className={s.icon}><i className="fa-regular fa-user"></i></div>
-                <Link to="/profile">
+                <span>
                     Profile
-                </Link>
+                </span>
                 </Link>
             </div>
             <div className={s.featuresContainer}>
                 <div className={s.feature} id={s.more}>
                 <div className={s.icon}><i className="fa-regular fa-comment-dots"></i></div>
-                <Link>
+                <span>
                     More
-                </Link>
+                </span>
                 </div>
             </div>
             <div className={s.PostContainer}>

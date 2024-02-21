@@ -133,52 +133,99 @@
 
 
  .workdiv{
-    padding: 15px;
     min-height: 300px;
     height: 90%;
     width: 100%;
     background: rgba(128, 128, 128, 0.121);
-    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    gap: 20px;
  }
  .workdiv img{
      width: 100%;
      height: 100%;
-     object-fit: contain;
+     object-fit: cover;
  }
  .desClass{
-    padding: 15px;
-    height: 590px;
+    height: 80%;
+    padding: 20px;
     width: 100%;
     background: rgba(128, 128, 128, 0.121);
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
+    gap: 20px;
  }
  .desClass img{
      width: 100%;
      height: 100%;
-     object-fit: contain;
+     object-fit: cover;
  }
 .tagClass{
-    padding: 15px;
-    height: 400px;
-    width: 100%;
+  margin-block:70px;
+    height: 100%;
+    width: 90%;
     background: rgba(128, 128, 128, 0.121);
-    overflow: hidden; 
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    gap: 20px;
 }
 .tagClass img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .lastDiv{
     padding-block: 15px;
-    padding-inline: 20px;
+    padding-inline: 15px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    gap: 30px;
     width: 100%;
     height: 55px;
-    background-color: aqua;
+}
+.cropMedia{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow: hidden;
+  padding-inline: 30px;
+}
+.rangeDiv{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.rangeDiv input{
+  width: 70%;
+  
+ 
+
+}
+.rangeDiv input[type="range"]::-webkit-slider-runnable-track{
+  background: #39a7f0;
+  height: 5px;
+  cursor: pointer;
+}
+.rangeDiv input[type="range"]::-moz-range-track {
+  background: #39a7f0;
+  height: 5px;
+  cursor: pointer;
+}
+.rangeDiv input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -6px; /* Centers thumb on the track */ 
+  cursor: pointer;
 }
 
   

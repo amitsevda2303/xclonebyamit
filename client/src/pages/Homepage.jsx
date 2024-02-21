@@ -174,7 +174,7 @@ const Homepage = () => {
                 {postImage && (
                   <div className={Styles.postImageContainer} ref={imageDivRef}>
                       {postImage.map((image, index) => (
-                        <div className={Styles.minipostDiv} ref={imageRef}>
+                        <div className={Styles.minipostDiv} key={index} ref={imageRef}>
                           <span onClick={()=>{setEditPostModal(true)}}>Edit</span>
                           <img
                             src={URL.createObjectURL(image)}
