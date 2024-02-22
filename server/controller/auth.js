@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import User from "../models/User.js"
 import bcrypt from "bcryptjs"
 import { validationResult } from "express-validator"
+import Post from "../models/Post.js"
 
 dotenv.config();
 
@@ -43,6 +44,10 @@ export const createUser = async (req, res) => {
                 dob: dob
             })
             await newUser.save()
+            const post=await Post({
+                userId:newUser._id
+            })
+            await post.save()
             const userPayload = {
                 _id: newUser._id,
             }
@@ -60,6 +65,7 @@ export const createUser = async (req, res) => {
                 dob: dob
             })
             await newUser.save()
+            console.log(newUser._id)
             const userPayload = {
                 _id: newUser._id,
             }

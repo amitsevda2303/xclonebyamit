@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv"
 import connectToMongo from "./config/dbConfig.js"
 import userRouter from "./routes/auth.js"
-import post from "./routes/auth.js"
+import postRouter from "./routes/post.js";
 import server from "./routes/SampleGQL.js"
 import {expressMiddleware} from "@apollo/server/express4"
 import { saveProfileInfo } from "./controller/userInfo.js";
@@ -22,7 +22,7 @@ const startServer = async() =>{
 
     app.use("/graphql", expressMiddleware(server))
     app.use("/auth", userRouter);
-    app.use("/posts", post);
+    app.use("/postapi", postRouter); // Use post router
     app.use("/editprofileinfo", saveProfileInfo)
 
     app.get('/', (req, res) => res.send('Hello World!'))

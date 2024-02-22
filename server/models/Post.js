@@ -1,37 +1,43 @@
 import mongoose from "mongoose"
 import { Schema } from "mongoose"
-import User from "./User";
+import User from "./User.js";
+
 
 const PostSchema = new Schema({
     userId:{
-        ref:User
+        type: Schema.Types.ObjectId, 
+        ref: "User"
     },
-    title:{
-        type: String,
-    },
-    posts:[Schema.Types.Mixed],
-    tags:{
-        type: Array,
-    },
-    description:{
-        type: String,
-    },
-    reply:{
-        type:String,
-        default: "Everyone"
-    },
-    location:{
-        type:String
-    },
-    poll:{
-        type:String
-    },
-    like:{
-        type:Array
-    },
-    dislike:{
-        type:Array
-    }
+    
+    posts: [{
+        title: String,
+        images:{
+            type:Array,
+            default: []
+        },
+        description:[],
+        location: String,
+        replies:{
+            type:Array,
+            default: []
+        },
+        like:{
+            type:Array,
+            default: []
+        },
+        dislike: {
+            type:Array,
+            default: []
+        },
+        Comment: {
+            type:Array,
+            default: []
+        }, 
+        timestamp: {
+            type: Date,
+          },          
+    }],
+   
 
 })
 

@@ -4,7 +4,7 @@ import { savePost } from "../controller/post.js";
 const router = express.Router();
 
 try {
-    router.post("/",savePost)
+    router.post("/post",savePost)
 } catch (error) {
     console.log("Intrenal server error at auth route 🔴 ", error);
 }    
