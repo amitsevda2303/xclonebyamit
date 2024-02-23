@@ -261,4 +261,14 @@ body{
    .rightContainer{
     display: none;
    }
+   .leftContainer {
+      width: 95vw;
+    }
 }
+@media screen and (max-width: 500px) {
+   .leftContainer{
+      width: 100vw;
+   }
+ }
+
+ 
