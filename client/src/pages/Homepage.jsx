@@ -8,6 +8,7 @@ import Loader from "../components/Home/Loader";
 import EmojiPicker from "emoji-picker-react";
 import ClickAwayListener from "react-click-away-listener";
 import Postmodal from "../components/Home/Postmodal";
+import UserPosts from "../components/Home/UserPosts";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -34,10 +35,16 @@ const Homepage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
   const [inputValue, setInputValue] = useState("");
-  const { showType, setshowType ,editPostModal , setEditPostModal ,postImage, setPostImage} = useContext(Mycontext);
+  const {
+    showType,
+    setshowType,
+    editPostModal,
+    setEditPostModal,
+    postImage,
+    setPostImage,
+  } = useContext(Mycontext);
   const [emoji, setEmoji] = useState(false);
-  const [currentIndex, setcurrentIndex] = useState(null)
-
+  const [currentIndex, setcurrentIndex] = useState(null);
 
   const handleEmojiClick = (emojiObject) => {
     const { emoji } = emojiObject;
@@ -59,31 +66,30 @@ const Homepage = () => {
   const handlePostImage = (e) => {
     const files = Array.from(e.target.files);
     setPostImage([...postImage, ...files]);
-    
   };
   useEffect(() => {
-    console.log(postImage)
-  }, [postImage])
-  
+    console.log(postImage);
+  }, [postImage]);
+
   const removePostImage = (index) => {
     const updatedImages = [...postImage];
     updatedImages.splice(index, 1);
     setPostImage(updatedImages);
   };
   const handlePostImageDivRatio = () => {
-    if (postImage.length >= 1 && imageRef.current  && imageDivRef.current) {
-      imageDivRef.current.style.marginBlock = "15px"
+    if (postImage.length >= 1 && imageRef.current && imageDivRef.current) {
+      imageDivRef.current.style.marginBlock = "15px";
       imageDivRef.current.style.display = "flex";
       imageDivRef.current.style.flexDirection = "row";
       imageDivRef.current.style.gap = "10px";
       imageDivRef.current.style.transition = ".3s ease";
-      imageRef.current.style.minWidth  = '48.6%'    
-      imageRef.current.style.height = "289px"  
-    } if (postImage.length === 0 && imageDivRef.current) {
+      imageRef.current.style.minWidth = "48.6%";
+      imageRef.current.style.height = "289px";
+    }
+    if (postImage.length === 0 && imageDivRef.current) {
       // When postImage.length is equal to 0
       imageDivRef.current.style.marginBlock = "0px";
     }
-    
   };
   useEffect(() => {
     handlePostImageDivRatio();
@@ -115,12 +121,15 @@ const Homepage = () => {
     },
     fetchPolicy: "network-only",
   });
+
   useEffect(() => {
     refetch();
   }, []);
+
   if (loading) {
     return <Loader />;
   }
+
   if (error) {
     console.error(error);
     return <p>Error fetching user details</p>;
@@ -128,6 +137,12 @@ const Homepage = () => {
 
   const userDetails = data.getdetails;
 
+
+
+  const uploadimages = (e) =>{
+    e.preventDefault();
+
+  }
 
   return (
     <div className={Styles.homePage}>
@@ -146,11 +161,9 @@ const Homepage = () => {
           </div>
           <div className={Styles.maincontainer}>
             <div className={Styles.textareaDiv}>
-              <div className={Styles.profileDiv}>
-                <Link to={"/profile"}>
-                  <img src={userDetails.pfp} alt="" />
-                </Link>
-              </div>
+              <Link to={"/profile"} className={Styles.profileDiv}>
+                <img src={userDetails.pfp} alt="" />
+              </Link>
               <div className={Styles.textarea}>
                 <textarea
                   id="customTextarea"
@@ -170,25 +183,50 @@ const Homepage = () => {
                   id="image-input"
                   onChange={handlePostImage}
                 />
-                {postImage.length >= 3 && <i className={`fa-solid fa-arrow-left-long ${Styles.leftScroll}`} onClick={scrollLeft} ></i>}
+                {postImage.length >= 3 && (
+                  <i
+                    className={`fa-solid fa-arrow-left-long ${Styles.leftScroll}`}
+                    onClick={scrollLeft}
+                  ></i>
+                )}
                 {postImage && (
                   <div className={Styles.postImageContainer} ref={imageDivRef}>
-                      {postImage.map((image, index) => (
-                        <div className={Styles.minipostDiv} key={index} ref={imageRef}>
-                          <span onClick={()=>{setEditPostModal(true)}}>Edit</span>
-                          <img
-                            src={URL.createObjectURL(image)}
-                            alt={`img ${index}`}
-                            multiple="image/*"
-                            onClick={()=>{setEditPostModal(true)
-                              setcurrentIndex(index)}}
-                          />
-                          <i  className="fa-solid fa-xmark" onClick={() => removePostImage(index)}></i>
-                        </div>
-                      ))}
+                    {postImage.map((image, index) => (
+                      <div
+                        className={Styles.minipostDiv}
+                        key={index}
+                        ref={imageRef}
+                      >
+                        <span
+                          onClick={() => {
+                            setEditPostModal(true);
+                          }}
+                        >
+                          Edit
+                        </span>
+                        <img
+                          src={URL.createObjectURL(image)}
+                          alt={`img ${index}`}
+                          multiple="image/*"
+                          onClick={() => {
+                            setEditPostModal(true);
+                            setcurrentIndex(index);
+                          }}
+                        />
+                        <i
+                          className="fa-solid fa-xmark"
+                          onClick={() => removePostImage(index)}
+                        ></i>
+                      </div>
+                    ))}
                   </div>
                 )}
-               {postImage.length >=3 && <i className={`fa-solid fa-arrow-right-long ${Styles.rightScroll}`} onClick={scrollRight}></i>}
+                {postImage.length >= 3 && (
+                  <i
+                    className={`fa-solid fa-arrow-right-long ${Styles.rightScroll}`}
+                    onClick={scrollRight}
+                  ></i>
+                )}
                 {showType && (
                   <>
                     <span className={Styles.showType}>
@@ -315,13 +353,23 @@ const Homepage = () => {
                   </g>
                 </svg>
               </div>
-              <button className={Styles.postBtn}>Post</button>
+              <button className={Styles.postBtn} disabled >Post</button>
             </div>
           </div>
+          <UserPosts userDetails={userDetails}/>
+          <UserPosts userDetails={userDetails}/>
+          <UserPosts userDetails={userDetails}/>
+          <UserPosts userDetails={userDetails}/>
+          <UserPosts userDetails={userDetails}/>
         </div>
         <div className={Styles.rightContainer}>right</div>
       </div>
-      {editPostModal && <Postmodal currentIndex={currentIndex} setcurrentIndex={setcurrentIndex}/>}
+      {editPostModal && (
+        <Postmodal
+          currentIndex={currentIndex}
+          setcurrentIndex={setcurrentIndex}
+        />
+      )}
     </div>
   );
 };

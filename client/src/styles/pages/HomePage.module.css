@@ -209,7 +209,7 @@ body {
 
 
 .showType {
-  margin-left: 13%;
+  margin-left: 55px;
   color: #1d9bf0;
   font-size: 15px;
 }
@@ -218,7 +218,7 @@ body {
   position: absolute;
 }
 .textarea hr {
-  margin-left: 70px;
+  margin-left: 55px;
   margin-bottom: 20px;
   margin-top: 10px;
   height: 1px;
@@ -230,20 +230,21 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 40px;
   height: 40px;
   width: 40px;
+  border-radius: 50%;
 }
-.profileDiv a img {
+.profileDiv  img {
   height: 100%;
   width: 100%;
   border-radius: 50%;
+  aspect-ratio: auto;
 }
 .textarea {
   width: 100%;
 }
 .area {
-  margin-left: 60px;
+  margin-left: 40px;
   font-size: 20px;
   width: 90%;
   padding: 10px;
@@ -267,7 +268,7 @@ body {
   position: relative;
 }
 .emojiDiv {
-  margin-left: 13%;
+  margin-left: 60px;
   display: flex;
   gap: 10px;
 }
@@ -343,4 +344,18 @@ body {
   .rightContainer {
     display: none;
   }
+.topDiv {
+  width: 100%;
 }
+}
+@media screen and (max-width: 1005px) {
+  .leftContainer {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .leftContainer {
+    width: 100vw;
+  }
+}
+

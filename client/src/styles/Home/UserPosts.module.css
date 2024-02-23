@@ -1,0 +1,114 @@
+.postsContainer{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-bottom: 1px solid #424242cf;
+  }
+  .postpfpDiv{
+    width: 12%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .postpfpDiv img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  .postDetailsDiv{
+    width: 90%;
+    height: auto;
+  }
+  .postDetailsDiv a:nth-child(1){
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .postDetailsDiv a:nth-child(1):hover{
+    text-decoration: underline;
+  }
+  
+  .username{
+    margin-left: 10px;
+    font-size: 15px;
+    color: rgb(128, 128, 128);
+    font-weight: 300;
+  }
+  .titleDiv{
+    margin-top: 5px;
+    width: 100%;
+    height: auto;
+  }
+  .titleDiv p{
+    font-size: 15px;
+  }
+  
+  .hastags{
+    color: #1d9bf0;
+    margin-left: 5px;
+  }
+  .hastags:hover{
+    text-decoration: underline;
+  }
+  .postImageDiv{
+    margin-top: 10px ;
+    max-height: 600px;
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+  }
+  .postImageDiv img{
+    width: 100%;
+    padding-right: 10px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+  .actionBar{
+    padding-right: 10px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .actionBar p {
+    transition: .3s ease;
+    color: gray;
+  }
+  .actionBar i{
+    transition: .3s ease;
+  }
+  .actionBar p:hover{
+    cursor: pointer;
+  }
+  .actionBar p i{
+    color: gray;
+  }
+  
+  .reply:hover{
+    color: #1d9bf0;
+  }
+  .reply:hover i{
+    color: #1d9bf0;
+  }
+  .like:hover {
+    color: #f91880;
+  }
+  .like:hover i{
+    color: #f91880;
+  }
+  .repost:hover{
+    color: #00ba7c;
+  }
+  .repost:hover i{
+    color: #00ba7c;
+  }
+  .view:hover{
+    color: #1d9bf0;
+  }
+  .view:hover i{
+    color: #1d9bf0;
+  }
+  

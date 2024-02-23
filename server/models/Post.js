@@ -11,31 +11,13 @@ const PostSchema = new Schema({
     
     posts: [{
         title: String,
-        images:{
-            type:Array,
-            default: []
-        },
+        images:[],
         description:[],
         location: String,
-        replies:{
-            type:Array,
-            default: []
-        },
-        like:{
-            type:Array,
-            default: []
-        },
-        dislike: {
-            type:Array,
-            default: []
-        },
-        Comment: {
-            type:Array,
-            default: []
-        }, 
-        timestamp: {
-            type: Date,
-          },          
+        replies:[],
+        like:[],
+        dislike: [],
+        comment: [],      
     }],
    
 
