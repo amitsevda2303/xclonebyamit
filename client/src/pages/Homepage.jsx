@@ -137,11 +137,35 @@ const Homepage = () => {
 
   const userDetails = data.getdetails;
 
+  async function uploadImageToCloudinary(imagePath) {
+    try {
+      const formData = new FormData();
+      formData.append("file", imagePath);
+      formData.append("upload_preset", "twitterClone");
+  
+      const response = await fetch( "https://api.cloudinary.com/v1_1/dv7s9mvys/image/upload", {
+        method: 'POST',
+        body: formData
+      });
+  
+      const data = await response.json();
+      console.log('Uploaded Image:', data.secure_url);
+      return data.secure_url;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      return null;
+    }
+  }
 
-
-  const uploadimages = (e) =>{
-    e.preventDefault();
-
+  async function uploadImages() {
+    const uploadedImageUrls = [];
+    for (const x of postImage) {
+      const imageUrl = await uploadImageToCloudinary(x);
+      if (imageUrl) {
+        uploadedImageUrls.push(imageUrl);
+      }
+    }
+    return uploadedImageUrls;
   }
 
   return (
@@ -353,7 +377,7 @@ const Homepage = () => {
                   </g>
                 </svg>
               </div>
-              <button className={Styles.postBtn} disabled >Post</button>
+              <button className={Styles.postBtn} onClick={()=>{uploadImages()}}  >Post</button>
             </div>
           </div>
           <UserPosts userDetails={userDetails}/>
