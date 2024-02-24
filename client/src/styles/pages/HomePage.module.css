@@ -289,7 +289,13 @@ body {
   border-radius: 50px;
   border: none;
   outline: none;
-
+  transition: .2s ease;
+}
+.postBtn:disabled{
+  transition: .2s ease;
+  background-color: #1d9cf093;
+  color: #cfcfcfe9;
+  cursor:not-allowed;
 }
 .emojiModal{
   position: absolute;

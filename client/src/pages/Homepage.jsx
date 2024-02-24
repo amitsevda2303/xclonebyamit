@@ -9,6 +9,7 @@ import EmojiPicker from "emoji-picker-react";
 import ClickAwayListener from "react-click-away-listener";
 import Postmodal from "../components/Home/Postmodal";
 import UserPosts from "../components/Home/UserPosts";
+import { ToastContainer, toast } from "react-toastify";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -43,6 +44,7 @@ const Homepage = () => {
     postImage,
     setPostImage,
   } = useContext(Mycontext);
+  const uploadedImageUrls = [];
   const [emoji, setEmoji] = useState(false);
   const [currentIndex, setcurrentIndex] = useState(null);
 
@@ -158,18 +160,42 @@ const Homepage = () => {
   }
 
   async function uploadImages() {
-    const uploadedImageUrls = [];
     for (const x of postImage) {
       const imageUrl = await uploadImageToCloudinary(x);
       if (imageUrl) {
         uploadedImageUrls.push(imageUrl);
       }
     }
+    postDatainDb()
     return uploadedImageUrls;
+  }
+
+  const postDatainDb = async() =>{
+    const requestData = {
+      title: inputValue,
+      post : uploadedImageUrls
+    };
+    try {
+      const api = await fetch("http://localhost:7000/postapi/post",{
+        method : "POST",
+        headers:{
+          'Authorization': `${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData)
+      })
+
+      const result = await api.json();
+      toast.success("Post uploaded successfully");
+      console.log(result)
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
 
   return (
     <div className={Styles.homePage}>
+      <ToastContainer />
       <AsideBar />
 
       <div className={Styles.container}>
@@ -377,7 +403,7 @@ const Homepage = () => {
                   </g>
                 </svg>
               </div>
-              <button className={Styles.postBtn} onClick={()=>{uploadImages()}}  >Post</button>
+              <button className={Styles.postBtn} onClick={()=>{uploadImages()}} disabled={inputValue.length === 0}  >Post</button>
             </div>
           </div>
           <UserPosts userDetails={userDetails}/>

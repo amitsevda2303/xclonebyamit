@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../../styles/Home/EditProfile.module.css";
-import ProfilePage from "../../pages/ProfilePage";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
