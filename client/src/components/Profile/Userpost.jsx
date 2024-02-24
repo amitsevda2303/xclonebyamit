@@ -45,9 +45,10 @@ const Userpost = ({userDetails}) => {
     
       const postDetails = data.getPosts;
       
+      
   return (
     <>
-    {postDetails.posts.map((item, index) => (
+    {postDetails.posts.reverse().map((item, index) => (
         <div className={Styles.postsContainer} key={index}>
           <div className={Styles.postpfpDiv}>
             <img src={userDetails.pfp} alt="user pfp" />

@@ -1,7 +1,12 @@
 import mongoose from "mongoose"
 import { Schema } from "mongoose"
-import User from "./User.js";
 
+function getIndianTime() {
+    const currentTime = new Date();
+    const indianOffset = 5.5 * 60 * 60 * 1000; // Offset for Indian Standard Time (IST)
+    const indianTime = new Date(currentTime.getTime() + indianOffset);
+    return indianTime;
+}
 
 const PostSchema = new Schema({
     userId:{
@@ -17,7 +22,11 @@ const PostSchema = new Schema({
         replies:[],
         like:[],
         dislike: [],
-        comment: [],      
+        comment: [], 
+        createdAt: {
+            type: Date,
+            default: getIndianTime 
+        }     
     }],
    
 
