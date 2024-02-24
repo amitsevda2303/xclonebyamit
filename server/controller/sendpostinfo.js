@@ -9,7 +9,7 @@ export const getPostResolver = async (_, req) => {
         const { token } = req;
         const decoded = jwt.verify(token, SECERET);
 
-        const post = await Post.findOne({userId: decoded._id}).populate("userId", "_id");
+        const post = await Post.findOne({userId: decoded._id});
         if (!post) {
             throw new Error('User not found');
         }

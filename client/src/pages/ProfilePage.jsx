@@ -6,6 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 import Loader from "../components/Home/Loader";
 import userimage from "../assets/pfp.png";
 import board from "../assets/banner2.jpg";
+import Userpost from "../components/Profile/Userpost";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -24,7 +25,10 @@ const getData = gql`
       banner
     }
   }
+
+  
 `;
+
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -59,6 +63,8 @@ const ProfilePage = () => {
     },
     fetchPolicy: 'network-only',
   });
+
+ 
   
   useEffect(() => {
     refetch(); // Refetch data every time the component mounts or the token changes
@@ -145,7 +151,7 @@ const ProfilePage = () => {
               <Link className={Styles.links}>Likes</Link>
             </div>
           </div>
-          <div className={Styles.bottomContainer}></div>
+          <div className={Styles.bottomContainer}><Userpost userDetails = {userDetails}/></div>
         </div>
         <div className={Styles.rightContainer}>right</div>
       </div>
