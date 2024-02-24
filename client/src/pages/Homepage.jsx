@@ -69,9 +69,7 @@ const Homepage = () => {
     const files = Array.from(e.target.files);
     setPostImage([...postImage, ...files]);
   };
-  useEffect(() => {
-    console.log(postImage);
-  }, [postImage]);
+
 
   const removePostImage = (index) => {
     const updatedImages = [...postImage];
@@ -151,7 +149,6 @@ const Homepage = () => {
       });
   
       const data = await response.json();
-      console.log('Uploaded Image:', data.secure_url);
       return data.secure_url;
     } catch (error) {
       console.error('Error uploading image:', error);
@@ -187,7 +184,6 @@ const Homepage = () => {
 
       const result = await api.json();
       toast.success("Post uploaded successfully");
-      console.log(result)
     } catch (error) {
       console.error('Error:', error);
     }
@@ -406,6 +402,10 @@ const Homepage = () => {
               <button className={Styles.postBtn} onClick={()=>{uploadImages()}} disabled={inputValue.length === 0}  >Post</button>
             </div>
           </div>
+          <UserPosts userDetails={userDetails}/>
+          <UserPosts userDetails={userDetails}/>
+          <UserPosts userDetails={userDetails}/>
+          <UserPosts userDetails={userDetails}/>
           <UserPosts userDetails={userDetails}/>
         </div>
         <div className={Styles.rightContainer}>right</div>
