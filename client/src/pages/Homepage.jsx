@@ -403,10 +403,6 @@ const Homepage = () => {
             </div>
           </div>
           <UserPosts userDetails={userDetails}/>
-          <UserPosts userDetails={userDetails}/>
-          <UserPosts userDetails={userDetails}/>
-          <UserPosts userDetails={userDetails}/>
-          <UserPosts userDetails={userDetails}/>
         </div>
         <div className={Styles.rightContainer}>right</div>
       </div>
