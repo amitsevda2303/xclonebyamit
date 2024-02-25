@@ -2,16 +2,16 @@ import React from 'react'
 import Styles from "../../styles/Home/UserPosts.module.css"
 import { Link } from 'react-router-dom'
 
-const UserPosts = ({userDetails}) => {
+const UserPosts = () => {
   return (
     <div className={Styles.postsContainer}>
             <div className={Styles.postpfpDiv}>
-              <img src={userDetails.pfp} alt="" />
+              <img src="" alt="" />
             </div>
             <div className={Styles.postDetailsDiv}>
-              <Link to={"/profile"}>{userDetails.user}</Link>{" "}
+              <Link to={"/profile"}>username</Link>
               <span className={Styles.username}>
-                @user . <span>14h</span>{" "}
+                @user . <span>14h</span>
               </span>
               <div className={Styles.titleDiv}>
                 <p>
