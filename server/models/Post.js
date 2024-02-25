@@ -24,7 +24,7 @@ const PostSchema = new Schema({
         dislike: [],
         comment: [], 
         createdAt: {
-            type: Date,
+            type: String,
             default: getIndianTime 
         }     
     }],
