@@ -86,13 +86,12 @@ export const showPost = async (req, res) => {
                     }
                 }
             ]);
-    
             // Extract the allPosts array from the result
             const allPosts = result.length > 0 ? result[0].allPosts : [];
-    
+            
             // Sort all posts combined by their createdAt field
             allPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
+            await Post.populate(allPosts, { path: 'userId', select: 'pfp , user ' });
             // Fetch the pfp (profile picture) for each user
     
             // Send the sorted allPosts array as a response

@@ -3,6 +3,8 @@ import { useQuery, gql } from "@apollo/client";
 import Styles from "../../styles/components/profile/Userpost.module.css"
 import Loader from '../Home/Loader';
 import { Link } from 'react-router-dom';
+import moment from 'moment'; // Import moment library
+import 'moment/locale/en-gb';
 
 
 const postData = gql`
@@ -12,6 +14,7 @@ query Query($token: String!) {
       title
       images
       like
+      createdAt
     }
     _id
   }
@@ -24,6 +27,12 @@ query Query($token: String!) {
 
 const Userpost = ({userDetails}) => {
     const token = localStorage.getItem("authToken")
+    const time = (createdAt ) => {
+      const formattedDate = moment(parseInt(createdAt)).format('YYYY-MM-DD HH:mm:ss')
+      const comparedTime = moment(formattedDate).fromNow()
+      return comparedTime;
+    }
+    
     const { loading, error, data,refetch:refetchPosts  } = useQuery(postData, {
         variables: {
           token: token,
@@ -56,7 +65,7 @@ const Userpost = ({userDetails}) => {
           <div className={Styles.postDetailsDiv}>
             <Link to={"/profile"}>{userDetails.user}</Link>{" "}
             <span className={Styles.username}>
-              @user . <span>14h</span>{" "}
+              @user . <span>{time(item.createdAt)}</span>{" "}
             </span>
             <div className={Styles.titleDiv}>
               <p>{item.title}</p>

@@ -42,7 +42,9 @@ type PostDetails {
   like: [String]
   dislike: [String]
   comment: [String]
+  createdAt : String
 }
+
 
 type Query{
   getdetails(token:String!):User

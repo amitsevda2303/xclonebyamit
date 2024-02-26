@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Styles from "../../styles/Home/UserPosts.module.css"
 import { Link } from 'react-router-dom'
+import moment from 'moment'; // Import moment library
+import 'moment/locale/en-gb'; // Import English locale for moment
 
 const UserPosts = () => {
   const [alltheData, setalltheData] = useState([])
   const token = localStorage.getItem("authToken")
 
-  const allthePosts = async(req,res) =>{
+  const allthePosts = async() =>{
     const result = await fetch("http://localhost:7000/postapi/getpost" , {
       method : "GET",
       headers:{
@@ -22,22 +24,19 @@ const UserPosts = () => {
     allthePosts()
     
   }, [])
-  useEffect(() => {
-    console.log(alltheData)
-  }, [alltheData])
-  
+
   
   return (
     <>
     { alltheData.map((item,index)=>{return(
  <div key={index} className={Styles.postsContainer}>
  <div className={Styles.postpfpDiv}>
- <img src="" alt="" />
+ <img src={item.userId.pfp} alt="" />
  </div>
  <div className={Styles.postDetailsDiv}>
-         <Link to={"/profile"}>username</Link>
+         <Link to={"/profile"}>{item.userId.user}</Link>
          <span className={Styles.username}>
-         @user . <span>14h</span>
+         @user . <span>{moment(item.createdAt).fromNow()}</span>
          </span>
          <div className={Styles.titleDiv}>
          <p>

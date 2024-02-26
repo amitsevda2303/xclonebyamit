@@ -9,28 +9,28 @@ function getIndianTime() {
 }
 
 const PostSchema = new Schema({
-    userId:{
-        type: Schema.Types.ObjectId, 
+    userId: {
+        type: Schema.Types.ObjectId,
         ref: "User"
     },
-    
+
     posts: [{
         title: String,
-        images:[],
-        description:[],
+        images: [],
+        description: [],
         location: String,
-        replies:[],
-        like:[],
+        replies: [],
+        like: [],
         dislike: [],
-        comment: [], 
+        comment: [],
         createdAt: {
-            type: String,
-            default: getIndianTime 
-        }     
+            type: Date,
+            default: Date.now
+        }
     }],
-   
+
 
 }, { timestamps: true })
 
-const Post = mongoose.model("Post",PostSchema)
+const Post = mongoose.model("Post", PostSchema)
 export default Post;
