@@ -20,7 +20,7 @@ const Step3 = () => {
   ];
 
   const gotoVerification = () =>{
-    setStep(99)
+    setStep(4)
   }
   return (
     <form onSubmit={gotoVerification}  className={Styles.container}>

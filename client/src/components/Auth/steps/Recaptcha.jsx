@@ -40,8 +40,8 @@ const Recaptcha = () => {
         </div>
         <div className={Styles.secondSection}>
         <ReCAPTCHA
-    sitekey={secretkey}
-    onChange={onChange}
+        sitekey={secretkey}
+        onChange={onChange}
   />
         </div>
         {display?<div className={Styles.thirdSection}>
