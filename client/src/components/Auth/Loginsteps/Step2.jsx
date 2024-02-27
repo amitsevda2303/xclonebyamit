@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Mycontext } from '../../../context/MyContext';
 import Styles from "../../../styles/components/Loginsteps/Step2.module.css"
 import logo from "../../../assets/svg.svg";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Step2 = () => {
     const [focusedInput, setFocusedInput] = useState(null);
@@ -22,11 +24,11 @@ const Step2 = () => {
       };
       const finalSubmit = async(e) =>{
         e.preventDefault();
+        toast("Fetching!")
         const requestData = {
             content: data, // Assuming 'data' contains either email or mobile number
             password: password
           };
-        console.log("this is password",password,"This is Data",data)
 
         const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/auth/loginUser`,{
             method: "POST",
@@ -38,14 +40,22 @@ const Step2 = () => {
         const response = await result.json();
 
         if (response.success) {
+          toast.success("Authenticated")
           const token = response.authToken;
           localStorage.setItem("authToken", token)      
           navigate("/home")
           setData("")
           setPassword("")
         }
+        else{
+          setData("")
+          setPassword("")
+          toast.error("invalid credentials")
+        }
       }
   return (
+    <>
+    <ToastContainer/>
       <form onSubmit={finalSubmit} className={Styles.container}>
       <>
         <div className={Styles.firstSection}>
@@ -54,7 +64,7 @@ const Step2 = () => {
                 onClick={backFunc}
                 className="fa-solid fa-xmark"
                 style={{ color: "white" }}
-              ></i>
+                ></i>
             </div>
             <div className={Styles.para}>
               <img src={logo} alt="" />
@@ -69,11 +79,11 @@ const Step2 = () => {
             className={Styles.inputDiv}
             style={{
               outline:
-                focusedInput === "input1"
-                  ? "2px solid #0099ff"
-                  : "1px solid  rgba(128, 128, 128, 0.314) ",
+              focusedInput === "input1"
+              ? "2px solid #0099ff"
+              : "1px solid  rgba(128, 128, 128, 0.314) ",
             }}
-          >
+            >
             <input
               className={Styles.input1}
               autoComplete="off"
@@ -90,14 +100,14 @@ const Step2 = () => {
                 setFocus("input1");
               }}
               onBlur={setBlur}
-            />
+              />
             <label
               className={Styles.label}
               htmlFor="name"
               style={{
                 color: focusedInput === "input1" ? "#1d9bf0" : "#777",
               }}
-            >
+              >
               Password
             </label>
           </div>
@@ -107,6 +117,7 @@ const Step2 = () => {
         </div>
       </>
     </form>
+              </>
   )
 }
 
