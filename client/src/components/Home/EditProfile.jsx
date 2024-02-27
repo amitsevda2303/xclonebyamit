@@ -163,7 +163,7 @@ const EditProfile = () => {
   console.log(url);
   const saveIntoDataBase = async(urlData) =>{
    try {
-    const response = await fetch("http://localhost:7000/editprofileinfo" , {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_PORT}/editprofileinfo` , {
       method : "POST",
       headers:{
         'Authorization': `${token}`,

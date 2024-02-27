@@ -9,7 +9,7 @@ const UserPosts = () => {
   const token = localStorage.getItem("authToken")
 
   const allthePosts = async() =>{
-    const result = await fetch("http://localhost:7000/postapi/getpost" , {
+    const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/postapi/getpost` , {
       method : "GET",
       headers:{
         "Authorization" : token,

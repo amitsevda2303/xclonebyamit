@@ -18,7 +18,7 @@ const Step5 = () => {
   const finalSubmit = async(e) =>{
     e.preventDefault();
 
-    const result = await fetch("http://localhost:7000/auth/createUser",{
+    const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/auth/createUser`,{
       method: "POST",
       headers:{
         "Content-Type": "application/json"

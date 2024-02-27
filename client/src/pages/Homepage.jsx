@@ -173,7 +173,7 @@ const Homepage = () => {
       post : uploadedImageUrls
     };
     try {
-      const api = await fetch("http://localhost:7000/postapi/post",{
+      const api = await fetch(`${process.env.REACT_APP_SERVER_PORT}/postapi/post`,{
         method : "POST",
         headers:{
           'Authorization': `${token}`,
