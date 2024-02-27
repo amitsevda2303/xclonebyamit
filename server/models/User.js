@@ -17,7 +17,6 @@ const UserSChema = new Schema({
     password:{
         type:String,
         required:true,
-        select: false
     },
     dob:{
         type:Object,    

@@ -28,7 +28,7 @@ const Step2 = () => {
           };
         console.log("this is password",password,"This is Data",data)
 
-        const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/loginUser`,{
+        const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/auth/loginUser`,{
             method: "POST",
             headers:{
               "Content-Type": "application/json"

@@ -60,5 +60,5 @@ export const loginValidations = [
   
         return true;
       }),
-    body("password", "At least 8 characters").isLength({ min: 8 }),
+    body("password", "At least 8 characters").isLength({ min: 7 }),
   ];

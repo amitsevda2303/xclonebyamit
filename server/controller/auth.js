@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 import User from "../models/User.js"
-import bcrypt from "bcryptjs"
+import bcrypt from "bcrypt"
 import { validationResult } from "express-validator"
 import Post from "../models/Post.js"
 
@@ -79,44 +79,47 @@ export const createUser = async (req, res) => {
 
 
 
-export const loginUser = async(req,res) =>{
-try {
-    const {content,password} = req.body;
+export const loginUser = async (req, res) => {
+    try {
+        const { content, password } = req.body;
 
-     // Validate whether 'content' is an email or a mobile number
-     const isValidEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(content);
-     const isValidMobile = /^[0-9]{10}$/.test(content);
+        // Validate whether 'content' is an email or a mobile number
+        const isValidEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(content);
+        const isValidMobile = /^[0-9]{10}$/.test(content);
 
-     if (!isValidEmail && !isValidMobile) {
-        return res.status(400).json({ error: "Invalid email or mobile number format" });
+        if (!isValidEmail && !isValidMobile) {
+            return res.status(400).json({ error: "Invalid email or mobile number format" });
+        }
+
+        let user;
+        if (isValidEmail) {
+            user = await User.findOne({ email: content });
+        } else {
+            user = await User.findOne({ mobile: content });
+        }
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+
+        const isPasswordValid = bcrypt.compare(password, user.password);
+        console.log(isPasswordValid)
+        if (!isPasswordValid) {
+            return res.status(401).json({ error: "Invalid password" });
+        }
+
+
+        // Generate JWT token
+        const userPayload = {
+            _id: user._id,
+        };
+        const authToken = jwt.sign(userPayload, process.env.JWTSECERET);
+
+        return res.json({ authToken, res: "Login successful", success: true });
+
+    } catch (error) {
+        console.log("Internal server error at auth controller🔴 ", error);
+        return res.status(500).json({ error: "Internal server error" });
     }
-
-    let user;
-    if (isValidEmail) {
-        user = await User.findOne({ email: content });
-    } else {
-        user = await User.findOne({ mobile: content });
-    }
-
-    if (!user) {
-        return res.status(404).json({ error: "User not found" });
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-        return res.status(401).json({ error: "Invalid password" });
-    }
-
-    // Generate JWT token
-    const userPayload = {
-        _id: user._id,
-    };
-    const authToken = jwt.sign(userPayload, process.env.JWTSECERET);
-
-    return res.json({ authToken, res: "Login successful", success: true });
-    
-} catch (error) {
-    console.log("Internal server error at auth controller🔴 ", error);
-    return res.status(500).json({ error: "Internal server error" });
-}
 }
