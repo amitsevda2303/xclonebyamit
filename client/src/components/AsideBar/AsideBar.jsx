@@ -6,16 +6,13 @@ import user from "../../assets/pngegg.png"
 
 const AsideBar = () => {
     const navigate = useNavigate()
-    const logoutFunc = ()=>{
-        localStorage.clear();
-        navigate("/")
-    }
+    const token = localStorage.getItem("authToken")
 
     useEffect(() => {
-      if (!localStorage.getItem("authToken")) {
+      if (!token) {
         navigate("/")        
       }
-    }, [])
+    }, [navigate, token])
     
   return (
     <div className={s.container}>

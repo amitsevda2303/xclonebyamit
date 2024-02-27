@@ -26,7 +26,7 @@ const FirstPage = () => {
     if (token) {
       navigate("/home")      
     }
-  }, [])
+  }, [navigate, token])
   return (
     <div className={Styles.container}>
       <div className={Styles.FirstpageDiv}>

@@ -4,7 +4,7 @@ import { Mycontext } from "../../context/MyContext";
 import Step2 from "./Loginsteps/Step2";
 
 const Login = () => {
-  const { loginStep, setLoginStep } = useContext(Mycontext);
+  const { loginStep } = useContext(Mycontext);
 
   return (
     <>{loginStep === 1 && <Step1/>}

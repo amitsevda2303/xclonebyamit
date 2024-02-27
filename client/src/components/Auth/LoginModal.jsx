@@ -11,7 +11,7 @@ const LoginModal = () => {
     if (token) {
       navigate("/home")
     }
-  }, [])
+  }, [navigate,token])
   return (
     <div className={Styles.blackbg}>
         <div className={Styles.modalBackdrop}>
