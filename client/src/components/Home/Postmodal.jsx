@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import Styles from "../../styles/Home/Postmodal.module.css";
 import { Mycontext } from "../../context/MyContext";
+import { Link } from "react-router-dom";
 
 const Postmodal = () => {
   const imageRef = useRef()
@@ -23,13 +24,14 @@ const Postmodal = () => {
       <div className={Styles.modalContent}>
         <div className={Styles.topDiv}>
           <div className={Styles.backbtnDiv}>
-            <a
+            <Link
               onClick={() => {
                 setEditPostModal(false);
               }}
+              href=""
             >
               <i className="fa-solid fa-arrow-left-long"></i>
-            </a>
+            </Link>
           </div>
           <div className={Styles.nameDiv}>
             <span className={Styles.Name}>Crop media</span>

@@ -9,13 +9,13 @@ import { Mycontext } from "../../../context/MyContext";
 
 const Step1 = () => {
   const [focusedInput, setFocusedInput] = useState(null);
-  const { loader, setLoader, loginStep, setLoginStep,data, setData } = useContext(Mycontext);
+  const { loader, setLoader, setLoginStep,data, setData } = useContext(Mycontext);
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
     }, 700);
-  }, [loader]);
+  }, [loader, setLoader]);
 
   const gotoFirstPage = () => {
     setData("")

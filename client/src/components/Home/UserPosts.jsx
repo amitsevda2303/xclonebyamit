@@ -8,22 +8,21 @@ const UserPosts = () => {
   const [alltheData, setalltheData] = useState([])
   const token = localStorage.getItem("authToken")
 
-  const allthePosts = async() =>{
-    const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/postapi/getpost` , {
-      method : "GET",
-      headers:{
-        "Authorization" : token,
-        "Content-Type" : "application/json"
-      }
-    })
-    const response = await result.json();
-    setalltheData(response)
-    
-  }
   useEffect(() => {
-    allthePosts()
-    
-  }, [])
+    const allthePosts = async () => {
+      const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/postapi/getpost`, {
+        method: "GET",
+        headers: {
+          "Authorization": token,
+          "Content-Type": "application/json"
+        }
+      });
+      const response = await result.json();
+      setalltheData(response);
+    };
+
+    allthePosts();
+  }, [token]);
 
   
   return (

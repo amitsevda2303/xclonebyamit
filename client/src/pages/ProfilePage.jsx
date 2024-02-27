@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Styles from "../styles/pages/ProfilePage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
@@ -33,14 +33,12 @@ const getData = gql`
 const ProfilePage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
-  const [banner, setbanner] = useState([1]);
-  const [pfp, setpfp] = useState([1]);
 
   useEffect(() => {
     if (!token) {
       navigate("/");
     }
-  }, [token]);
+  }, [token , navigate]);
 
   const monthNames = [
     "January",
@@ -68,7 +66,7 @@ const ProfilePage = () => {
   
   useEffect(() => {
     refetch(); // Refetch data every time the component mounts or the token changes
-  }, []);
+  }, [refetch]);
   if (loading) {
     return <Loader />; // Or any other loading indicator
   }
@@ -99,18 +97,17 @@ const ProfilePage = () => {
 
           <div className={Styles.informationDiv}>
             <div className={Styles.bannerDiv}>
-              {banner.length === 0 ? <img src={board}  alt="" /> : <img src={userDetails.banner}  alt="" />}
+            {userDetails.banner ? (
+                <img src={userDetails.banner} alt="" />
+              ) : (
+                <img src={board} alt="" />
+              )}
 
               <div className={Styles.userPfp}>
-                {pfp.length === 0 ? (
-                  <img src={userimage} alt="" />
+              {userDetails.pfp ? (
+                  <img src={userDetails.pfp} alt="" />
                 ) : (
-                  <img
-                    src={
-                     userDetails.pfp
-                    }
-                    alt=""
-                  />
+                  <img src={userimage} alt="" />
                 )}
               </div>
             </div>
@@ -118,7 +115,7 @@ const ProfilePage = () => {
             <div className={Styles.infoDiv}>
               <div className={Styles.editDiv}>
                 <Link className={Styles.editProfileDiv} to={"/setting/profile"}>
-                  <span> {pfp.length === 0 ? "Set up profile" : "Edit Profile"} </span>
+                  <span>   {userDetails.pfp ? "Edit Profile" : "Set up profile"}</span>
                 </Link>
               </div>
               <div className={Styles.nameidContainer}>

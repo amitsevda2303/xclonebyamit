@@ -29,7 +29,6 @@ const EditProfile = () => {
   const [focusedInput, setFocusedInput] = useState(null);
   const [pfpImage, setpfpImage] = useState(null);
   const [bannerImage, setBannerImage] = useState(null);
-  const [url, setUrl] = useState("");
   const token = localStorage.getItem("authToken");
   const [selectedDate, setSelectedDate] = useState({
     month: "",
@@ -160,7 +159,6 @@ const EditProfile = () => {
       toast.error("error occurred!");
     }
   };
-  console.log(url);
   const saveIntoDataBase = async(urlData) =>{
    try {
     const response = await fetch(`${process.env.REACT_APP_SERVER_PORT}/editprofileinfo` , {
@@ -231,7 +229,7 @@ const EditProfile = () => {
     setFocusedInput(null);
   };
 
-  const { loading, error, data ,refetch} = useQuery(getData, {
+  const { loading, error, data } = useQuery(getData, {
     variables: {
       token: token,
     },
@@ -243,6 +241,8 @@ const EditProfile = () => {
     console.error(error);
     return <p>Error fetching user details</p>;
   }
+
+ 
 
   const userDetails = data.getdetails;
   console.log(userDetails)

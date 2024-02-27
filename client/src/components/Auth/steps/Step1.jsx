@@ -72,7 +72,7 @@ const Step1 = () => {
     setTimeout(() => {
       setLoader(false);
     }, 700);
-  }, [loader]);
+  }, [loader , setLoader]);
 
   const setDetails = (e) => {
     e.preventDefault();

@@ -43,8 +43,9 @@ const Userpost = ({userDetails}) => {
 
       useEffect(() => {
         refetchPosts();
-        // refetchUserData();
-      }, []);
+      }, [refetchPosts]);
+
+
       if (loading) {
         return <Loader />; 
       }
@@ -72,7 +73,7 @@ const Userpost = ({userDetails}) => {
               <span className={Styles.hastags}>@narendramodi</span>
             </div>
             <div className={Styles.postImageDiv}>
-              {item.images.map((item,index)=>{return(<img key={index} src={item} alt="image not available" />)})}
+              {item.images.map((item,index)=>{return(<img key={index} src={item} alt=""  />)})}
             </div>
             <div className={Styles.actionBar}>
               <p className={Styles.reply}>

@@ -58,7 +58,7 @@ const Homepage = () => {
     if (!token) {
       navigate("/");
     }
-  }, []);
+  }, [navigate , token]);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -76,23 +76,28 @@ const Homepage = () => {
     updatedImages.splice(index, 1);
     setPostImage(updatedImages);
   };
-  const handlePostImageDivRatio = () => {
-    if (postImage.length >= 1 && imageRef.current && imageDivRef.current) {
-      imageDivRef.current.style.marginBlock = "15px";
-      imageDivRef.current.style.display = "flex";
-      imageDivRef.current.style.flexDirection = "row";
-      imageDivRef.current.style.gap = "10px";
-      imageDivRef.current.style.transition = ".3s ease";
-      imageRef.current.style.minWidth = "48.6%";
-      imageRef.current.style.height = "289px";
-    }
-    if (postImage.length === 0 && imageDivRef.current) {
-      // When postImage.length is equal to 0
-      imageDivRef.current.style.marginBlock = "0px";
-    }
-  };
   useEffect(() => {
-    handlePostImageDivRatio();
+    const handlePostImageDivRatio = () => {
+      if (postImage.length >= 1 && imageRef.current && imageDivRef.current) {
+        imageDivRef.current.style.marginBlock = "15px";
+        imageDivRef.current.style.display = "flex";
+        imageDivRef.current.style.flexDirection = "row";
+        imageDivRef.current.style.gap = "10px";
+        imageDivRef.current.style.transition = ".3s ease";
+        imageRef.current.style.minWidth = "48.6%";
+        imageRef.current.style.height = "289px";
+      }
+      if (postImage.length === 0 && imageDivRef.current) {
+        // When postImage.length is equal to 0
+        imageDivRef.current.style.marginBlock = "0px";
+      }
+    };
+  
+    handlePostImageDivRatio(); // Call the function once after defining it
+  
+    return () => {
+      // Cleanup function if needed
+    };
   }, [postImage]);
   const scrollLeft = () => {
     if (imageDivRef.current) {
@@ -124,7 +129,7 @@ const Homepage = () => {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [refetch]);
 
   if (loading) {
     return <Loader />;
@@ -182,7 +187,7 @@ const Homepage = () => {
         body: JSON.stringify(requestData)
       })
 
-      const result = await api.json();
+      await api.json();
       toast.success("Post uploaded successfully");
     } catch (error) {
       console.error('Error:', error);

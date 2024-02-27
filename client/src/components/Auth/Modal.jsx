@@ -10,7 +10,7 @@ const Modal = () => {
     if (token) {
       navigate("/home")
     }
-  }, [])
+  }, [navigate , token])
   
   return (
     <div className={Styles.blackbg}>
