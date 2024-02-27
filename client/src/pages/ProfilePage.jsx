@@ -133,7 +133,7 @@ const ProfilePage = () => {
               </div>
               <div className={Styles.fameDiv}>
                 <span>
-                  <p>8</p> Following
+                  <p>8M</p> Following
                 </span>
                 <span>
                   <p>0</p> Followers
