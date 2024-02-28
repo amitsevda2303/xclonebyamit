@@ -78,7 +78,6 @@ export const createUser = async (req, res) => {
 }
 
 
-
 export const loginUser = async (req, res) => {
     try {
         const { content, password } = req.body;
@@ -97,17 +96,18 @@ export const loginUser = async (req, res) => {
         } else {
             user = await User.findOne({ mobile: content });
         }
+        
 
         if (!user) {
-            return res.status(404).json({ error: "User not found", success: false  });
+            return res.status(404).json({ error: "User not found", success: false });
         }
 
+        // Compare the input password with the hashed password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
 
-        const isPasswordValid = bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return res.status(401).json({ error: "Invalid password" ,success: false });
+            return res.status(401).json({ error: "Invalid password", success: false });
         }
-
 
         // Generate JWT token
         const userPayload = {
@@ -121,4 +121,4 @@ export const loginUser = async (req, res) => {
         console.log("Internal server error at auth controller🔴 ", error);
         return res.status(500).json({ error: "Internal server error" });
     }
-}
+};

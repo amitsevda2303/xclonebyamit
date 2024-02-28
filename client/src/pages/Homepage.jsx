@@ -34,6 +34,7 @@ const Homepage = () => {
   const imageDivRef = useRef();
   const imageRef = useRef();
   const navigate = useNavigate();
+  const {allposts, setallposts} = useContext(Mycontext)
   const token = localStorage.getItem("authToken");
   const [inputValue, setInputValue] = useState("");
   const {
@@ -188,6 +189,7 @@ const Homepage = () => {
       })
 
       await api.json();
+      setallposts(!allposts)
       toast.success("Post uploaded successfully");
     } catch (error) {
       console.error('Error:', error);

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Styles from "../../styles/Home/UserPosts.module.css"
 import { Link } from 'react-router-dom'
 import moment from 'moment'; // Import moment library
 import 'moment/locale/en-gb'; // Import English locale for moment
+import { Mycontext } from "../../context/MyContext";
 
 const UserPosts = () => {
   const [alltheData, setalltheData] = useState([])
+  const { allposts} = useContext(Mycontext);
   const token = localStorage.getItem("authToken")
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const UserPosts = () => {
     };
 
     allthePosts();
-  }, [token]);
+  }, [token , allposts]);
 
   
   return (

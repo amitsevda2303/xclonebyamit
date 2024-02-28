@@ -14,8 +14,9 @@ export default function Context({ children }) {
   const [loginStep, setLoginStep] = useState(1);
   const [data, setData] = useState("");
   const [showType, setshowType] = useState(false);
-  const [editPostModal , setEditPostModal] = useState(false)
+  const [editPostModal, setEditPostModal] = useState(false);
   const [postImage, setPostImage] = useState([]);
+  const [allposts, setallposts] = useState(false);
   const [selectedDate, setSelectedDate] = useState({
     month: "",
     day: "",
@@ -49,10 +50,12 @@ export default function Context({ children }) {
     setData,
     showType,
     setshowType,
-    editPostModal , 
+    editPostModal,
     setEditPostModal,
     postImage,
     setPostImage,
+    allposts,
+    setallposts,
   };
 
   return (

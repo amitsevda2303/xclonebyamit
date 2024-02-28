@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Mycontext } from "../../../context/MyContext";
 import Styles from "../../../styles/components/steps/Step5.module.css";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +36,12 @@ const Step5 = () => {
 
 
   }
+
+  useEffect(() => {
+    setUserDetails((userDetails) => ({ ...userDetails, password: password }));
+  }, [password, setUserDetails]);
+  
+  
   return (
     <form onSubmit={finalSubmit} className={Styles.container}>
       <>
@@ -67,10 +73,7 @@ const Step5 = () => {
               id="name"
               type="text"
               value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setUserDetails((userDetails) => ({ ...userDetails, password: password }));
-              }}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder=""
               maxLength={50}
               onFocus={() => {
@@ -90,7 +93,7 @@ const Step5 = () => {
           </div>
         </div>
         <div className={Styles.thirdSection}>
-          <button type="submit">Next</button>
+          <button disabled={password.length < 8} type="submit">Next</button>
         </div>
       </>
     </form>
