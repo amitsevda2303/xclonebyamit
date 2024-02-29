@@ -48,7 +48,7 @@ const UserPosts = () => {
          </div>
          <div className={Styles.postImageDiv}>
          <img
-         src={item.images}
+         src={item.images[0]}
          alt=""
          />
          </div>
