@@ -21,13 +21,13 @@ const Step4 = () => {
 
 
   return (
-    <form className={StyleSheet.container}>
+    <form className={Styles.container}>
       <div className={Styles.firstSection}>
         <div className={Styles.backbtn}>
           <i
             onClick={() => {
               setdisplay(false);
-              setStep(99);
+              setStep(3);
             }}
             className="fa-solid fa-arrow-left"
             style={{ color: "white" }}
