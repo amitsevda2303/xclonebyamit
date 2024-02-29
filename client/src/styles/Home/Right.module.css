@@ -1,0 +1,175 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.topDiv {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 70px;
+}
+.search {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: black;
+}
+
+.searchLabel {
+  position: absolute;
+  top: 36%;
+  left: 12%;
+}
+.topDiv input {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  width: 90%;
+  height: 50px;
+  color: rgb(255, 255, 255);
+  background-color: #202327;
+  padding-left: 15%;
+  padding-right: 20px;
+  font-size: 17px;
+}
+
+.topDiv input:focus {
+  border: 1px solid rgb(29, 155, 240);
+  background-color: black;
+}
+
+.modalDiv {
+  margin-top: 5px;
+  padding-left: 7%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal1 {
+  height: 400px;
+  width: 93%;
+  border-radius: 16px;
+  display: flex;
+  background-color: #202327;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.modal1 h3 {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.trends {
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 10px;
+  padding: 15px;
+}
+.trends:hover {
+  background-color: #15171a;
+}
+.hashtag {
+  display: flex;
+  flex-direction: column;
+}
+
+.hashtag :nth-child(1) {
+  font-size: 14px;
+  color: gray;
+}
+.hashtag :nth-child(2) {
+  font-size: 15px;
+  font-weight: 700;
+}
+.hashtag :nth-child(3) {
+  font-size: 14px;
+  color: gray;
+}
+.threeDotDiv {
+  font-size: 25px;
+  cursor: pointer;
+}
+.modal2 {
+  height: 300px;
+  width: 93%;
+  border-radius: 16px;
+  display: flex;
+  background-color: #202327;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.modal2 h3 {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.suggestion {
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 10px;
+  padding: 15px;
+  gap: 10px;
+}
+.suggestion:hover {
+  background-color: #15171a;
+}
+
+.img {
+  width: 15%;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userdata {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+}
+
+.userdata :nth-child(1) {
+  font-size: 17px;
+  font-weight: 700;
+}
+.userdata :nth-child(2) {
+  font-size: 14px;
+}
+
+.btn{
+    width: 5%;
+}
+
+.btn button{
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding-block: 5px;
+    padding-inline: 10px    ;
+    border-radius: 20px;
+    cursor: pointer;
+}

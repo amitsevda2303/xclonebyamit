@@ -30,7 +30,6 @@ body {
   width: 400px;
   max-height: 100vh;
   overflow-y: scroll;
-  color: pink;
 }
 .topDiv {
   position: fixed;
@@ -343,7 +342,7 @@ body {
 }
 @media screen and (max-width: 1090px) {
   .rightContainer {
-    width: 200px;
+    width: 350px;
   }
 }
 @media screen and (max-width: 1005px) {

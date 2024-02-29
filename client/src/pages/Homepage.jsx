@@ -10,6 +10,7 @@ import ClickAwayListener from "react-click-away-listener";
 import Postmodal from "../components/Home/Postmodal";
 import UserPosts from "../components/Home/UserPosts";
 import { ToastContainer, toast } from "react-toastify";
+import Right from "../components/Home/Right";
 
 const getData = gql`
   query GetUserDetails($token: String!) {
@@ -411,7 +412,7 @@ const Homepage = () => {
           </div>
           <UserPosts userDetails={userDetails}/>
         </div>
-        <div className={Styles.rightContainer}>right</div>
+        <div className={Styles.rightContainer}><Right/></div>
       </div>
       {editPostModal && (
         <Postmodal
