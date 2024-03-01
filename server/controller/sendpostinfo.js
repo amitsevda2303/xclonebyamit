@@ -5,10 +5,12 @@ const SECERET = process.env.JWTSECERET;
 
 export const getPostResolver = async (_, req) => {
     try {
-        const { token } = req;
+        const { token , id } = req;
         const decoded = jwt.verify(token, SECERET);
-
-        const post = await Post.findOne({ userId: decoded._id });
+        if (!decoded) {
+            throw new Error('Invalid token');
+        }
+        const post = await Post.findOne({ userId: id});
         if (!post) {
             throw new Error('User not found');
         }

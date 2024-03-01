@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { useQuery, gql } from "@apollo/client";
 import Styles from "../../styles/components/profile/Userpost.module.css"
 import Loader from '../Home/Loader';
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 import moment from 'moment'; // Import moment library
 import 'moment/locale/en-gb';
 
 
 const postData = gql`
-query Query($token: String!) {
-  getPosts(token: $token) {
+query Query($token: String!, $getPostsId: ID!) {
+  getPosts(token: $token,id: $getPostsId) {
     posts {
       title
       images
@@ -32,10 +32,11 @@ const Userpost = ({userDetails}) => {
       const comparedTime = moment(formattedDate).fromNow()
       return comparedTime;
     }
-    
+    const {id} = useParams();
     const { loading, error, data,refetch:refetchPosts  } = useQuery(postData, {
         variables: {
           token: token,
+          getPostsId: id
         },
         fetchPolicy: 'network-only',
       });
@@ -50,7 +51,7 @@ const Userpost = ({userDetails}) => {
         return <Loader />; 
       }
       if (error) {
-        return <p>Error fetching user details</p>;
+        return <p>some error occured</p>;
       }
     
       const postDetails = data.getPosts;

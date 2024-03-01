@@ -37,7 +37,52 @@ export const getDetailsResolver = async (_, req) => {
       },  
     };
   } catch (error) {
-    console.log(error);
     throw new Error('Invalid token');
+  }
+};
+
+
+export const getOneResolver = async (_, req) => {
+  try {
+    const { token, id } = req;
+    const _id = id
+    const SECERET = process.env.JWTSECERET; // Assuming you have defined JWT_SECRET in your environment variables
+
+    // Check if token is provided
+    if (!token) {
+      throw new Error("Token must be provided");
+    }
+
+    // Verify the token
+    const decoded = jwt.verify(token, SECERET);
+
+    // Check if the token is valid
+    if (!decoded) {
+      throw new Error("Invalid Token");
+    } else {
+      // If token is valid, find the user by ID
+      const user = await User.findById(_id).select("-password");
+
+      // Check if user exists
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      // Extract date information
+      const dateInfo = extractDateInfo(user.createdAt);
+
+      // Return user data with formatted createdAt
+      return {
+        ...user.toObject(),
+        createdAt: {
+          date: dateInfo.date,
+          month: dateInfo.month,
+          year: dateInfo.year,
+        },
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    throw new Error("Invalid token");
   }
 };

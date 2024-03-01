@@ -10,6 +10,7 @@ const UserPosts = () => {
   const { allposts} = useContext(Mycontext);
   const token = localStorage.getItem("authToken")
 
+
   useEffect(() => {
     const allthePosts = async () => {
       const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/postapi/getpost`, {
@@ -17,7 +18,7 @@ const UserPosts = () => {
         headers: {
           "Authorization": token,
           "Content-Type": "application/json"
-        }
+        },
       });
       const response = await result.json();
       setalltheData(response);
@@ -35,7 +36,7 @@ const UserPosts = () => {
  <img src={item.userId.pfp} alt="" />
  </div>
  <div className={Styles.postDetailsDiv}>
-         <Link to={"/profile"}>{item.userId.user}</Link>
+         <Link to={`/${item.userId._id}`}>{item.userId.user}</Link>
          <span className={Styles.username}>
          @user . <span>{moment(item.createdAt).fromNow()}</span>
          </span>

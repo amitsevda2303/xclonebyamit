@@ -14,10 +14,10 @@ import EditProfile from './components/Home/EditProfile';
         <Routes>
           <Route path='/' element={<FirstPage/>}/>
           <Route path='/home' element={<Homepage/>}/>
-          <Route path='/profile' element={<ProfilePage/>}/>
+          <Route path='/:id' element={<ProfilePage/>}/>
           <Route path="/i/flow/signup" element={<Modal/>}/>
           <Route path='/i/flow/login' element={<LoginModal/>}/>
-          <Route path="/setting/profile" element={<EditProfile/>}/>
+          <Route path="/:id/edit" element={<EditProfile/>}/>
         </Routes>
           </div>
       </div>

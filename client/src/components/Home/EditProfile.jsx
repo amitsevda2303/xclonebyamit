@@ -6,7 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 import Loader from "./Loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { jwtDecode } from "jwt-decode";
 const getData = gql`
   query GetUserDetails($token: String!) {
     getdetails(token: $token) {
@@ -24,12 +24,14 @@ const getData = gql`
 
 const EditProfile = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("authToken")
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken._id;
   const [editModal, seteditModal] = useState(false);
   const [dobChanger, setdobChanger] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
   const [pfpImage, setpfpImage] = useState(null);
   const [bannerImage, setBannerImage] = useState(null);
-  const token = localStorage.getItem("authToken");
   const [selectedDate, setSelectedDate] = useState({
     month: "",
     day: "",
@@ -170,8 +172,7 @@ const EditProfile = () => {
       body: JSON.stringify(urlData)
     })
 
-    const result = response.json()
-    console.log(result)
+    await response.json()
    } catch (error) {
     console.error('Error:', error);
    }
@@ -245,7 +246,7 @@ const EditProfile = () => {
  
 
   const userDetails = data.getdetails;
-  console.log(userDetails)
+ 
   return (
     <>
 
@@ -258,7 +259,7 @@ const EditProfile = () => {
                 <span className={Styles.heading}>Edit date of birth?</span>
                 <span>
                   This can only be changed a few times. Make sure you enter the
-                  age of the person using the account.{" "}
+                  age of the person using the account.
                 </span>
                 <button
                   className={Styles.editButton}
@@ -283,7 +284,7 @@ const EditProfile = () => {
           <div className={Styles.modalContent}>
             <div className={Styles.topDiv}>
               <div className={Styles.backbtnDiv}>
-                <Link to={"/profile"}>
+                <Link  to={`/${userId}`}>
                   <i className="fa-solid fa-xmark"></i>
                 </Link>
               </div>

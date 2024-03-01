@@ -15,6 +15,7 @@ import Right from "../components/Home/Right";
 const getData = gql`
   query GetUserDetails($token: String!) {
     getdetails(token: $token) {
+      _id
       user
       createdAt {
         month
@@ -215,7 +216,7 @@ const Homepage = () => {
           </div>
           <div className={Styles.maincontainer}>
             <div className={Styles.textareaDiv}>
-              <Link to={"/profile"} className={Styles.profileDiv}>
+              <Link to={`/${userDetails._id}`} className={Styles.profileDiv}>
                 <img src={userDetails.pfp} alt="" />
               </Link>
               <div className={Styles.textarea}>

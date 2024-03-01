@@ -1,21 +1,18 @@
 import React, { useEffect } from "react";
 import Styles from "../styles/pages/ProfilePage.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AsideBar from "../components/AsideBar/AsideBar";
 import { useQuery, gql } from "@apollo/client";
 import Loader from "../components/Home/Loader";
 import userimage from "../assets/pfp.png";
 import board from "../assets/banner2.jpg";
 import Userpost from "../components/Profile/Userpost";
+ import {jwtDecode}  from "jwt-decode";
 
 const getData = gql`
-  query GetUserDetails($token: String!) {
-    getdetails(token: $token) {
+  query Query($getOneUserDataId: ID!, $token: String) {
+    getOneUserData(id: $getOneUserDataId, token: $token) {
       user
-      createdAt {
-        month
-        year
-      }
       dob {
         year
         day
@@ -23,22 +20,27 @@ const getData = gql`
       }
       pfp
       banner
+      createdAt {
+        date
+        month
+        year
+      }
     }
   }
-
-  
 `;
-
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
+  const { id } = useParams();
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken._id;
 
   useEffect(() => {
     if (!token) {
       navigate("/");
     }
-  }, [token , navigate]);
+  }, [token, navigate]);
 
   const monthNames = [
     "January",
@@ -55,15 +57,14 @@ const ProfilePage = () => {
     "December",
   ];
 
-  const { loading, error, data,refetch } = useQuery(getData, {
+  const { loading, error, data, refetch } = useQuery(getData, {
     variables: {
       token: token,
+      getOneUserDataId: id,
     },
-    fetchPolicy: 'network-only',
+    fetchPolicy: "network-only",
   });
 
- 
-  
   useEffect(() => {
     refetch(); // Refetch data every time the component mounts or the token changes
   }, [refetch]);
@@ -71,11 +72,10 @@ const ProfilePage = () => {
     return <Loader />; // Or any other loading indicator
   }
   if (error) {
-    console.error(error);
-    return <p>Error fetching user details</p>;
+    return navigate("/home");
   }
 
-  const userDetails = data.getdetails;
+  const userDetails = data.getOneUserData;
 
   return (
     <div className={Styles.homePage}>
@@ -97,14 +97,14 @@ const ProfilePage = () => {
 
           <div className={Styles.informationDiv}>
             <div className={Styles.bannerDiv}>
-            {userDetails.banner ? (
+              {userDetails.banner ? (
                 <img src={userDetails.banner} alt="" />
               ) : (
                 <img src={board} alt="" />
               )}
 
               <div className={Styles.userPfp}>
-              {userDetails.pfp ? (
+                {userDetails.pfp ? (
                   <img src={userDetails.pfp} alt="" />
                 ) : (
                   <img src={userimage} alt="" />
@@ -114,9 +114,25 @@ const ProfilePage = () => {
 
             <div className={Styles.infoDiv}>
               <div className={Styles.editDiv}>
-                <Link className={Styles.editProfileDiv} to={"/setting/profile"}>
-                  <span>   {userDetails.pfp ? "Edit Profile" : "Set up profile"}</span>
-                </Link>
+                {userId === id ? (
+                  <Link
+                    className={Styles.editProfileDiv}
+                    to={`/${userId}/edit`}
+                  >
+                    <span>
+                      {" "}
+                      {userDetails.pfp ? "Edit Profile" : "Set up profile"}
+                    </span>
+                  </Link>
+                ) : (
+                  <Link
+                    className={Styles.editProfileDiv}
+                  >
+                    <span>
+                      Follow
+                    </span>
+                  </Link>
+                )}
               </div>
               <div className={Styles.nameidContainer}>
                 <span className={Styles.Name}>{userDetails.user}</span>
@@ -148,7 +164,9 @@ const ProfilePage = () => {
               <Link className={Styles.links}>Likes</Link>
             </div>
           </div>
-          <div className={Styles.bottomContainer}><Userpost userDetails = {userDetails}/></div>
+          <div className={Styles.bottomContainer}>
+            <Userpost userDetails={userDetails} />
+          </div>
         </div>
         <div className={Styles.rightContainer}>right</div>
       </div>

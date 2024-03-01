@@ -17,9 +17,10 @@ export const saveProfileInfo = async (req, res) => {
 
         // Verify the token
         const decoded = jwt.verify(token, process.env.JWTSECERET);
+        const userId = decoded._id;
 
         // Get user details from the database using the decoded user ID
-        const user = await User.findById(decoded._id);
+        const user = await User.findById(userId);
         if (!user) {
             console.log('User not found');
             return res.status(404).json({ message: "User not found" });

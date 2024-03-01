@@ -1,6 +1,6 @@
 import { ApolloServer } from "@apollo/server"
 import dotenv from "dotenv"
-import { getDetailsResolver } from "../controller/user.js";
+import { getDetailsResolver, getOneResolver } from "../controller/user.js";
 import { getPostResolver } from "../controller/sendpostinfo.js";
 
 
@@ -48,13 +48,15 @@ type PostDetails {
 
 type Query{
   getdetails(token:String!):User
-  getPosts(token:String!):Post
+  getPosts(token:String!, id: ID!):Post
+  getOneUserData(token:String, id: ID!): User
  }
  `,
   resolvers: {
     Query: {
       getdetails: getDetailsResolver,
-      getPosts: getPostResolver
+      getPosts: getPostResolver,
+      getOneUserData: getOneResolver
     },
   },
 })
