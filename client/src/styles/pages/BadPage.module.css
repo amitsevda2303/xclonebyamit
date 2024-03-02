@@ -1,0 +1,38 @@
+.badcontainer{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.badcontainer img{
+    width: 100%;
+    height: 100%;
+}
+.btn{
+    position: absolute;
+    top: 80%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+.btn>a{
+    padding-block: 7px;
+    padding-inline: 35px;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    font-size: 17px;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .3s ease;
+}
+.btn>a:hover{
+    background-color: rgba(48, 48, 48, 0.612);
+}
+
+
+@media screen and (max-width: 1000px) {
+    .badcontainer img{
+        object-fit: contain;
+    } 
+}

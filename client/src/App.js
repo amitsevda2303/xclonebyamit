@@ -7,6 +7,7 @@
 import ProfilePage from './pages/ProfilePage';
 import EditProfile from './components/Home/EditProfile';
 import Logout from './components/Auth/Logout';
+import Badpage from './pages/BadPage';
 
   function App() {  
     return (
@@ -20,6 +21,7 @@ import Logout from './components/Auth/Logout';
           <Route path='/i/flow/login' element={<LoginModal/>}/>
           <Route path="/:id/edit" element={<EditProfile/>}/>
           <Route path="/logout" element={<Logout/>}/>
+          <Route path='*' element={<Badpage/>}/>
         </Routes>
           </div>
       </div>

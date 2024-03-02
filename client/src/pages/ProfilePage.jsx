@@ -69,14 +69,21 @@ const ProfilePage = () => {
   useEffect(() => {
     refetch(); // Refetch data every time the component mounts or the token changes
   }, [refetch]);
+
+  useEffect(() => {
+    if (error) {
+      navigate("*");
+    }
+  }, [error, navigate]);
   if (loading) {
     return <Loader />; // Or any other loading indicator
   }
-  if (error) {
-    return navigate("/home");
-  }
+
 
   const userDetails = data.getOneUserData;
+  if (!userDetails) {
+    return <div>Error: User data not found</div>;
+  }
 
   return (
     <div className={Styles.homePage}>

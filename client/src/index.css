@@ -36,6 +36,7 @@ input[type=number] {
 }
 
 .contentContainer {
-  width: 100%; /* 70% of the container width */
+  width: 100%;
+  height: 100%; /* 70% of the container width */
   overflow: auto; /* Add scroll if content overflows */
 }
