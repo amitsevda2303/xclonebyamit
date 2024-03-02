@@ -1,11 +1,11 @@
 .container {
+  position: relative;
   width: 300px;
   height: 100%;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   align-items: flex-start;
-  overflow: hidden;
   z-index: 10;
   background-color: black;
 }
@@ -79,7 +79,7 @@
 }
 
 .IdDetailContainer {
-  position: absolute;
+  margin-top: auto;
   width: 250px;
   bottom: 30px;
   display: flex;
@@ -87,6 +87,7 @@
   gap: 15px;
   padding: 15px;
   border-radius: 50px;
+  z-index: 998;
 }
 .IdDetailContainer:hover {
   background-color: rgba(128, 128, 128, 0.153);
@@ -103,7 +104,38 @@
   height: 40px;
 }
 
+.logoutModal{
+  position: absolute;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  overflow: hidden;
+  z-index: 999;
+  bottom: 10%;
+  height: auto;
+  width: 300px;
+  background-color: black;
+  padding-block: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+ }
 
+ .logoutModal a{
+  color: white;
+  width: 100%;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 10px;
+  font-weight: 600;
+ }
+
+ .logoutModal a:hover{
+  background: #181a1b;
+  transition: .3s ease;
+ }
 
 @media screen and (max-height: 910px) {
     .IdDetailContainer{
@@ -164,6 +196,7 @@
    .image{
     display: none;
    }
+
    .IdDetailContainer{
     display: none;
    }

@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from "../../styles/components/AsideBars/Asidebar.module.css"
 import { useNavigate,Link } from 'react-router-dom'
 import image from "../../assets/svg.svg"
 import user from "../../assets/pngegg.png"
 import {jwtDecode} from "jwt-decode"
+import ClickAwayListener from 'react-click-away-listener';
 
-const AsideBar = () => {
+const AsideBar = ({userDetails}) => {
+    const [logoutModal, setLogoutModal] = useState(false)
     const navigate = useNavigate()
     const token = localStorage.getItem("authToken")
     const decodedToken = jwtDecode(token);
@@ -17,6 +19,9 @@ const AsideBar = () => {
       }
     }, [navigate, token])
     
+    const handleClickAway = () =>{
+        setLogoutModal(false)
+    }
   return (
     <div className={s.container}>
       <div className={s.image}>
@@ -114,7 +119,16 @@ const AsideBar = () => {
                 <button>Post</button>
             </div>
            
-            <div className={s.IdDetailContainer}>
+           {logoutModal &&
+           <ClickAwayListener onClickAway={handleClickAway}>
+
+            <div className={s.logoutModal}>
+                <Link>Add an existing account</Link>
+                <Link to={"/logout"}>Logout {userDetails.user}</Link>
+           </div>
+           </ClickAwayListener>
+}
+            <div className={s.IdDetailContainer} onClick={()=>{setLogoutModal(true)}}>
                 
                 <div className={s.imageDiv}>
                     <img src={user} alt="" />

@@ -201,7 +201,7 @@ const Homepage = () => {
   return (
     <div className={Styles.homePage}>
       <ToastContainer />
-      <AsideBar />
+      <AsideBar userDetails={userDetails} />
 
       <div className={Styles.container}>
         <div className={Styles.leftContainer}>
@@ -209,7 +209,7 @@ const Homepage = () => {
             <span className={Styles.leftSpan}>For you</span>
             <span className={Styles.rightSpan}>Following</span>
             <span className={Styles.settings}>
-              <Link>
+              <Link to={"/logout"}>
                 <i className="fa-solid fa-gear"></i>
               </Link>
             </span>

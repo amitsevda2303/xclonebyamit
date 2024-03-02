@@ -35,6 +35,7 @@ const ProfilePage = () => {
   const { id } = useParams();
   const decodedToken = jwtDecode(token);
   const userId = decodedToken._id;
+  
 
   useEffect(() => {
     if (!token) {
@@ -79,7 +80,7 @@ const ProfilePage = () => {
 
   return (
     <div className={Styles.homePage}>
-      <AsideBar />
+      <AsideBar userDetails={userDetails} />
 
       <div className={Styles.container}>
         <div className={Styles.leftContainer}>

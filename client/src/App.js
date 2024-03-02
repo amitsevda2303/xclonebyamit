@@ -6,6 +6,7 @@
   import Homepage from './pages/Homepage';
 import ProfilePage from './pages/ProfilePage';
 import EditProfile from './components/Home/EditProfile';
+import Logout from './components/Auth/Logout';
 
   function App() {  
     return (
@@ -18,6 +19,7 @@ import EditProfile from './components/Home/EditProfile';
           <Route path="/i/flow/signup" element={<Modal/>}/>
           <Route path='/i/flow/login' element={<LoginModal/>}/>
           <Route path="/:id/edit" element={<EditProfile/>}/>
+          <Route path="/logout" element={<Logout/>}/>
         </Routes>
           </div>
       </div>

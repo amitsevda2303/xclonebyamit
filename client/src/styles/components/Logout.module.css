@@ -1,0 +1,104 @@
+.modalBackdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #5b70836c; /* Semi-transparent background */
+  }
+  .modalContent {
+    position: relative;
+    background: #000000; /* White background for modal content */
+    border-radius: 16px;
+    width: 300px;
+    min-height: 300px;
+    min-height: 30%;
+    max-height: fit-content;
+    text-align: center;
+    display: flex;
+    align-items: left;
+    padding-inline: 25px;
+    padding-block: 15px;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 10px;
+    text-align: left;
+  }
+  .imageDiv{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .imageDiv img{
+    height: 40px;
+    width: 40px;
+  }
+  .modalContent h3{
+    font-size: 24px;
+  }
+  .modalContent span{
+    font-size: 14px;
+    color: gray;
+  }
+  .logoutBtn{
+    font-size: 17px;
+    font-weight: 700;
+    width: 100%;
+    padding-block: 13px;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    transition: .2s ease;
+  }
+  .logoutBtn:hover{
+    transition: .2s ease;
+    cursor: pointer;
+    background:#ffffffdb;
+  }
+  .cancelBtn{
+    text-align: center;
+    text-decoration: none;
+    transition: .2s ease;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 700;
+    padding-block: 13px;
+    border-radius: 30px;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.353);
+    outline: none;
+  }
+  .cancelBtn:hover{
+    transition: .2s ease-in;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.14) ;
+  }
+  /* ::-webkit-scrollbar {
+    width: 10px;
+  }
+@media screen and (max-height: 800px) {
+  .modalContent{
+    height: 90%;
+  }  
+}
+
+  @media screen and (max-width: 688px){
+    .modalContent{
+      width: 100%;
+      height: 100%;
+    }    
+  }
+
+  @media screen and (max-height: 500px) {
+  
+    .modalContent{
+      height: 100% ;
+    }
+    
+  } */
