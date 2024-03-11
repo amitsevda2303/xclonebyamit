@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Styles from "../../styles/Home/EditProfile.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 import Loader from "./Loader";
@@ -27,6 +27,8 @@ const EditProfile = () => {
   const token = localStorage.getItem("authToken")
   const decodedToken = jwtDecode(token);
   const userId = decodedToken._id;
+  const {id} = useParams()
+  const paramsID = id
   const [editModal, seteditModal] = useState(false);
   const [dobChanger, setdobChanger] = useState(false);
   const [focusedInput, setFocusedInput] = useState(null);
@@ -58,6 +60,13 @@ const EditProfile = () => {
     "November",
     "December",
   ];
+
+  useEffect(() => {
+    if (userId !== paramsID) {
+      navigate("/home")
+    }
+  }, [paramsID,navigate,userId])
+  
 
   const handlePfpInputChange = (event) => {
     const file = event.target.files[0]; // Get the first selected file

@@ -36,6 +36,11 @@
     color: rgb(128, 128, 128);
     font-weight: 300;
   }
+  .username i{
+    color: #1d9bf0;
+    margin-right: 10px;
+
+  }
   .titleDiv{
     margin-top: 5px;
     width: 100%;
@@ -72,6 +77,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .view{
+  display: flex;
+  gap: 4px;
+  flex-direction: row;
+  }
+  .view i{
+    margin-top: 2px;
   }
   .actionBar p {
     transition: .3s ease;

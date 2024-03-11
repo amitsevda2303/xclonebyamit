@@ -192,6 +192,8 @@ const Homepage = () => {
 
       await api.json();
       setallposts(!allposts)
+      setInputValue("")
+      setPostImage("")
       toast.success("Post uploaded successfully");
     } catch (error) {
       console.error('Error:', error);

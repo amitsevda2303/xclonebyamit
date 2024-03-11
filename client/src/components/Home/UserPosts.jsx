@@ -10,7 +10,6 @@ const UserPosts = () => {
   const { allposts} = useContext(Mycontext);
   const token = localStorage.getItem("authToken")
 
-
   useEffect(() => {
     const allthePosts = async () => {
       const result = await fetch(`${process.env.REACT_APP_SERVER_PORT}/postapi/getpost`, {
@@ -23,9 +22,13 @@ const UserPosts = () => {
       const response = await result.json();
       setalltheData(response);
     };
-
+    
     allthePosts();
+   
   }, [token , allposts]);
+useEffect(() => {
+  console.log(alltheData)
+}, [alltheData])
 
   
   return (
@@ -37,15 +40,14 @@ const UserPosts = () => {
  </div>
  <div className={Styles.postDetailsDiv}>
          <Link to={`/${item.userId._id}`}>{item.userId.user}</Link>
-         <span className={Styles.username}>
-         @user . <span>{moment(item.createdAt).fromNow()}</span>
+         <span className={Styles.username}><i class="fa-solid fa-circle-check"></i><span>{moment(item.createdAt).fromNow()}</span>
          </span>
          <div className={Styles.titleDiv}>
          <p>
          {item.title} 
          </p>
          
-         <span className={Styles.hastags}>@narendramodi</span>
+         <span className={Styles.hastags}>@amtisevda</span>
          </div>
          <div className={Styles.postImageDiv}>
          <img
@@ -54,10 +56,10 @@ const UserPosts = () => {
          />
          </div>
          <div className={Styles.actionBar}>
-         <p className={Styles.reply}><i className="fa-regular fa-comment"></i> 48</p>
-         <p className={Styles.repost}><i className="fa-solid fa-repeat"></i> 119</p>
+         <p className={Styles.reply}><i className="fa-regular fa-comment"></i>  {item.comment.length }</p>
+         <p className={Styles.repost}><i className="fa-solid fa-repeat"></i> {item.replies.length}</p>
          <p className={Styles.like}><i className="fa-regular fa-heart"></i> {item.like.length }</p>
-         <p className={Styles.view}><i className="fa-solid fa-chart-simple"></i> 17k</p>
+         <p className={Styles.view}><i className="fa-solid fa-chart-simple"></i>0</p>
          <p>
          <span className={Styles.reply}><i className="fa-regular fa-bookmark"></i></span > <span className={Styles.reply}><i className="fa-solid fa-arrow-up-from-bracket"></i></span>
          </p>

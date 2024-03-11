@@ -157,10 +157,10 @@ const ProfilePage = () => {
               </div>
               <div className={Styles.fameDiv}>
                 <span>
-                  <p>8M</p> Following
+                  <p>5</p> Following
                 </span>
                 <span>
-                  <p>0</p> Followers
+                  <p>1M</p> Followers
                 </span>
               </div>
             </div>
