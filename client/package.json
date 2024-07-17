@@ -18,6 +18,7 @@
     "react-click-away-listener": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
+    "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.21.2",
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.4",
